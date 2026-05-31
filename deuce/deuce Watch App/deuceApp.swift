@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct deuce_Watch_AppApp: App {
@@ -13,5 +14,6 @@ struct deuce_Watch_AppApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: MatchRecord.self)
     }
 }

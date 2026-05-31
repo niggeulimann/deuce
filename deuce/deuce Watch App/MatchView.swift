@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 #if canImport(WatchKit)
 import WatchKit
 #endif
@@ -6,14 +7,15 @@ import WatchKit
 struct MatchView: View {
     @Binding var isActive: Bool
     var vm: MatchViewModel
+    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         pageView
     }
 
     @ViewBuilder private var pageView: some View {
-        let court = CourtPageView(vm: vm, isActive: $isActive, onPoint: handlePoint)
-        let score = ScorePageView(vm: vm, isActive: $isActive)
+        let court = CourtPageView(vm: vm, onExit: saveAndExit, onPoint: handlePoint)
+        let score = ScorePageView(vm: vm, onExit: saveAndExit)
 #if os(watchOS)
         TabView {
             court
@@ -33,13 +35,19 @@ struct MatchView: View {
         else                    { WKInterfaceDevice.current().play(.click) }
 #endif
     }
+
+    func saveAndExit(isComplete: Bool) {
+        let record = vm.makeRecord(isComplete: isComplete)
+        modelContext.insert(record)
+        isActive = false
+    }
 }
 
 // MARK: - Page 0: Court
 
 private struct CourtPageView: View {
     var vm: MatchViewModel
-    @Binding var isActive: Bool
+    let onExit: (Bool) -> Void    // isComplete
     let onPoint: (Side) -> Void
 
     private let lineColor    = Color(white: 0.92).opacity(0.65)
@@ -206,7 +214,7 @@ private struct CourtPageView: View {
                     .font(.system(size: 15, weight: .black, design: .rounded))
                     .foregroundStyle(.white)
                 Button {
-                    isActive = false
+                    onExit(true)
                 } label: {
                     Text("Fertig")
                         .font(.system(size: 13, weight: .semibold))
@@ -245,7 +253,7 @@ private struct CourtPageView: View {
 
 private struct ScorePageView: View {
     var vm: MatchViewModel
-    @Binding var isActive: Bool
+    let onExit: (Bool) -> Void
 
     var body: some View {
         ZStack {
@@ -335,7 +343,7 @@ private struct ScorePageView: View {
     }
 
     private var endButton: some View {
-        Button { isActive = false } label: {
+        Button { onExit(false) } label: {
             Text("Beenden")
                 .font(.system(size: 14, weight: .semibold))
                 .frame(maxWidth: .infinity)

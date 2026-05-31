@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct StartView: View {
-    @State private var matchActive  = false
+    @State private var matchActive   = false
+    @State private var showHistory   = false
     @State private var firstServer: Side = .bottom
     @State private var noAd        = false
     @State private var surface: CourtSurface = .clay
@@ -25,9 +26,9 @@ struct StartView: View {
 
     private var startScreen: some View {
         ScrollView {
+
             VStack(spacing: 12) {
 
-                // Play button
                 Button { matchActive = true } label: {
                     HStack(spacing: 8) {
                         Image(systemName: "tennisball.fill").font(.system(size: 18))
@@ -81,9 +82,24 @@ struct StartView: View {
 
                 Toggle("No-Ad", isOn: $noAd)
                     .font(.footnote)
-                    .padding(.bottom, 8)
+
+                Button { showHistory = true } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "clock.arrow.circlepath")
+                            .font(.system(size: 13))
+                        Text("Verlauf")
+                            .font(.system(size: 13))
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .tint(.secondary)
+                .padding(.bottom, 8)
             }
             .padding(.horizontal, 10)
+        }
+        .sheet(isPresented: $showHistory) {
+            HistoryView()
         }
     }
 
