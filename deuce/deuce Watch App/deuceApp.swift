@@ -1,0 +1,17 @@
+//
+//  deuceApp.swift
+//  deuce Watch App
+//
+//  Created by Uli Niggemann on 31.05.26.
+//
+
+import SwiftUI
+
+@main
+struct deuce_Watch_AppApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
