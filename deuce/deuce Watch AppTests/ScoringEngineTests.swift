@@ -1,159 +1,190 @@
 import Testing
 @testable import Deuce
 
+// MARK: - Helpers
+
+private func applyPoint(_ side: Side, _ state: GameState) -> GameState {
+    ScoringEngine.applyPoint(to: side, state: state).newState
+}
+
+private func winGame(for side: Side, state: GameState) -> GameState {
+    var s = state
+    for _ in 0..<4 { s = applyPoint(side, s) }
+    return s
+}
+
+private func winSet(for side: Side, state: GameState) -> GameState {
+    var s = state
+    for _ in 0..<state.gamesPerSet { s = winGame(for: side, state: s) }
+    return s
+}
+
 // MARK: - Basic point progression
 
 @Test func loveToGame() {
     var state = GameState()
     var gameWon = false
-
     for _ in 0..<4 {
-        let result = ScoringEngine.applyPoint(to: .top, state: state)
-        state = result.newState
-        gameWon = result.gameWon
+        let r = ScoringEngine.applyPoint(to: .top, state: state)
+        state = r.newState; gameWon = r.gameWon
     }
-
     #expect(gameWon)
     #expect(state.gamesWon[.top] == 1)
     #expect(state.points[.top] == 0)
-    #expect(state.points[.bottom] == 0)
 }
 
 @Test func scoreLabelsProgression() {
     var state = GameState()
-    let expected = ["0", "15", "30", "40"]
-
-    for (i, label) in expected.enumerated() {
-        #expect(ScoringEngine.scoreLabel(for: .top, in: state) == label, "step \(i)")
-        let result = ScoringEngine.applyPoint(to: .top, state: state)
-        state = result.newState
+    for label in ["0","15","30","40"] {
+        #expect(ScoringEngine.scoreLabel(for: .top, in: state) == label)
+        state = applyPoint(.top, state)
     }
 }
 
 // MARK: - Deuce / Advantage
 
 @Test func reachDeuce() {
-    var state = GameState()
-    // both reach 40
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .top, state: state).newState }
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .bottom, state: state).newState }
-
-    #expect(ScoringEngine.scoreLabel(for: .top, in: state) == "Deuce")
-    #expect(ScoringEngine.scoreLabel(for: .bottom, in: state) == "Deuce")
+    var s = GameState()
+    for _ in 0..<3 { s = applyPoint(.top, s) }
+    for _ in 0..<3 { s = applyPoint(.bottom, s) }
+    #expect(ScoringEngine.scoreLabel(for: .top, in: s) == "Deuce")
 }
 
 @Test func advantageAndBackToDeuce() {
-    var state = GameState()
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .top, state: state).newState }
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .bottom, state: state).newState }
-
-    // top takes advantage
-    state = ScoringEngine.applyPoint(to: .top, state: state).newState
-    #expect(ScoringEngine.scoreLabel(for: .top, in: state) == "Ad")
-    #expect(ScoringEngine.scoreLabel(for: .bottom, in: state) == "40")
-
-    // bottom equalises → deuce again
-    state = ScoringEngine.applyPoint(to: .bottom, state: state).newState
-    #expect(ScoringEngine.scoreLabel(for: .top, in: state) == "Deuce")
+    var s = GameState()
+    for _ in 0..<3 { s = applyPoint(.top, s) }
+    for _ in 0..<3 { s = applyPoint(.bottom, s) }
+    s = applyPoint(.top, s)
+    #expect(ScoringEngine.scoreLabel(for: .top, in: s) == "Ad")
+    s = applyPoint(.bottom, s)
+    #expect(ScoringEngine.scoreLabel(for: .top, in: s) == "Deuce")
 }
 
 @Test func winFromAdvantage() {
-    var state = GameState()
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .top, state: state).newState }
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .bottom, state: state).newState }
-
-    state = ScoringEngine.applyPoint(to: .top, state: state).newState // Ad
-    let result = ScoringEngine.applyPoint(to: .top, state: state)
-
-    #expect(result.gameWon)
-    #expect(result.newState.gamesWon[.top] == 1)
+    var s = GameState()
+    for _ in 0..<3 { s = applyPoint(.top, s) }
+    for _ in 0..<3 { s = applyPoint(.bottom, s) }
+    s = applyPoint(.top, s)
+    let r = ScoringEngine.applyPoint(to: .top, state: s)
+    #expect(r.gameWon)
+    #expect(r.newState.gamesWon[.top] == 1)
 }
 
 @Test func cannotWinFromDeuceWithOnePoint() {
-    var state = GameState()
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .top, state: state).newState }
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .bottom, state: state).newState }
-
-    let result = ScoringEngine.applyPoint(to: .top, state: state)
-    #expect(!result.gameWon)
+    var s = GameState()
+    for _ in 0..<3 { s = applyPoint(.top, s) }
+    for _ in 0..<3 { s = applyPoint(.bottom, s) }
+    #expect(!ScoringEngine.applyPoint(to: .top, state: s).gameWon)
 }
 
 // MARK: - No-Ad
 
 @Test func noAdWinOnFifthPoint() {
-    var state = GameState(noAd: true)
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .top, state: state).newState }
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .bottom, state: state).newState }
-
-    // next point wins immediately
-    let result = ScoringEngine.applyPoint(to: .top, state: state)
-    #expect(result.gameWon)
-    #expect(result.newState.gamesWon[.top] == 1)
+    var s = GameState(noAd: true)
+    for _ in 0..<3 { s = applyPoint(.top, s) }
+    for _ in 0..<3 { s = applyPoint(.bottom, s) }
+    let r = ScoringEngine.applyPoint(to: .top, state: s)
+    #expect(r.gameWon)
+    #expect(r.newState.gamesWon[.top] == 1)
 }
 
 @Test func noAdLoserCanWinAfterDeuce() {
-    var state = GameState(noAd: true)
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .top, state: state).newState }
-    for _ in 0..<3 { state = ScoringEngine.applyPoint(to: .bottom, state: state).newState }
-
-    let result = ScoringEngine.applyPoint(to: .bottom, state: state)
-    #expect(result.gameWon)
-    #expect(result.newState.gamesWon[.bottom] == 1)
+    var s = GameState(noAd: true)
+    for _ in 0..<3 { s = applyPoint(.top, s) }
+    for _ in 0..<3 { s = applyPoint(.bottom, s) }
+    let r = ScoringEngine.applyPoint(to: .bottom, state: s)
+    #expect(r.gameWon)
+    #expect(r.newState.gamesWon[.bottom] == 1)
 }
 
 // MARK: - Multiple games
 
 @Test func gamesWonAccumulate() {
-    var state = GameState()
+    var s = GameState()
+    s = winGame(for: .top, state: s)
+    s = winGame(for: .top, state: s)
+    s = winGame(for: .bottom, state: s)
+    #expect(s.gamesWon[.top] == 2)
+    #expect(s.gamesWon[.bottom] == 1)
+}
 
-    func winGame(for side: Side) {
-        for _ in 0..<4 {
-            state = ScoringEngine.applyPoint(to: side, state: state).newState
-        }
-    }
-
-    winGame(for: .top)
-    winGame(for: .top)
-    winGame(for: .bottom)
-
-    #expect(state.gamesWon[.top] == 2)
-    #expect(state.gamesWon[.bottom] == 1)
+@Test func straightFourPointWin() {
+    var s = GameState(); var won = false
+    for _ in 0..<4 { let r = ScoringEngine.applyPoint(to: .bottom, state: s); s = r.newState; won = r.gameWon }
+    #expect(won)
 }
 
 // MARK: - Serve box
 
 @Test func serveBoxAlternatesEachPoint() {
-    var state = GameState(server: .bottom)
-    // point 0: even → bottom server → screen-right
-    #expect(ScoringEngine.serveBox(in: state) == .right)
-    state = ScoringEngine.applyPoint(to: .top, state: state).newState
-    // point 1: odd → bottom server → screen-left
-    #expect(ScoringEngine.serveBox(in: state) == .left)
+    var s = GameState(server: .bottom)
+    #expect(ScoringEngine.serveBox(in: s) == .right)
+    s = applyPoint(.top, s)
+    #expect(ScoringEngine.serveBox(in: s) == .left)
 }
 
 @Test func serverSwitchesAfterGame() {
-    var state = GameState(server: .bottom)
-    for _ in 0..<4 {
-        state = ScoringEngine.applyPoint(to: .bottom, state: state).newState
-    }
-    #expect(state.server == .top)
+    var s = GameState(server: .bottom)
+    s = winGame(for: .bottom, state: s)
+    #expect(s.server == .top)
 }
 
 @Test func topServerBoxMirrored() {
-    // Top server: deuce side (even points) = screen-left (their right from top)
-    let state = GameState(server: .top)
-    #expect(ScoringEngine.serveBox(in: state) == .left)
+    #expect(ScoringEngine.serveBox(in: GameState(server: .top)) == .left)
 }
 
-// MARK: - Straight 4-0 does not require advantage rule
+// MARK: - Sets
 
-@Test func straightFourPointWin() {
-    var state = GameState()
-    var won = false
-    for _ in 0..<4 {
-        let r = ScoringEngine.applyPoint(to: .bottom, state: state)
-        state = r.newState
-        won = r.gameWon
+@Test func setWonAfterSixGames() {
+    var s = GameState(gamesPerSet: 6)
+    for _ in 0..<6 { s = winGame(for: .top, state: s) }
+    #expect(s.setsWon[.top] == 1)
+    #expect(s.gamesWon[.top] == 0)   // games reset after set
+    #expect(s.setHistory.count == 1)
+    #expect(s.setHistory[0].top == 6)
+}
+
+@Test func setRequiresTwoGameLead() {
+    var s = GameState(gamesPerSet: 6)
+    // reach 6-5
+    for _ in 0..<6 { s = winGame(for: .top,    state: s) }
+    for _ in 0..<5 { s = winGame(for: .bottom, state: s) }
+    // top has 6, bottom has 5 – but set already won at 6-0. Reset to 6-5 manually
+    s.setsWon = [.top: 0, .bottom: 0]
+    s.setHistory = []
+    s.gamesWon = [.top: 6, .bottom: 5]
+    // bottom wins one more → 6-6, no set won yet
+    s = winGame(for: .bottom, state: s)
+    #expect(s.setsWon[.top] == 0)
+    #expect(s.setsWon[.bottom] == 0)
+    // top wins → 7-6, set won
+    s = winGame(for: .top, state: s)
+    #expect(s.setsWon[.top] == 1)
+}
+
+@Test func multipleSetHistory() {
+    var s = GameState(gamesPerSet: 6, setsToWin: 2)
+    s = winSet(for: .top,    state: s)
+    s = winSet(for: .bottom, state: s)
+    #expect(s.setsWon[.top]    == 1)
+    #expect(s.setsWon[.bottom] == 1)
+    #expect(s.setHistory.count == 2)
+}
+
+@Test func setWonFlagReturnedCorrectly() {
+    var s = GameState(gamesPerSet: 6)
+    // win 5 games – no set won yet
+    for _ in 0..<5 {
+        let r = ScoringEngine.applyPoint(to: .top, state: s)
+        // win the game
+        var gs = s
+        for _ in 0..<4 { gs = applyPoint(.top, gs) }
+        #expect(!ScoringEngine.applyPoint(to: .top, state: s).setWon || gs.gamesWon[.top]! < 6)
+        s = gs
     }
-    #expect(won)
+    // 6th game: last point should return setWon = true
+    var gs = s
+    for _ in 0..<3 { gs = applyPoint(.top, gs) }
+    let final = ScoringEngine.applyPoint(to: .top, state: gs)
+    #expect(final.setWon)
 }

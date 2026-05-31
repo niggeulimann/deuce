@@ -12,7 +12,7 @@ struct MatchView: View {
     }
 
     @ViewBuilder private var pageView: some View {
-        let court = CourtPageView(vm: vm, onPoint: handlePoint)
+        let court = CourtPageView(vm: vm, isActive: $isActive, onPoint: handlePoint)
         let score = ScorePageView(vm: vm, isActive: $isActive)
 #if os(watchOS)
         TabView {
@@ -26,9 +26,11 @@ struct MatchView: View {
     }
 
     private func handlePoint(for side: Side) {
-        let won = vm.point(for: side)
+        let result = vm.point(for: side)
 #if canImport(WatchKit)
-        WKInterfaceDevice.current().play(won ? .success : .click)
+        if result.setWon        { WKInterfaceDevice.current().play(.success) }
+        else if result.gameWon  { WKInterfaceDevice.current().play(.success) }
+        else                    { WKInterfaceDevice.current().play(.click) }
 #endif
     }
 }
@@ -37,19 +39,30 @@ struct MatchView: View {
 
 private struct CourtPageView: View {
     var vm: MatchViewModel
+    @Binding var isActive: Bool
     let onPoint: (Side) -> Void
 
-    private let lineColor  = Color(white: 0.92).opacity(0.65)
-    private let courtPadH: CGFloat = 8
+    private let lineColor    = Color(white: 0.92).opacity(0.65)
+    private let courtPadH: CGFloat  = 8
     private let courtPadTop: CGFloat = 4
 
     var body: some View {
         NavigationStack {
             GeometryReader { geo in
-                courtBlock(geo: geo)
-                    .padding(.horizontal, courtPadH)
-                    .padding(.top, courtPadTop)
-                    // no bottom padding – court fills to edge
+                ZStack {
+                    courtBlock(geo: geo)
+                        .padding(.horizontal, courtPadH)
+                        .padding(.top, courtPadTop)
+
+                    // Side-switch overlay
+                    if vm.sideSwitch {
+                        sideSwitchOverlay
+                    }
+                    // Match-over overlay
+                    if let winner = vm.matchWon {
+                        matchOverOverlay(winner: winner)
+                    }
+                }
             }
             .toolbar { undoToolbarItem }
             .navigationTitle("")
@@ -59,28 +72,11 @@ private struct CourtPageView: View {
         }
     }
 
-    @ToolbarContentBuilder
-    private var undoToolbarItem: some ToolbarContent {
-#if os(watchOS)
-        ToolbarItem(placement: .topBarLeading) { undoButton }
-#else
-        ToolbarItem(placement: .automatic)    { undoButton }
-#endif
-    }
-
-    private var undoButton: some View {
-        Button { vm.undo() } label: {
-            Image(systemName: "arrow.uturn.backward")
-                .font(.system(size: 13, weight: .bold))
-        }
-        .disabled(!vm.canUndo)
-        .foregroundStyle(vm.canUndo ? .primary : .tertiary)
-    }
+    // MARK: Court block
 
     @ViewBuilder
     private func courtBlock(geo: GeometryProxy) -> some View {
-        let netH: CGFloat   = 12
-        // subtract toolbar + top padding; leave zero at bottom
+        let netH: CGFloat = 12
         let availH = geo.size.height - courtPadTop
         let halfH  = (availH - netH) / 2
 
@@ -90,7 +86,6 @@ private struct CourtPageView: View {
             halfView(side: .bottom, height: halfH)
         }
         .clipShape(RoundedRectangle(cornerRadius: 8))
-        // Single animation drives both dots together
         .animation(.easeInOut(duration: 0.3), value: vm.server)
         .animation(.easeInOut(duration: 0.3), value: vm.serveBox)
     }
@@ -98,21 +93,18 @@ private struct CourtPageView: View {
     @ViewBuilder
     private func halfView(side: Side, height: CGFloat) -> some View {
         let isServer = vm.server == side
-        let score    = side == .top ? vm.topScore : vm.bottomScore
-        let games    = side == .top ? vm.topGames : vm.bottomGames
+        let score    = side == .top ? vm.topScore    : vm.bottomScore
+        let games    = side == .top ? vm.topGames    : vm.bottomGames
 
         Button { onPoint(side) } label: {
             ZStack {
                 side == .top ? vm.surface.colorTop : vm.surface.colorBottom
-
                 Rectangle().fill(lineColor).frame(width: 1)
-
                 VStack(spacing: 0) {
                     if side == .top  { Spacer() }
                     Rectangle().fill(lineColor).frame(height: 1)
                     if side == .bottom { Spacer() }
                 }
-
                 scoreBadge(score: score, games: games, side: side)
                 dotsLayer(side: side, isServer: isServer)
             }
@@ -147,17 +139,15 @@ private struct CourtPageView: View {
     @ViewBuilder
     private func dotsLayer(side: Side, isServer: Bool) -> some View {
         let box = vm.serveBox
-        let receiverBox: ServeBox = box == .left ? .right : .left
-        let myBox = isServer ? box : receiverBox
-        let nearBaseline = true   // both server and receiver stand at their own baseline
+        let myBox: ServeBox = isServer ? box : (box == .left ? .right : .left)
 
         let alignment: Alignment = {
             let isLeft = myBox == .left
-            switch (isLeft, nearBaseline) {
-            case (true,  true):  return side == .top ? .topLeading     : .bottomLeading
-            case (true,  false): return side == .top ? .bottomLeading  : .topLeading
-            case (false, true):  return side == .top ? .topTrailing    : .bottomTrailing
-            case (false, false): return side == .top ? .bottomTrailing : .topTrailing
+            switch (isLeft, side) {
+            case (true,  .top):    return .topLeading
+            case (true,  .bottom): return .bottomLeading
+            case (false, .top):    return .topTrailing
+            default:               return .bottomTrailing
             }
         }()
 
@@ -173,9 +163,85 @@ private struct CourtPageView: View {
             }
         }
     }
+
+    // MARK: Side-switch overlay
+
+    private var sideSwitchOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.55)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .padding(.horizontal, courtPadH)
+                .padding(.top, courtPadTop)
+
+            VStack(spacing: 6) {
+                Image(systemName: "arrow.up.arrow.down")
+                    .font(.system(size: 26, weight: .bold))
+                Text("Seitenwechsel")
+                    .font(.system(size: 14, weight: .semibold))
+            }
+            .foregroundStyle(.white)
+        }
+        .onTapGesture { vm.dismissSideSwitch() }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                vm.dismissSideSwitch()
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func matchOverOverlay(winner: Side) -> some View {
+        let youWon = winner == .bottom
+        ZStack {
+            Color.black.opacity(0.7)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .padding(.horizontal, courtPadH)
+                .padding(.top, courtPadTop)
+
+            VStack(spacing: 8) {
+                Image(systemName: youWon ? "trophy.fill" : "hand.thumbsup")
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundStyle(youWon ? .yellow : .white)
+                Text(youWon ? "Gewonnen!" : "Verloren")
+                    .font(.system(size: 15, weight: .black, design: .rounded))
+                    .foregroundStyle(.white)
+                Button {
+                    isActive = false
+                } label: {
+                    Text("Fertig")
+                        .font(.system(size: 13, weight: .semibold))
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(youWon ? .yellow : .gray)
+            }
+            .foregroundStyle(.white)
+            .padding(16)
+        }
+    }
+
+    // MARK: Toolbar
+
+    @ToolbarContentBuilder
+    private var undoToolbarItem: some ToolbarContent {
+#if os(watchOS)
+        ToolbarItem(placement: .topBarLeading) { undoButton }
+#else
+        ToolbarItem(placement: .automatic)    { undoButton }
+#endif
+    }
+
+    private var undoButton: some View {
+        Button { vm.undo() } label: {
+            Image(systemName: "arrow.uturn.backward")
+                .font(.system(size: 13, weight: .bold))
+        }
+        .disabled(!vm.canUndo)
+        .foregroundStyle(vm.canUndo ? .primary : .tertiary)
+    }
 }
 
-// MARK: - Page 1: Score details
+// MARK: - Page 1: Score + Sets
 
 private struct ScorePageView: View {
     var vm: MatchViewModel
@@ -184,63 +250,100 @@ private struct ScorePageView: View {
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-
             VStack(spacing: 0) {
                 Spacer()
-
-                HStack(spacing: 0) {
-                    Spacer()
-                    VStack(spacing: 2) {
-                        Text("Gegner")
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundStyle(.secondary)
-                        Text("\(vm.topGames)")
-                            .font(.system(size: 28, weight: .bold, design: .rounded))
-                    }
-                    Spacer()
-                    Text(":")
-                        .font(.system(size: 22, weight: .light))
-                        .foregroundStyle(.secondary)
-                        .padding(.top, 14)
-                    Spacer()
-                    VStack(spacing: 2) {
-                        Text("Du")
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundStyle(.secondary)
-                        Text("\(vm.bottomGames)")
-                            .font(.system(size: 28, weight: .bold, design: .rounded))
-                    }
-                    Spacer()
-                }
-
-                HStack(spacing: 12) {
-                    Text(vm.topScore)
-                        .font(.system(size: 36, weight: .black, design: .rounded))
-                        .foregroundStyle(vm.server == .top ? .yellow : .white)
-                        .minimumScaleFactor(0.6)
-                    Text("–")
-                        .font(.system(size: 20, weight: .light))
-                        .foregroundStyle(.secondary)
-                    Text(vm.bottomScore)
-                        .font(.system(size: 36, weight: .black, design: .rounded))
-                        .foregroundStyle(vm.server == .bottom ? .yellow : .white)
-                        .minimumScaleFactor(0.6)
-                }
-                .padding(.top, 4)
-
+                setTable
                 Spacer()
-
-                Button { isActive = false } label: {
-                    Text("Beenden")
-                        .font(.system(size: 14, weight: .semibold))
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.bordered)
-                .tint(.red.opacity(0.7))
-                .padding(.horizontal, 16)
-                .padding(.bottom, 10)
+                currentGameScore
+                Spacer()
+                endButton
             }
         }
+    }
+
+    // Set history table + current set column
+    private var setTable: some View {
+        HStack(spacing: 0) {
+            // Row labels
+            VStack(alignment: .leading, spacing: 4) {
+                Text("")
+                    .font(.system(size: 10))
+                    .frame(height: 14)
+                Text("Gegner")
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundStyle(.secondary)
+                Text("Du")
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundStyle(.secondary)
+            }
+            .frame(width: 46, alignment: .leading)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 0) {
+                    // Past sets
+                    ForEach(Array(vm.setHistory.enumerated()), id: \.offset) { i, set in
+                        setColumn(
+                            header: "S\(i + 1)",
+                            top: set.top,
+                            bottom: set.bottom,
+                            highlight: false
+                        )
+                    }
+                    // Current set
+                    setColumn(
+                        header: "S\(vm.setHistory.count + 1)",
+                        top: vm.topGames,
+                        bottom: vm.bottomGames,
+                        highlight: true
+                    )
+                }
+            }
+        }
+        .padding(.horizontal, 12)
+    }
+
+    private func setColumn(header: String, top: Int, bottom: Int, highlight: Bool) -> some View {
+        VStack(spacing: 4) {
+            Text(header)
+                .font(.system(size: 10, weight: highlight ? .semibold : .regular))
+                .foregroundStyle(highlight ? .primary : .secondary)
+                .frame(height: 14)
+            Text("\(top)")
+                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .foregroundStyle(highlight ? .white : .secondary)
+            Text("\(bottom)")
+                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .foregroundStyle(highlight ? .white : .secondary)
+        }
+        .frame(width: 32)
+    }
+
+    private var currentGameScore: some View {
+        HStack(spacing: 10) {
+            Text(vm.topScore)
+                .font(.system(size: 34, weight: .black, design: .rounded))
+                .foregroundStyle(vm.server == .top ? .yellow : .white)
+                .minimumScaleFactor(0.6)
+            Text("–")
+                .font(.system(size: 18, weight: .light))
+                .foregroundStyle(.secondary)
+            Text(vm.bottomScore)
+                .font(.system(size: 34, weight: .black, design: .rounded))
+                .foregroundStyle(vm.server == .bottom ? .yellow : .white)
+                .minimumScaleFactor(0.6)
+        }
+    }
+
+    private var endButton: some View {
+        Button { isActive = false } label: {
+            Text("Beenden")
+                .font(.system(size: 14, weight: .semibold))
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.bordered)
+        .tint(.red.opacity(0.7))
+        .padding(.horizontal, 16)
+        .padding(.bottom, 10)
     }
 }
 

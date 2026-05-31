@@ -1,16 +1,22 @@
 import SwiftUI
 
 struct StartView: View {
-    @State private var matchActive = false
+    @State private var matchActive  = false
     @State private var firstServer: Side = .bottom
-    @State private var noAd = false
+    @State private var noAd        = false
     @State private var surface: CourtSurface = .clay
+    @State private var gamesPerSet = 6
+    @State private var setsToWin   = 2   // best of 3
 
     var body: some View {
         if matchActive {
             MatchView(
                 isActive: $matchActive,
-                vm: MatchViewModel(server: firstServer, noAd: noAd, surface: surface)
+                vm: MatchViewModel(
+                    server: firstServer, noAd: noAd,
+                    gamesPerSet: gamesPerSet, setsToWin: setsToWin,
+                    surface: surface
+                )
             )
         } else {
             startScreen
@@ -20,26 +26,50 @@ struct StartView: View {
     private var startScreen: some View {
         ScrollView {
             VStack(spacing: 12) {
-                Text("Deuce")
-                    .font(.system(size: 22, weight: .black, design: .rounded))
-                    .padding(.top, 4)
+
+                // Play button
+                Button { matchActive = true } label: {
+                    HStack(spacing: 8) {
+                        Image(systemName: "tennisball.fill").font(.system(size: 18))
+                        Text("Spielen").font(.system(size: 17, weight: .bold, design: .rounded))
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.green)
+                .padding(.top, 6)
 
                 // Serve
                 VStack(spacing: 6) {
-                    Text("Aufschlag")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                    sectionHeader(icon: "tennisball.fill", label: "Aufschlag")
                     HStack(spacing: 8) {
                         choiceButton(label: "Du",     selected: firstServer == .bottom) { firstServer = .bottom }
                         choiceButton(label: "Gegner", selected: firstServer == .top)    { firstServer = .top }
                     }
                 }
 
+                // Sets
+                VStack(spacing: 6) {
+                    sectionHeader(icon: "trophy", label: "Sätze")
+                    HStack(spacing: 8) {
+                        choiceButton(label: "1",        selected: setsToWin == 1) { setsToWin = 1 }
+                        choiceButton(label: "Best of 3", selected: setsToWin == 2) { setsToWin = 2 }
+                        choiceButton(label: "Best of 5", selected: setsToWin == 3) { setsToWin = 3 }
+                    }
+                }
+
+                // Games per set
+                VStack(spacing: 6) {
+                    sectionHeader(icon: "number", label: "Games/Satz")
+                    HStack(spacing: 8) {
+                        choiceButton(label: "4", selected: gamesPerSet == 4) { gamesPerSet = 4 }
+                        choiceButton(label: "6", selected: gamesPerSet == 6) { gamesPerSet = 6 }
+                    }
+                }
+
                 // Surface
                 VStack(spacing: 6) {
-                    Text("Belag")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                    sectionHeader(icon: "rectangle.fill", label: "Belag")
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 6) {
                         ForEach(CourtSurface.allCases) { s in
                             choiceButton(label: s.label, selected: surface == s, color: s.colorTop) {
@@ -51,19 +81,20 @@ struct StartView: View {
 
                 Toggle("No-Ad", isOn: $noAd)
                     .font(.footnote)
-
-                Button {
-                    matchActive = true
-                } label: {
-                    Text("Spielen")
-                        .font(.system(size: 17, weight: .bold, design: .rounded))
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.green)
-                .padding(.bottom, 8)
+                    .padding(.bottom, 8)
             }
             .padding(.horizontal, 10)
+        }
+    }
+
+    private func sectionHeader(icon: String, label: String) -> some View {
+        HStack(spacing: 4) {
+            Image(systemName: icon)
+                .font(.system(size: 10))
+                .foregroundStyle(.secondary)
+            Text(label)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
         }
     }
 
@@ -75,7 +106,9 @@ struct StartView: View {
     ) -> some View {
         Button(action: action) {
             Text(label)
-                .font(.system(size: 13, weight: selected ? .bold : .regular))
+                .font(.system(size: 12, weight: selected ? .bold : .regular))
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 6)
                 .background(selected ? color.opacity(0.85) : Color(white: 0.22))

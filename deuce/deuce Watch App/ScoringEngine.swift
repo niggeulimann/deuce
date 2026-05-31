@@ -7,20 +7,33 @@ enum Side: CaseIterable {
     var opposite: Side { self == .top ? .bottom : .top }
 }
 
-// Which half of the court the server stands in (screen-relative: left = left on screen)
 enum ServeBox {
     case left, right
 }
 
-enum PointDisplay {
-    case love, fifteen, thirty, forty, advantage, game
-}
-
 struct GameState: Equatable {
-    var points: [Side: Int] = [.top: 0, .bottom: 0]
-    var gamesWon: [Side: Int] = [.top: 0, .bottom: 0]
-    var server: Side = .bottom
-    var noAd: Bool = false
+    var points: [Side: Int]    = [.top: 0, .bottom: 0]
+    var gamesWon: [Side: Int]  = [.top: 0, .bottom: 0]
+    var setsWon: [Side: Int]   = [.top: 0, .bottom: 0]
+    // Games score of each finished set, in order: [(top, bottom), …]
+    var setHistory: [(top: Int, bottom: Int)] = []
+    var server: Side   = .bottom
+    var noAd: Bool     = false
+    var gamesPerSet: Int = 6   // first to this many games (with 2-game lead)
+    var setsToWin: Int   = 2   // first to this many sets wins the match
+
+    // Equatable manually because tuples aren't auto-Equatable
+    static func == (lhs: GameState, rhs: GameState) -> Bool {
+        lhs.points      == rhs.points      &&
+        lhs.gamesWon    == rhs.gamesWon    &&
+        lhs.setsWon     == rhs.setsWon     &&
+        lhs.setHistory.map(\.top)    == rhs.setHistory.map(\.top)    &&
+        lhs.setHistory.map(\.bottom) == rhs.setHistory.map(\.bottom) &&
+        lhs.server      == rhs.server      &&
+        lhs.noAd        == rhs.noAd        &&
+        lhs.gamesPerSet == rhs.gamesPerSet &&
+        lhs.setsToWin   == rhs.setsToWin
+    }
 }
 
 // MARK: - Engine
@@ -28,10 +41,9 @@ struct GameState: Equatable {
 struct ScoringEngine {
 
     static func scoreLabel(for side: Side, in state: GameState) -> String {
-        let mine = state.points[side]!
+        let mine   = state.points[side]!
         let theirs = state.points[side.opposite]!
-        let deuce = mine >= 3 && theirs >= 3
-
+        let deuce  = mine >= 3 && theirs >= 3
         if deuce {
             if mine == theirs { return "Deuce" }
             return mine > theirs ? "Ad" : "40"
@@ -44,34 +56,57 @@ struct ScoringEngine {
         }
     }
 
-    // Serve box alternates every point. Deuce side (even points) = server's right.
-    // From screen perspective: bottom server's right = screen-right; top server's right = screen-left.
     static func serveBox(in state: GameState) -> ServeBox {
-        let totalPoints = state.points[.top]! + state.points[.bottom]!
-        let isDeucePoint = totalPoints % 2 == 0   // 0, 2, 4 … = deuce side
+        let total = state.points[.top]! + state.points[.bottom]!
         switch state.server {
-        case .bottom: return isDeucePoint ? .right : .left
-        case .top:    return isDeucePoint ? .left  : .right
+        case .bottom: return total % 2 == 0 ? .right : .left
+        case .top:    return total % 2 == 0 ? .left  : .right
         }
     }
 
     static func isGameWon(by side: Side, in state: GameState) -> Bool {
-        let mine = state.points[side]!
+        let mine   = state.points[side]!
         let theirs = state.points[side.opposite]!
         if state.noAd { return mine >= 4 && mine > theirs }
         return mine >= 4 && (mine - theirs) >= 2
     }
 
-    static func applyPoint(to side: Side, state: GameState) -> (newState: GameState, gameWon: Bool) {
+    static func isSetWon(by side: Side, in state: GameState) -> Bool {
+        let mine   = state.gamesWon[side]!
+        let theirs = state.gamesWon[side.opposite]!
+        let target = state.gamesPerSet
+        if mine >= target && (mine - theirs) >= 2 { return true }
+        // Tiebreak: target+1 vs target (e.g. 7-6)
+        if mine == target + 1 && theirs == target  { return true }
+        return false
+    }
+
+    // Returns (newState, gameWon, setWon)
+    static func applyPoint(
+        to side: Side,
+        state: GameState
+    ) -> (newState: GameState, gameWon: Bool, setWon: Bool) {
         var next = state
         next.points[side]! += 1
 
-        if isGameWon(by: side, in: next) {
-            next.gamesWon[side]! += 1
-            next.points = [.top: 0, .bottom: 0]
-            next.server = state.server.opposite   // serve alternates after each game
-            return (next, true)
+        guard isGameWon(by: side, in: next) else {
+            return (next, false, false)
         }
-        return (next, false)
+
+        // Game won
+        next.gamesWon[side]! += 1
+        next.points = [.top: 0, .bottom: 0]
+        next.server = state.server.opposite
+
+        guard isSetWon(by: side, in: next) else {
+            return (next, true, false)
+        }
+
+        // Set won
+        next.setsWon[side]! += 1
+        let snap = (top: next.gamesWon[.top]!, bottom: next.gamesWon[.bottom]!)
+        next.setHistory.append(snap)
+        next.gamesWon = [.top: 0, .bottom: 0]
+        return (next, true, true)
     }
 }
