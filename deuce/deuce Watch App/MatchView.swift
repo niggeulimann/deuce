@@ -7,18 +7,22 @@ struct MatchView: View {
     @Binding var isActive: Bool
     var vm: MatchViewModel
 
-    @State private var gameWonSide: Side? = nil
-
     var body: some View {
-        TabView {
-            // Page 0 (default): Court
-            CourtPageView(vm: vm, gameWonSide: $gameWonSide, isActive: $isActive, onPoint: handlePoint)
-            // Page 1 (swipe left): Score details
-            ScorePageView(vm: vm, isActive: $isActive)
-        }
+        pageView
+    }
+
+    @ViewBuilder private var pageView: some View {
+        let court = CourtPageView(vm: vm, onPoint: handlePoint)
+        let score = ScorePageView(vm: vm, isActive: $isActive)
 #if os(watchOS)
-        .ignoresSafeArea()
-        .animation(.easeInOut(duration: 0.25), value: gameWonSide)
+        TabView {
+            court
+            score
+        }
+        .tabViewStyle(.page(indexDisplayMode: .always))
+#else
+        TabView { court; score }
+#endif
     }
 
     private func handlePoint(for side: Side) {
@@ -26,111 +30,107 @@ struct MatchView: View {
 #if canImport(WatchKit)
         WKInterfaceDevice.current().play(won ? .success : .click)
 #endif
-        if won {
-            gameWonSide = side
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                gameWonSide = nil
-            }
-        }
     }
 }
 
-// MARK: - Page 0: Court (main view)
+// MARK: - Page 0: Court
 
 private struct CourtPageView: View {
     var vm: MatchViewModel
-    @Binding var gameWonSide: Side?
-    @Binding var isActive: Bool
     let onPoint: (Side) -> Void
 
-    private let lineColor = Color(white: 0.92).opacity(0.65)
+    private let lineColor  = Color(white: 0.92).opacity(0.65)
+    private let courtPadH: CGFloat = 8
+    private let courtPadTop: CGFloat = 4
 
     var body: some View {
-        GeometryReader { geo in
-            ZStack {
-                VStack(spacing: 0) {
-                    halfView(side: .top, geo: geo)
-                    NetView()
-                        .frame(height: 12)
-                    halfView(side: .bottom, geo: geo)
-                }
-
-                // Undo – top left overlay
-                VStack {
-                    HStack {
-                        Button {
-                            vm.undo()
-                        } label: {
-                            Image(systemName: "arrow.uturn.backward")
-                                .font(.system(size: 13, weight: .bold))
-                                .foregroundStyle(vm.canUndo ? .white : .white.opacity(0.2))
-                                .padding(8)
-                                .background(Color.black.opacity(0.35))
-                                .clipShape(Circle())
-                        }
-                        .buttonStyle(.plain)
-                        .disabled(!vm.canUndo)
-                        .padding(.leading, 6)
-                        .padding(.top, 6)
-                        Spacer()
-                    }
-                    Spacer()
-                }
+        NavigationStack {
+            GeometryReader { geo in
+                courtBlock(geo: geo)
+                    .padding(.horizontal, courtPadH)
+                    .padding(.top, courtPadTop)
+                    // no bottom padding – court fills to edge
             }
+            .toolbar { undoToolbarItem }
+            .navigationTitle("")
+#if os(watchOS)
+            .navigationBarTitleDisplayMode(.inline)
+#endif
         }
-        .ignoresSafeArea()
+    }
+
+    @ToolbarContentBuilder
+    private var undoToolbarItem: some ToolbarContent {
+#if os(watchOS)
+        ToolbarItem(placement: .topBarLeading) { undoButton }
+#else
+        ToolbarItem(placement: .automatic)    { undoButton }
+#endif
+    }
+
+    private var undoButton: some View {
+        Button { vm.undo() } label: {
+            Image(systemName: "arrow.uturn.backward")
+                .font(.system(size: 13, weight: .bold))
+        }
+        .disabled(!vm.canUndo)
+        .foregroundStyle(vm.canUndo ? .primary : .tertiary)
     }
 
     @ViewBuilder
-    private func halfView(side: Side, geo: GeometryProxy) -> some View {
-        let halfH = (geo.size.height - 12) / 2
+    private func courtBlock(geo: GeometryProxy) -> some View {
+        let netH: CGFloat   = 12
+        // subtract toolbar + top padding; leave zero at bottom
+        let availH = geo.size.height - courtPadTop
+        let halfH  = (availH - netH) / 2
+
+        VStack(spacing: 0) {
+            halfView(side: .top,    height: halfH)
+            NetView().frame(height: netH)
+            halfView(side: .bottom, height: halfH)
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        // Single animation drives both dots together
+        .animation(.easeInOut(duration: 0.3), value: vm.server)
+        .animation(.easeInOut(duration: 0.3), value: vm.serveBox)
+    }
+
+    @ViewBuilder
+    private func halfView(side: Side, height: CGFloat) -> some View {
         let isServer = vm.server == side
-        let score    = side == .top ? vm.topScore    : vm.bottomScore
-        let games    = side == .top ? vm.topGames    : vm.bottomGames
-        let won      = gameWonSide == side
-        let surface  = vm.surface
+        let score    = side == .top ? vm.topScore : vm.bottomScore
+        let games    = side == .top ? vm.topGames : vm.bottomGames
 
         Button { onPoint(side) } label: {
             ZStack {
-                // Court surface
-                (won ? Color.green.opacity(0.5) : (side == .top ? surface.colorTop : surface.colorBottom))
+                side == .top ? vm.surface.colorTop : vm.surface.colorBottom
 
-                // Vertical centre service line
-                Rectangle()
-                    .fill(lineColor)
-                    .frame(width: 1)
+                Rectangle().fill(lineColor).frame(width: 1)
 
-                // Horizontal service box line
                 VStack(spacing: 0) {
-                    if side == .top { Spacer() }
+                    if side == .top  { Spacer() }
                     Rectangle().fill(lineColor).frame(height: 1)
                     if side == .bottom { Spacer() }
                 }
 
-                // Score badge (inverted: white bg, court-color text)
-                scoreBadge(score: score, games: games, side: side, isServer: isServer, surface: surface)
-
-                // Server / receiver dots at baseline corners
+                scoreBadge(score: score, games: games, side: side)
                 dotsLayer(side: side, isServer: isServer)
             }
         }
         .buttonStyle(.plain)
-        .frame(height: halfH)
+        .frame(height: height)
     }
 
-    // Inverted score badge: white pill with court-accent text
-    private func scoreBadge(score: String, games: Int, side: Side, isServer: Bool, surface: CourtSurface) -> some View {
+    private func scoreBadge(score: String, games: Int, side: Side) -> some View {
         VStack(spacing: 0) {
-            if side == .top { Spacer() }
-            HStack(spacing: 6) {
-                // Games won
+            if side == .top  { Spacer() }
+            HStack(spacing: 5) {
                 Text("\(games)")
                     .font(.system(size: 11, weight: .semibold, design: .rounded))
-                    .foregroundStyle(surface.accentColor.opacity(0.7))
-                // Current score
+                    .foregroundStyle(vm.surface.accentColor.opacity(0.65))
                 Text(score)
-                    .font(.system(size: isServer ? 36 : 28, weight: .black, design: .rounded))
-                    .foregroundStyle(surface.accentColor)
+                    .font(.system(size: 32, weight: .black, design: .rounded))
+                    .foregroundStyle(vm.surface.accentColor)
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
             }
@@ -141,28 +141,22 @@ private struct CourtPageView: View {
             .shadow(color: .black.opacity(0.25), radius: 3, y: 1)
             if side == .bottom { Spacer() }
         }
-        .padding(.vertical, 6)
+        .padding(.vertical, 5)
     }
 
-    // Server dot: baseline corner of the correct service box (near sideline/centerline)
-    // Receiver dot: diagonally opposite (other half, mirrored box, near net)
     @ViewBuilder
     private func dotsLayer(side: Side, isServer: Bool) -> some View {
-        let box = vm.serveBox                                    // screen-relative box of the server
+        let box = vm.serveBox
         let receiverBox: ServeBox = box == .left ? .right : .left
-
-        // Which box does this side's dot live in?
-        let myBox: ServeBox = isServer ? box : receiverBox
-
-        // Server sits at the baseline (outer edge), receiver at the net (inner edge)
-        let atBaseline = isServer
+        let myBox = isServer ? box : receiverBox
+        let nearBaseline = true   // both server and receiver stand at their own baseline
 
         let alignment: Alignment = {
-            let leadingBox = myBox == .left
-            switch (leadingBox, atBaseline) {
-            case (true,  true):  return side == .top ? .topLeading    : .bottomLeading
-            case (true,  false): return side == .top ? .bottomLeading : .topLeading
-            case (false, true):  return side == .top ? .topTrailing   : .bottomTrailing
+            let isLeft = myBox == .left
+            switch (isLeft, nearBaseline) {
+            case (true,  true):  return side == .top ? .topLeading     : .bottomLeading
+            case (true,  false): return side == .top ? .bottomLeading  : .topLeading
+            case (false, true):  return side == .top ? .topTrailing    : .bottomTrailing
             case (false, false): return side == .top ? .bottomTrailing : .topTrailing
             }
         }()
@@ -174,9 +168,8 @@ private struct CourtPageView: View {
                     .fill(isServer ? Color.yellow : Color.white.opacity(0.6))
                     .frame(width: isServer ? 12 : 7, height: isServer ? 12 : 7)
                     .shadow(color: .black.opacity(0.4), radius: 2)
-                    // Tight to the corner – near the court lines
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 6)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 5)
             }
         }
     }
@@ -189,13 +182,12 @@ private struct ScorePageView: View {
     @Binding var isActive: Bool
 
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        ZStack {
             Color.black.ignoresSafeArea()
 
             VStack(spacing: 0) {
                 Spacer()
 
-                // Games
                 HStack(spacing: 0) {
                     Spacer()
                     VStack(spacing: 2) {
@@ -221,7 +213,6 @@ private struct ScorePageView: View {
                     Spacer()
                 }
 
-                // Current game score
                 HStack(spacing: 12) {
                     Text(vm.topScore)
                         .font(.system(size: 36, weight: .black, design: .rounded))
@@ -239,9 +230,7 @@ private struct ScorePageView: View {
 
                 Spacer()
 
-                Button {
-                    isActive = false
-                } label: {
+                Button { isActive = false } label: {
                     Text("Beenden")
                         .font(.system(size: 14, weight: .semibold))
                         .frame(maxWidth: .infinity)

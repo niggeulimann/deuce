@@ -522,7 +522,7 @@
 				DEVELOPMENT_TEAM = W5XAZYC285;
 				INFOPLIST_KEY_CFBundleDisplayName = deuce;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce.deuce;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -539,7 +539,7 @@
 				DEVELOPMENT_TEAM = W5XAZYC285;
 				INFOPLIST_KEY_CFBundleDisplayName = deuce;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce.deuce;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
