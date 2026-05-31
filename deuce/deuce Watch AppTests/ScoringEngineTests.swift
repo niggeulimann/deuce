@@ -1,5 +1,5 @@
 import Testing
-@testable import Deuce
+@testable import deuce_Watch_App
 
 // MARK: - Helpers
 
