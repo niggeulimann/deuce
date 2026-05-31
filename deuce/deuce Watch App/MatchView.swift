@@ -9,6 +9,13 @@ struct MatchView: View {
     var vm: MatchViewModel
     @Environment(\.modelContext) private var modelContext
 
+    // Page order: 0 = Score (left), 1 = Court (main), 2 = Health (later)
+    @State private var selectedPage = Page.court
+
+    private enum Page: Hashable {
+        case score, court
+    }
+
     var body: some View {
         pageView
     }
@@ -17,13 +24,16 @@ struct MatchView: View {
         let court = CourtPageView(vm: vm, onExit: saveAndExit, onPoint: handlePoint)
         let score = ScorePageView(vm: vm, onExit: saveAndExit)
 #if os(watchOS)
-        TabView {
-            court
-            score
+        TabView(selection: $selectedPage) {
+            score.tag(Page.score)
+            court.tag(Page.court)
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
 #else
-        TabView { court; score }
+        TabView(selection: $selectedPage) {
+            score.tag(Page.score)
+            court.tag(Page.court)
+        }
 #endif
     }
 
@@ -162,12 +172,23 @@ private struct CourtPageView: View {
         GeometryReader { _ in
             ZStack(alignment: alignment) {
                 Color.clear
-                Circle()
-                    .fill(isServer ? Color.yellow : Color.white.opacity(0.6))
-                    .frame(width: isServer ? 12 : 7, height: isServer ? 12 : 7)
-                    .shadow(color: .black.opacity(0.4), radius: 2)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 5)
+                Group {
+                    if isServer {
+                        // Server marker: tennis ball (same icon as start screen)
+                        Image(systemName: "tennisball.fill")
+                            .font(.system(size: 14))
+                            .foregroundStyle(.yellow)
+                            .shadow(color: .black.opacity(0.4), radius: 2)
+                    } else {
+                        // Receiver marker: small dot
+                        Circle()
+                            .fill(Color.white.opacity(0.6))
+                            .frame(width: 7, height: 7)
+                            .shadow(color: .black.opacity(0.4), radius: 2)
+                    }
+                }
+                .padding(.horizontal, 6)
+                .padding(.vertical, 5)
             }
         }
     }
