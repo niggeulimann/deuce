@@ -524,6 +524,7 @@
 				DEVELOPMENT_TEAM = W5XAZYC285;
 				INFOPLIST_KEY_CFBundleDisplayName = deuce;
 				MARKETING_VERSION = 1.0;
+				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -541,6 +542,7 @@
 				DEVELOPMENT_TEAM = W5XAZYC285;
 				INFOPLIST_KEY_CFBundleDisplayName = deuce;
 				MARKETING_VERSION = 1.0;
+				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
