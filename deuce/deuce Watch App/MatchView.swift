@@ -205,7 +205,7 @@ private struct CourtPageView: View {
             VStack(spacing: 6) {
                 Image(systemName: "arrow.up.arrow.down")
                     .font(.system(size: 26, weight: .bold))
-                Text("Seitenwechsel")
+                Text("Change Ends")
                     .font(.system(size: 14, weight: .semibold))
             }
             .foregroundStyle(.white)
@@ -231,13 +231,13 @@ private struct CourtPageView: View {
                 Image(systemName: youWon ? "trophy.fill" : "hand.thumbsup")
                     .font(.system(size: 28, weight: .bold))
                     .foregroundStyle(youWon ? .yellow : .white)
-                Text(youWon ? "Gewonnen!" : "Verloren")
+                Text(youWon ? "You Won!" : "Defeat")
                     .font(.system(size: 15, weight: .black, design: .rounded))
                     .foregroundStyle(.white)
                 Button {
                     onExit(true)
                 } label: {
-                    Text("Fertig")
+                    Text("Done")
                         .font(.system(size: 13, weight: .semibold))
                         .frame(maxWidth: .infinity)
                 }
@@ -298,10 +298,10 @@ private struct ScorePageView: View {
                 Text("")
                     .font(.system(size: 10))
                     .frame(height: 14)
-                Text("Gegner")
+                Text("Opponent")
                     .font(.system(size: 11, weight: .medium))
                     .foregroundStyle(.secondary)
-                Text("Du")
+                Text("You")
                     .font(.system(size: 11, weight: .medium))
                     .foregroundStyle(.secondary)
             }
@@ -312,7 +312,7 @@ private struct ScorePageView: View {
                     // Past sets
                     ForEach(Array(vm.setHistory.enumerated()), id: \.offset) { i, set in
                         setColumn(
-                            header: "S\(i + 1)",
+                            header: String(localized: "Set \(i + 1)"),
                             top: set.top,
                             bottom: set.bottom,
                             highlight: false
@@ -320,7 +320,7 @@ private struct ScorePageView: View {
                     }
                     // Current set
                     setColumn(
-                        header: "S\(vm.setHistory.count + 1)",
+                        header: String(localized: "Set \(vm.setHistory.count + 1)"),
                         top: vm.topGames,
                         bottom: vm.bottomGames,
                         highlight: true
@@ -365,7 +365,7 @@ private struct ScorePageView: View {
 
     private var endButton: some View {
         Button { onExit(false) } label: {
-            Text("Beenden")
+            Text("End Match")
                 .font(.system(size: 14, weight: .semibold))
                 .frame(maxWidth: .infinity)
         }

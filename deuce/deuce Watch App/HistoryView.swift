@@ -10,9 +10,9 @@ struct HistoryView: View {
             Group {
                 if records.isEmpty {
                     ContentUnavailableView(
-                        "Noch keine Matches",
+                        "No matches yet",
                         systemImage: "tennisball",
-                        description: Text("Gespielte Matches erscheinen hier.")
+                        description: Text("Played matches appear here.")
                     )
                 } else {
                     List {
@@ -28,7 +28,7 @@ struct HistoryView: View {
                     .listStyle(.plain)
                 }
             }
-            .navigationTitle("Verlauf")
+            .navigationTitle(String(localized: "History"))
         }
     }
 }
@@ -101,7 +101,7 @@ struct MatchDetailView: View {
                         .font(.system(size: 11))
                         .foregroundStyle(.secondary)
                     if !record.isComplete {
-                        Text("Abgebrochen")
+                        Text("Abandoned")
                             .font(.system(size: 10, weight: .semibold))
                             .foregroundStyle(.orange)
                     }
@@ -112,10 +112,10 @@ struct MatchDetailView: View {
 
                 // Settings info
                 VStack(spacing: 4) {
-                    infoRow(label: "Belag",  value: surfaceName)
-                    infoRow(label: "Modus",  value: modeLabel)
+                    infoRow(label: String(localized: "Surface"),  value: surfaceName)
+                    infoRow(label: String(localized: "Mode"),  value: modeLabel)
                     if record.noAd {
-                        infoRow(label: "No-Ad", value: "✓")
+                        infoRow(label: String(localized: "No-Ad"), value: "✓")
                     }
                 }
                 .font(.system(size: 11))
@@ -124,7 +124,7 @@ struct MatchDetailView: View {
             .padding(.horizontal, 10)
             .padding(.vertical, 6)
         }
-        .navigationTitle(record.didWin && record.isComplete ? "Gewonnen 🏆" : "Match")
+        .navigationTitle(record.didWin && record.isComplete ? String(localized: "Won 🏆") : String(localized: "Match"))
     }
 
     // MARK: Set table
@@ -138,7 +138,7 @@ struct MatchDetailView: View {
                 Text("")
                     .frame(width: 44, alignment: .leading)
                 ForEach(0..<allSets.count, id: \.self) { i in
-                    Text("S\(i + 1)")
+                    Text(String(localized: "Set \(i + 1)"))
                         .font(.system(size: 10, weight: .semibold))
                         .frame(maxWidth: .infinity)
                 }
@@ -148,13 +148,13 @@ struct MatchDetailView: View {
 
             Divider()
 
-            playerRow(label: "Gegner",
+            playerRow(label: String(localized: "Opponent"),
                       scores: allSets.map(\.top),
                       sets: record.setsTop)
 
             Divider()
 
-            playerRow(label: "Du",
+            playerRow(label: String(localized: "You"),
                       scores: allSets.map(\.bottom),
                       sets: record.setsBottom)
         }
@@ -206,7 +206,7 @@ struct MatchDetailView: View {
     }
 
     private var modeLabel: String {
-        record.setsToWin == 1 ? "1 Satz"
-            : "Best of \(record.setsToWin * 2 - 1)"
+        record.setsToWin == 1 ? String(localized: "1 Set")
+            : String(localized: "Best of \(record.setsToWin * 2 - 1)")
     }
 }

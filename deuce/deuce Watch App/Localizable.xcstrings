@@ -1,0 +1,186 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Play" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Spielen" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Play" } }
+      }
+    },
+    "Serve" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Aufschlag" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Serve" } }
+      }
+    },
+    "You" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Du" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "You" } }
+      }
+    },
+    "Opponent" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gegner" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Opponent" } }
+      }
+    },
+    "Sets" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Sätze" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sets" } }
+      }
+    },
+    "1 Set" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "1 Satz" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "1 Set" } }
+      }
+    },
+    "Best of 3" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Best of 3" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best of 3" } }
+      }
+    },
+    "Best of 5" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Best of 5" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best of 5" } }
+      }
+    },
+    "Games/Set" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Games/Satz" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Games/Set" } }
+      }
+    },
+    "Surface" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Belag" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Surface" } }
+      }
+    },
+    "No-Ad" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "No-Ad" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No-Ad" } }
+      }
+    },
+    "History" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Verlauf" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "History" } }
+      }
+    },
+    "Change Ends" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Seitenwechsel" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Change Ends" } }
+      }
+    },
+    "You Won!" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gewonnen!" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "You Won!" } }
+      }
+    },
+    "Defeat" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Verloren" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Defeat" } }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Fertig" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Done" } }
+      }
+    },
+    "End Match" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Beenden" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "End Match" } }
+      }
+    },
+    "No matches yet" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Noch keine Matches" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No matches yet" } }
+      }
+    },
+    "Played matches appear here." : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gespielte Matches erscheinen hier." } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Played matches appear here." } }
+      }
+    },
+    "Abandoned" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Abgebrochen" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Abandoned" } }
+      }
+    },
+    "Match" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Match" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Match" } }
+      }
+    },
+    "Won 🏆" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gewonnen 🏆" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Won 🏆" } }
+      }
+    },
+    "Mode" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Modus" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Mode" } }
+      }
+    },
+    "Clay" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Asche" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clay" } }
+      }
+    },
+    "Grass" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Rasen" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Grass" } }
+      }
+    },
+    "Hard" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Hard" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hard" } }
+      }
+    },
+    "Indoor" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Halle" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Indoor" } }
+      }
+    },
+    "Set %lld" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Satz %lld" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Set %lld" } }
+      }
+    },
+    "%lld set" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "1 Satz" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "1 set" } }
+      }
+    },
+    "Best of %lld" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Best of %lld" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best of %lld" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}
