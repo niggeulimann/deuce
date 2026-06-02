@@ -54,7 +54,7 @@ struct StartView: View {
 
                 // Serve
                 VStack(spacing: 6) {
-                    sectionHeader(icon: "tennisball.fill", label: String(localized: "Serve"))
+                    sectionHeader(icon: "tennis.racket", label: String(localized: "Serve"))
                     HStack(spacing: 8) {
                         outlineButton(label: String(localized: "You"),       selected: firstServer == .bottom) { firstServer = .bottom }
                         outlineButton(label: String(localized: "Opponent"),  selected: firstServer == .top)    { firstServer = .top }
@@ -82,7 +82,7 @@ struct StartView: View {
 
                 // Surface
                 VStack(spacing: 6) {
-                    sectionHeader(icon: "rectangle.fill", label: String(localized: "Surface"))
+                    sectionHeader(icon: "sportscourt", label: String(localized: "Surface"))
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 6) {
                         ForEach(CourtSurface.allCases) { s in
                             choiceButton(label: s.label, selected: surface == s, color: s.colorTop) {
