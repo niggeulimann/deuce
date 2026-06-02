@@ -51,8 +51,8 @@ struct StartView: View {
                 VStack(spacing: 6) {
                     sectionHeader(icon: "tennisball.fill", label: String(localized: "Serve"))
                     HStack(spacing: 8) {
-                        choiceButton(label: String(localized: "You"),      selected: firstServer == .bottom) { firstServer = .bottom }
-                        choiceButton(label: String(localized: "Opponent"), selected: firstServer == .top)    { firstServer = .top }
+                        outlineButton(label: String(localized: "You"),      selected: firstServer == .bottom) { firstServer = .bottom }
+                        outlineButton(label: String(localized: "Opponent"), selected: firstServer == .top)    { firstServer = .top }
                     }
                 }
 
@@ -60,9 +60,9 @@ struct StartView: View {
                 VStack(spacing: 6) {
                     sectionHeader(icon: "trophy", label: String(localized: "Sets"))
                     HStack(spacing: 8) {
-                        choiceButton(label: String(localized: "1 Set"),    selected: setsToWin == 1) { setsToWin = 1 }
-                        choiceButton(label: String(localized: "Best of 3"), selected: setsToWin == 2) { setsToWin = 2 }
-                        choiceButton(label: String(localized: "Best of 5"), selected: setsToWin == 3) { setsToWin = 3 }
+                        outlineButton(label: String(localized: "1 Set"),    selected: setsToWin == 1) { setsToWin = 1 }
+                        outlineButton(label: String(localized: "Best of 3"), selected: setsToWin == 2) { setsToWin = 2 }
+                        outlineButton(label: String(localized: "Best of 5"), selected: setsToWin == 3) { setsToWin = 3 }
                     }
                 }
 
@@ -70,8 +70,8 @@ struct StartView: View {
                 VStack(spacing: 6) {
                     sectionHeader(icon: "number", label: String(localized: "Games/Set"))
                     HStack(spacing: 8) {
-                        choiceButton(label: "4", selected: gamesPerSet == 4) { gamesPerSet = 4 }
-                        choiceButton(label: "6", selected: gamesPerSet == 6) { gamesPerSet = 6 }
+                        outlineButton(label: "4", selected: gamesPerSet == 4) { gamesPerSet = 4 }
+                        outlineButton(label: "6", selected: gamesPerSet == 6) { gamesPerSet = 6 }
                     }
                 }
 
@@ -133,6 +133,31 @@ struct StartView: View {
         }
     }
 
+    // Outline style – used for Serve, Sets, Games/Set
+    private func outlineButton(
+        label: String,
+        selected: Bool,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Text(label)
+                .font(.system(size: 12, weight: selected ? .bold : .regular))
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 6)
+                .background(selected ? Color.white.opacity(0.15) : Color.clear)
+                .foregroundStyle(selected ? Color.white : Color.white.opacity(0.5))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(selected ? Color.white : Color.white.opacity(0.25), lineWidth: selected ? 1.5 : 1)
+                )
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+        .buttonStyle(.plain)
+    }
+
+    // Filled style – used for Surface (coloured background, white text)
     private func choiceButton(
         label: String,
         selected: Bool,
@@ -147,7 +172,7 @@ struct StartView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 6)
                 .background(selected ? color.opacity(0.85) : Color(white: 0.22))
-                .foregroundStyle(selected ? Color.black : Color.white)
+                .foregroundStyle(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .buttonStyle(.plain)
