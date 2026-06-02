@@ -95,9 +95,12 @@ struct StartView: View {
                     Toggle(String(localized: "Track Workout"), isOn: $healthOptIn)
                         .font(.footnote)
                         .onChange(of: healthOptIn) { _, newValue in
-                            if newValue && !healthManager.isAuthorized {
-                                Task { await healthManager.requestAuthorization()
-                                    healthOptIn = healthManager.isAuthorized }
+                            // Request permission immediately when toggled on.
+                            // Don't read back isAuthorized right away – the system
+                            // permission sheet is async; we leave the toggle on and
+                            // checkAuthorization() on next appear updates the state.
+                            if newValue {
+                                Task { await healthManager.requestAuthorization() }
                             }
                         }
                 }
