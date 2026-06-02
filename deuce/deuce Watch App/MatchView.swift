@@ -191,7 +191,7 @@ private struct CourtPageView: View {
                     if isServer {
                         Image(systemName: "tennisball.fill")
                             .font(.system(size: 14))
-                            .foregroundStyle(accent)
+                            .foregroundStyle(Color(red: 0.86, green: 0.82, blue: 0.12))
                             .shadow(color: .black.opacity(0.4), radius: 2)
                     } else {
                         // Receiver marker: small dot
