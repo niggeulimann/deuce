@@ -1,6 +1,66 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Duration" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Dauer" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Duration" } }
+      }
+    },
+    "Distance" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Strecke" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Distance" } }
+      }
+    },
+    "Workout" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Workout" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Workout" } }
+      }
+    },
+    "Health" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gesundheit" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Health" } }
+      }
+    },
+    "Track Workout" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Workout tracken" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Track Workout" } }
+      }
+    },
+    "health.access.hint" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Zugriff in der Gesundheit-App unter Datenschutz → Apps aktivieren." } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable access in the Health app under Privacy → Apps." } }
+      }
+    },
+    "onboarding.health.title" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Workout tracken?" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Track your workout?" } }
+      }
+    },
+    "onboarding.health.body" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Deuce kann dein Tennis-Workout aufzeichnen – Herzfrequenz, zurückgelegte Strecke und Kalorien." } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Deuce can record your tennis workout — heart rate, distance covered and calories burned." } }
+      }
+    },
+    "onboarding.health.allow" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Erlauben" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Allow" } }
+      }
+    },
+    "onboarding.health.skip" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Nicht jetzt" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not now" } }
+      }
+    },
     "%lld set" : {
       "localizations" : {
         "de" : {

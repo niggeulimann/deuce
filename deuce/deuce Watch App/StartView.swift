@@ -1,13 +1,21 @@
 import SwiftUI
+import HealthKit
 
 struct StartView: View {
     @State private var matchActive   = false
     @State private var showHistory   = false
+    @State private var showOnboarding = false
     @State private var firstServer: Side = .bottom
     @State private var noAd        = false
     @State private var surface: CourtSurface = .clay
     @State private var gamesPerSet = 6
     @State private var setsToWin   = 2
+
+    // Health opt-in persisted across launches
+    @AppStorage("healthOptIn")      private var healthOptIn      = false
+    @AppStorage("healthOnboarded")  private var healthOnboarded  = false
+
+    @State private var healthManager = HealthManager()
 
     var body: some View {
         if matchActive {
@@ -17,10 +25,36 @@ struct StartView: View {
                     server: firstServer, noAd: noAd,
                     gamesPerSet: gamesPerSet, setsToWin: setsToWin,
                     surface: surface
-                )
+                ),
+                healthManager: healthManager,
+                healthOptIn: healthOptIn
             )
         } else {
             startScreen
+                .onAppear {
+                    if !healthOnboarded && HKHealthStore.isHealthDataAvailable() {
+                        showOnboarding = true
+                    }
+                    healthManager.checkAuthorization()
+                }
+                .sheet(isPresented: $showOnboarding) {
+                    OnboardingView {
+                        // Allow
+                        Task {
+                            await healthManager.requestAuthorization()
+                            healthOptIn     = healthManager.isAuthorized
+                            healthOnboarded = true
+                            showOnboarding  = false
+                        }
+                    } onSkip: {
+                        healthOnboarded = true
+                        healthOptIn     = false
+                        showOnboarding  = false
+                    }
+                }
+                .sheet(isPresented: $showHistory) {
+                    HistoryView()
+                }
         }
     }
 
@@ -82,6 +116,18 @@ struct StartView: View {
                 Toggle(String(localized: "No-Ad"), isOn: $noAd)
                     .font(.footnote)
 
+                // Health toggle
+                if HKHealthStore.isHealthDataAvailable() {
+                    Toggle(String(localized: "Track Workout"), isOn: $healthOptIn)
+                        .font(.footnote)
+                        .onChange(of: healthOptIn) { _, newValue in
+                            if newValue && !healthManager.isAuthorized {
+                                Task { await healthManager.requestAuthorization()
+                                    healthOptIn = healthManager.isAuthorized }
+                            }
+                        }
+                }
+
                 Button { showHistory = true } label: {
                     HStack(spacing: 6) {
                         Image(systemName: "clock.arrow.circlepath")
@@ -96,9 +142,6 @@ struct StartView: View {
                 .padding(.bottom, 8)
             }
             .padding(.horizontal, 10)
-        }
-        .sheet(isPresented: $showHistory) {
-            HistoryView()
         }
     }
 

@@ -7,32 +7,39 @@ import WatchKit
 struct MatchView: View {
     @Binding var isActive: Bool
     var vm: MatchViewModel
+    var healthManager: HealthManager
+    var healthOptIn: Bool
     @Environment(\.modelContext) private var modelContext
 
-    // Page order: 0 = Score (left), 1 = Court (main), 2 = Health (later)
+    // Page order: Score (left) · Court (main) · Health (right)
     @State private var selectedPage = Page.court
 
     private enum Page: Hashable {
-        case score, court
+        case score, court, health
     }
 
     var body: some View {
         pageView
+            .onAppear  { if healthOptIn { healthManager.startWorkout() } }
+            .onDisappear { healthManager.stopWorkout() }
     }
 
     @ViewBuilder private var pageView: some View {
-        let court = CourtPageView(vm: vm, onExit: saveAndExit, onPoint: handlePoint)
-        let score = ScorePageView(vm: vm, onExit: saveAndExit)
+        let court  = CourtPageView(vm: vm, onExit: saveAndExit, onPoint: handlePoint)
+        let score  = ScorePageView(vm: vm, onExit: saveAndExit)
+        let health = HealthView(manager: healthManager)
 #if os(watchOS)
         TabView(selection: $selectedPage) {
-            score.tag(Page.score)
-            court.tag(Page.court)
+            score .tag(Page.score)
+            court .tag(Page.court)
+            health.tag(Page.health)
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
 #else
         TabView(selection: $selectedPage) {
-            score.tag(Page.score)
-            court.tag(Page.court)
+            score .tag(Page.score)
+            court .tag(Page.court)
+            health.tag(Page.health)
         }
 #endif
     }
@@ -47,6 +54,7 @@ struct MatchView: View {
     }
 
     func saveAndExit(isComplete: Bool) {
+        healthManager.stopWorkout()
         let record = vm.makeRecord(isComplete: isComplete)
         modelContext.insert(record)
         isActive = false
