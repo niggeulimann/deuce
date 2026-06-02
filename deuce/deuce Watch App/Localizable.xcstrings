@@ -43,6 +43,12 @@
         }
       }
     },
+    "Accent" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Farbe" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Accent" } }
+      }
+    },
     "Abandoned" : {
       "localizations" : {
         "de" : {

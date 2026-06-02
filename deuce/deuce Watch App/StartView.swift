@@ -52,26 +52,6 @@ struct StartView: View {
                 .tint(accent)
                 .padding(.top, 6)
 
-                // Accent colour picker
-                HStack(spacing: 10) {
-                    ForEach(AccentTheme.allCases) { theme in
-                        Button {
-                            accentKey = theme.rawValue
-                        } label: {
-                            Circle()
-                                .fill(theme.color)
-                                .frame(width: 22, height: 22)
-                                .overlay(
-                                    Circle()
-                                        .stroke(Color.white, lineWidth: accentKey == theme.rawValue ? 2 : 0)
-                                        .padding(1)
-                                )
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-                .padding(.vertical, 2)
-
                 // Serve
                 VStack(spacing: 6) {
                     sectionHeader(icon: "tennisball.fill", label: String(localized: "Serve"))
@@ -124,6 +104,26 @@ struct StartView: View {
                                 Task { await healthManager.requestAuthorization() }
                             }
                         }
+                }
+
+                // Accent colour picker
+                VStack(spacing: 6) {
+                    sectionHeader(icon: "paintpalette", label: String(localized: "Accent"))
+                    HStack(spacing: 10) {
+                        ForEach(AccentTheme.allCases) { theme in
+                            Button { accentKey = theme.rawValue } label: {
+                                Circle()
+                                    .fill(theme.color)
+                                    .frame(width: 22, height: 22)
+                                    .overlay(
+                                        Circle()
+                                            .stroke(Color.white, lineWidth: accentKey == theme.rawValue ? 2 : 0)
+                                            .padding(1)
+                                    )
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
                 }
 
                 Button { showHistory = true } label: {
