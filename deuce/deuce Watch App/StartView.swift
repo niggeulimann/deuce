@@ -4,17 +4,13 @@ import HealthKit
 struct StartView: View {
     @State private var matchActive   = false
     @State private var showHistory   = false
-    @State private var showOnboarding = false
     @State private var firstServer: Side = .bottom
     @State private var noAd        = false
     @State private var surface: CourtSurface = .clay
     @State private var gamesPerSet = 6
     @State private var setsToWin   = 2
 
-    // Health opt-in persisted across launches
-    @AppStorage("healthOptIn")      private var healthOptIn      = false
-    @AppStorage("healthOnboarded")  private var healthOnboarded  = false
-
+    @AppStorage("healthOptIn") private var healthOptIn = false
     @State private var healthManager = HealthManager()
 
     var body: some View {
@@ -31,30 +27,8 @@ struct StartView: View {
             )
         } else {
             startScreen
-                .onAppear {
-                    if !healthOnboarded && HKHealthStore.isHealthDataAvailable() {
-                        showOnboarding = true
-                    }
-                    healthManager.checkAuthorization()
-                }
-                .sheet(isPresented: $showOnboarding) {
-                    OnboardingView {
-                        // Allow
-                        Task {
-                            await healthManager.requestAuthorization()
-                            healthOptIn     = healthManager.isAuthorized
-                            healthOnboarded = true
-                            showOnboarding  = false
-                        }
-                    } onSkip: {
-                        healthOnboarded = true
-                        healthOptIn     = false
-                        showOnboarding  = false
-                    }
-                }
-                .sheet(isPresented: $showHistory) {
-                    HistoryView()
-                }
+                .onAppear { healthManager.checkAuthorization() }
+                .sheet(isPresented: $showHistory) { HistoryView() }
         }
     }
 
