@@ -51,13 +51,23 @@ final class HealthManager: NSObject {
     }
 
     // MARK: - Workout lifecycle
+    // Both methods are synchronous at call-site; async work is wrapped internally.
 
     func startWorkout() {
         guard HKHealthStore.isHealthDataAvailable() else { return }
+        Task { await _startWorkout() }
+    }
+
+    func stopWorkout() {
+        session?.end()
+        stopTimer()
+        isRunning = false
+    }
+
+    private func _startWorkout() async {
         let config = HKWorkoutConfiguration()
         config.activityType = .tennis
         config.locationType  = .outdoor
-
         do {
             let newSession = try HKWorkoutSession(healthStore: store, configuration: config)
             let newBuilder = newSession.associatedWorkoutBuilder()
@@ -69,20 +79,17 @@ final class HealthManager: NSObject {
             newBuilder.delegate = self
             self.session = newSession
             self.builder = newBuilder
-            sessionStart = Date()
-            newSession.startActivity(with: sessionStart!)
-            try? newBuilder.beginCollection(at: sessionStart!)
-            isRunning = true
-            startTimer()
+            let start = Date()
+            sessionStart = start
+            newSession.startActivity(with: start)
+            try? await newBuilder.beginCollection(at: start)
+            await MainActor.run {
+                isRunning = true
+                startTimer()
+            }
         } catch {
             print("Workout start error: \(error)")
         }
-    }
-
-    func stopWorkout() {
-        session?.end()
-        stopTimer()
-        isRunning = false
     }
 
     // MARK: - Timer
@@ -128,7 +135,7 @@ extension HealthManager: HKWorkoutSessionDelegate {
             self.isRunning = (toState == .running)
         }
         if toState == .ended {
-            builder?.endCollection(at: date) { [weak self] _, _ in
+            builder?.endCollection(withEnd: date) { [weak self] _, _ in
                 self?.builder?.finishWorkout { _, _ in }
             }
         }
