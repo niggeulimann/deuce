@@ -44,7 +44,7 @@ struct StartView: View {
                     .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.green)
+                .tint(Color(red: 0.86, green: 0.82, blue: 0.12))
                 .padding(.top, 6)
 
                 // Serve
