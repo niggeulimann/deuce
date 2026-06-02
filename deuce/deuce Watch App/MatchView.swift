@@ -9,6 +9,7 @@ struct MatchView: View {
     var vm: MatchViewModel
     var healthManager: HealthManager
     var healthOptIn: Bool
+    var accent: Color = .green
     @Environment(\.modelContext) private var modelContext
 
     // Page order: Score (left) · Court (main) · Health (right)
@@ -30,7 +31,7 @@ struct MatchView: View {
     }
 
     @ViewBuilder private var pageView: some View {
-        let court  = CourtPageView(vm: vm, onExit: saveAndExit, onPoint: handlePoint)
+        let court  = CourtPageView(vm: vm, accent: accent, onExit: saveAndExit, onPoint: handlePoint)
         let score  = ScorePageView(vm: vm, onExit: saveAndExit)
         let health = HealthView(manager: healthManager)
 #if os(watchOS)
@@ -70,7 +71,8 @@ struct MatchView: View {
 
 private struct CourtPageView: View {
     var vm: MatchViewModel
-    let onExit: (Bool) -> Void    // isComplete
+    var accent: Color = .green
+    let onExit: (Bool) -> Void
     let onPoint: (Side) -> Void
 
     private let lineColor    = Color(white: 0.92).opacity(0.65)
@@ -187,10 +189,9 @@ private struct CourtPageView: View {
                 Color.clear
                 Group {
                     if isServer {
-                        // Server marker: tennis ball (same icon as start screen)
                         Image(systemName: "tennisball.fill")
                             .font(.system(size: 14))
-                            .foregroundStyle(.yellow)
+                            .foregroundStyle(accent)
                             .shadow(color: .black.opacity(0.4), radius: 2)
                     } else {
                         // Receiver marker: small dot

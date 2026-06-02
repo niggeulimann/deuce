@@ -10,8 +10,11 @@ struct StartView: View {
     @State private var gamesPerSet = 6
     @State private var setsToWin   = 2
 
-    @AppStorage("healthOptIn") private var healthOptIn = false
+    @AppStorage("healthOptIn")   private var healthOptIn  = false
+    @AppStorage("accentThemeKey") private var accentKey   = AccentTheme.green.rawValue
     @State private var healthManager = HealthManager()
+
+    private var accent: Color { AccentTheme(rawValue: accentKey)?.color ?? .green }
 
     var body: some View {
         if matchActive {
@@ -23,7 +26,8 @@ struct StartView: View {
                     surface: surface
                 ),
                 healthManager: healthManager,
-                healthOptIn: healthOptIn
+                healthOptIn: healthOptIn,
+                accent: accent
             )
         } else {
             startScreen
@@ -36,6 +40,7 @@ struct StartView: View {
         ScrollView {
             VStack(spacing: 12) {
 
+                // Play button
                 Button { matchActive = true } label: {
                     HStack(spacing: 8) {
                         Image(systemName: "tennisball.fill").font(.system(size: 18))
@@ -44,15 +49,35 @@ struct StartView: View {
                     .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.bordered)
-                .tint(.green)
+                .tint(accent)
                 .padding(.top, 6)
+
+                // Accent colour picker
+                HStack(spacing: 10) {
+                    ForEach(AccentTheme.allCases) { theme in
+                        Button {
+                            accentKey = theme.rawValue
+                        } label: {
+                            Circle()
+                                .fill(theme.color)
+                                .frame(width: 22, height: 22)
+                                .overlay(
+                                    Circle()
+                                        .stroke(Color.white, lineWidth: accentKey == theme.rawValue ? 2 : 0)
+                                        .padding(1)
+                                )
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.vertical, 2)
 
                 // Serve
                 VStack(spacing: 6) {
                     sectionHeader(icon: "tennisball.fill", label: String(localized: "Serve"))
                     HStack(spacing: 8) {
-                        outlineButton(label: String(localized: "You"),      selected: firstServer == .bottom) { firstServer = .bottom }
-                        outlineButton(label: String(localized: "Opponent"), selected: firstServer == .top)    { firstServer = .top }
+                        outlineButton(label: String(localized: "You"),       selected: firstServer == .bottom) { firstServer = .bottom }
+                        outlineButton(label: String(localized: "Opponent"),  selected: firstServer == .top)    { firstServer = .top }
                     }
                 }
 
@@ -60,7 +85,7 @@ struct StartView: View {
                 VStack(spacing: 6) {
                     sectionHeader(icon: "trophy", label: String(localized: "Sets"))
                     HStack(spacing: 8) {
-                        outlineButton(label: String(localized: "1 Set"),    selected: setsToWin == 1) { setsToWin = 1 }
+                        outlineButton(label: String(localized: "1 Set"),     selected: setsToWin == 1) { setsToWin = 1 }
                         outlineButton(label: String(localized: "Best of 3"), selected: setsToWin == 2) { setsToWin = 2 }
                         outlineButton(label: String(localized: "Best of 5"), selected: setsToWin == 3) { setsToWin = 3 }
                     }
@@ -95,10 +120,6 @@ struct StartView: View {
                     Toggle(String(localized: "Track Workout"), isOn: $healthOptIn)
                         .font(.footnote)
                         .onChange(of: healthOptIn) { _, newValue in
-                            // Request permission immediately when toggled on.
-                            // Don't read back isAuthorized right away – the system
-                            // permission sheet is async; we leave the toggle on and
-                            // checkAuthorization() on next appear updates the state.
                             if newValue {
                                 Task { await healthManager.requestAuthorization() }
                             }
@@ -107,10 +128,8 @@ struct StartView: View {
 
                 Button { showHistory = true } label: {
                     HStack(spacing: 6) {
-                        Image(systemName: "clock.arrow.circlepath")
-                            .font(.system(size: 13))
-                        Text("History")
-                            .font(.system(size: 13))
+                        Image(systemName: "clock.arrow.circlepath").font(.system(size: 13))
+                        Text("History").font(.system(size: 13))
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -124,51 +143,33 @@ struct StartView: View {
 
     private func sectionHeader(icon: String, label: String) -> some View {
         HStack(spacing: 4) {
-            Image(systemName: icon)
-                .font(.system(size: 10))
-                .foregroundStyle(.secondary)
-            Text(label)
-                .font(.caption2)
-                .foregroundStyle(.secondary)
+            Image(systemName: icon).font(.system(size: 10)).foregroundStyle(.secondary)
+            Text(label).font(.caption2).foregroundStyle(.secondary)
         }
     }
 
-    // Outline style – used for Serve, Sets, Games/Set
-    private func outlineButton(
-        label: String,
-        selected: Bool,
-        action: @escaping () -> Void
-    ) -> some View {
+    private func outlineButton(label: String, selected: Bool, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Text(label)
                 .font(.system(size: 12, weight: selected ? .bold : .regular))
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
+                .lineLimit(1).minimumScaleFactor(0.7)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 6)
-                .background(selected ? Color.white.opacity(0.15) : Color.clear)
-                .foregroundStyle(selected ? Color.white : Color.white.opacity(0.5))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(selected ? Color.white : Color.white.opacity(0.25), lineWidth: selected ? 1.5 : 1)
-                )
+                .background(selected ? accent.opacity(0.18) : Color.clear)
+                .foregroundStyle(selected ? accent : Color.white.opacity(0.5))
+                .overlay(RoundedRectangle(cornerRadius: 8)
+                    .stroke(selected ? accent : Color.white.opacity(0.25),
+                            lineWidth: selected ? 1.5 : 1))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .buttonStyle(.plain)
     }
 
-    // Filled style – used for Surface (coloured background, white text)
-    private func choiceButton(
-        label: String,
-        selected: Bool,
-        color: Color = .yellow,
-        action: @escaping () -> Void
-    ) -> some View {
+    private func choiceButton(label: String, selected: Bool, color: Color = .yellow, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Text(label)
                 .font(.system(size: 12, weight: selected ? .bold : .regular))
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
+                .lineLimit(1).minimumScaleFactor(0.7)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 6)
                 .background(selected ? color.opacity(0.85) : Color(white: 0.22))
