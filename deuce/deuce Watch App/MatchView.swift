@@ -20,7 +20,12 @@ struct MatchView: View {
 
     var body: some View {
         pageView
-            .onAppear  { if healthOptIn { healthManager.startWorkout() } }
+            .onAppear {
+                // Refresh auth state first – covers the case where permission
+                // was just granted before this match started.
+                healthManager.checkAuthorization()
+                if healthOptIn { healthManager.startWorkout() }
+            }
             .onDisappear { healthManager.stopWorkout() }
     }
 
