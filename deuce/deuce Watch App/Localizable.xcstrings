@@ -400,6 +400,7 @@
       }
     },
     "onboarding.health.allow" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -416,6 +417,7 @@
       }
     },
     "onboarding.health.body" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -432,6 +434,7 @@
       }
     },
     "onboarding.health.skip" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -448,6 +451,7 @@
       }
     },
     "onboarding.health.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
