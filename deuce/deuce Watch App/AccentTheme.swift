@@ -9,7 +9,7 @@ enum AccentTheme: String, CaseIterable, Identifiable {
         switch self {
         case .green:  return Color(red: 0.20, green: 0.78, blue: 0.35)
         case .blue:   return Color(red: 0.25, green: 0.55, blue: 1.00)
-        case .orange: return Color(red: 1.00, green: 0.55, blue: 0.15)
+        case .orange: return Color(red: 0.86, green: 0.82, blue: 0.12)
         case .purple: return Color(red: 0.72, green: 0.35, blue: 1.00)
         case .white:  return Color(white: 0.90)
         }
