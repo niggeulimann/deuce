@@ -43,8 +43,8 @@ struct StartView: View {
                     }
                     .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(Color(red: 0.86, green: 0.82, blue: 0.12))
+                .buttonStyle(.bordered)
+                .tint(.green)
                 .padding(.top, 6)
 
                 // Serve
