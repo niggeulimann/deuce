@@ -140,6 +140,7 @@ private struct CourtPageView: View {
                 }
                 scoreBadge(score: score, games: games, side: side)
                 dotsLayer(side: side, isServer: isServer)
+                playerLabel(side: side)
             }
         }
         .buttonStyle(.plain)
@@ -204,6 +205,23 @@ private struct CourtPageView: View {
                 .padding(.horizontal, 6)
                 .padding(.vertical, 5)
             }
+        }
+    }
+
+    // Small player label at the outer edge of each half
+    private func playerLabel(side: Side) -> some View {
+        let label = side == .top ? String(localized: "Opponent") : String(localized: "You")
+        return VStack {
+            if side == .bottom { Spacer() }
+            HStack {
+                Spacer()
+                Text(label)
+                    .font(.system(size: 9, weight: .medium))
+                    .foregroundStyle(.white.opacity(0.45))
+                    .padding(.trailing, 6)
+                    .padding(side == .top ? .top : .bottom, 4)
+            }
+            if side == .top { Spacer() }
         }
     }
 

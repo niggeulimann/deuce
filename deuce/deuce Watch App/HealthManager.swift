@@ -12,6 +12,7 @@ final class HealthManager: NSObject {
     private(set) var heartRate: Double = 0          // bpm
     private(set) var activeCalories: Double = 0     // kcal
     private(set) var distance: Double = 0           // metres
+    private(set) var steps: Double = 0              // count
     private(set) var elapsedSeconds: Int = 0
     private(set) var isRunning = false
 
@@ -28,7 +29,8 @@ final class HealthManager: NSObject {
     private let typesToRead: Set<HKObjectType> = [
         HKObjectType.quantityType(forIdentifier: .heartRate)!,
         HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
-        HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
+        HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+        HKObjectType.quantityType(forIdentifier: .stepCount)!
     ]
 
     // MARK: - Auth
@@ -167,6 +169,9 @@ extension HealthManager: HKLiveWorkoutBuilderDelegate {
 
                 case HKQuantityTypeIdentifier.distanceWalkingRunning.rawValue:
                     self.distance = stats.sumQuantity()?.doubleValue(for: .meter()) ?? 0
+
+                case HKQuantityTypeIdentifier.stepCount.rawValue:
+                    self.steps = stats.sumQuantity()?.doubleValue(for: .count()) ?? 0
 
                 default: break
                 }

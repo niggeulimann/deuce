@@ -88,6 +88,11 @@ private struct MatchRowView: View {
 
 struct MatchDetailView: View {
     let record: MatchRecord
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \KnownOpponent.lastPlayed, order: .reverse) private var knownOpponents: [KnownOpponent]
+
+    @State private var showOpponentPicker = false
+    @State private var newOpponentName = ""
 
     var body: some View {
         ScrollView {
@@ -107,15 +112,49 @@ struct MatchDetailView: View {
                     }
                 }
 
+                // Opponent row
+                Button { showOpponentPicker = true } label: {
+                    HStack {
+                        Image(systemName: "person.fill")
+                            .font(.system(size: 11))
+                            .foregroundStyle(.secondary)
+                        Text(record.opponentName.isEmpty
+                             ? String(localized: "Add opponent")
+                             : record.opponentName)
+                            .font(.system(size: 12))
+                            .foregroundStyle(record.opponentName.isEmpty ? .secondary : .primary)
+                        Spacer()
+                        Image(systemName: "pencil")
+                            .font(.system(size: 10))
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
+                    .background(Color(white: 0.12))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                }
+                .buttonStyle(.plain)
+
                 // Set table
                 setTable
 
                 // Settings info
                 VStack(spacing: 4) {
-                    infoRow(label: String(localized: "Surface"),  value: surfaceName)
-                    infoRow(label: String(localized: "Mode"),  value: modeLabel)
+                    infoRow(label: String(localized: "Surface"), value: surfaceName)
+                    infoRow(label: String(localized: "Mode"),    value: modeLabel)
                     if record.noAd {
                         infoRow(label: String(localized: "No-Ad"), value: "✓")
+                    }
+                    if record.firstPointOffset > 0 {
+                        infoRow(label: String(localized: "Warmup"),
+                                value: formatDuration(record.firstPointOffset))
+                    }
+                    if record.pointOffsets.count > 1 {
+                        let gaps = zip(record.pointOffsets, record.pointOffsets.dropFirst()).map { $1 - $0 }
+                        if let longest = gaps.max() {
+                            infoRow(label: String(localized: "Longest rally"),
+                                    value: formatDuration(longest))
+                        }
                     }
                 }
                 .font(.system(size: 11))
@@ -125,6 +164,81 @@ struct MatchDetailView: View {
             .padding(.vertical, 6)
         }
         .navigationTitle(record.didWin && record.isComplete ? String(localized: "Won 🏆") : String(localized: "Match"))
+        .sheet(isPresented: $showOpponentPicker) {
+            opponentPickerSheet
+        }
+    }
+
+    // MARK: Opponent picker sheet
+
+    private var opponentPickerSheet: some View {
+        NavigationStack {
+            List {
+                // Text input for new name
+                HStack {
+                    TextField(String(localized: "New opponent"), text: $newOpponentName)
+                        .font(.system(size: 13))
+                    if !newOpponentName.trimmingCharacters(in: .whitespaces).isEmpty {
+                        Button {
+                            saveOpponent(newOpponentName.trimmingCharacters(in: .whitespaces))
+                        } label: {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundStyle(.green)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+
+                // Known opponents
+                ForEach(knownOpponents) { opponent in
+                    Button {
+                        saveOpponent(opponent.name)
+                    } label: {
+                        HStack {
+                            Text(opponent.name).font(.system(size: 13))
+                            Spacer()
+                            if record.opponentName == opponent.name {
+                                Image(systemName: "checkmark").foregroundStyle(.green)
+                            }
+                        }
+                    }
+                    .buttonStyle(.plain)
+                }
+
+                // Clear
+                if !record.opponentName.isEmpty {
+                    Button(role: .destructive) {
+                        record.opponentName = ""
+                        showOpponentPicker = false
+                    } label: {
+                        Text(String(localized: "Remove opponent"))
+                            .font(.system(size: 12))
+                    }
+                }
+            }
+            .navigationTitle(String(localized: "Opponent"))
+#if os(watchOS)
+            .navigationBarTitleDisplayMode(.inline)
+#endif
+        }
+    }
+
+    private func saveOpponent(_ name: String) {
+        record.opponentName = name
+        // Upsert into known opponents
+        if let existing = knownOpponents.first(where: { $0.name == name }) {
+            existing.lastPlayed = .now
+        } else {
+            modelContext.insert(KnownOpponent(name: name))
+        }
+        newOpponentName = ""
+        showOpponentPicker = false
+    }
+
+    private func formatDuration(_ seconds: Double) -> String {
+        let s = Int(seconds)
+        if s < 60 { return "\(s)s" }
+        return "\(s / 60)m \(s % 60)s"
     }
 
     // MARK: Set table

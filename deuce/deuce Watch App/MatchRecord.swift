@@ -4,29 +4,34 @@ import SwiftData
 @Model
 final class MatchRecord {
     var date: Date
-    var surface: String        // CourtSurface.rawValue
+    var surface: String
     var noAd: Bool
     var gamesPerSet: Int
     var setsToWin: Int
-    var isComplete: Bool       // false = abgebrochen
+    var isComplete: Bool
 
-    // Sets won totals
     var setsTop: Int
     var setsBottom: Int
-
-    // Per-set game scores, parallel arrays (index = set number)
     var setScoresTop: [Int]
     var setScoresBottom: [Int]
-
-    // Current (unfinished) set at time of save
     var currentGamesTop: Int
     var currentGamesBottom: Int
-
-    // Current game point score at time of save
     var currentPointsTop: Int
     var currentPointsBottom: Int
+    var didWin: Bool
 
-    var didWin: Bool           // Du (bottom) hat gewonnen
+    // Opponent name (editable from history)
+    var opponentName: String = ""
+
+    // Timestamps — seconds since matchStartDate
+    // firstPointOffset: warmup duration
+    // pointOffsets: time of each point; gap between consecutive = rally duration
+    // gameOffsets / setOffsets: for pacing analysis
+    var matchStartDate: Date = Date()
+    var firstPointOffset: Double = -1   // -1 = not yet set
+    var pointOffsets: [Double] = []
+    var gameOffsets: [Double] = []
+    var setOffsets: [Double] = []
 
     init(date: Date = .now,
          surface: String,
@@ -42,22 +47,34 @@ final class MatchRecord {
          currentGamesBottom: Int,
          currentPointsTop: Int,
          currentPointsBottom: Int,
-         didWin: Bool) {
-        self.date               = date
-        self.surface            = surface
-        self.noAd               = noAd
-        self.gamesPerSet        = gamesPerSet
-        self.setsToWin          = setsToWin
-        self.isComplete         = isComplete
-        self.setsTop            = setsTop
-        self.setsBottom         = setsBottom
-        self.setScoresTop       = setScoresTop
-        self.setScoresBottom    = setScoresBottom
-        self.currentGamesTop    = currentGamesTop
-        self.currentGamesBottom = currentGamesBottom
-        self.currentPointsTop   = currentPointsTop
+         didWin: Bool,
+         opponentName: String = "",
+         matchStartDate: Date = Date(),
+         firstPointOffset: Double = -1,
+         pointOffsets: [Double] = [],
+         gameOffsets: [Double] = [],
+         setOffsets: [Double] = []) {
+        self.date                = date
+        self.surface             = surface
+        self.noAd                = noAd
+        self.gamesPerSet         = gamesPerSet
+        self.setsToWin           = setsToWin
+        self.isComplete          = isComplete
+        self.setsTop             = setsTop
+        self.setsBottom          = setsBottom
+        self.setScoresTop        = setScoresTop
+        self.setScoresBottom     = setScoresBottom
+        self.currentGamesTop     = currentGamesTop
+        self.currentGamesBottom  = currentGamesBottom
+        self.currentPointsTop    = currentPointsTop
         self.currentPointsBottom = currentPointsBottom
-        self.didWin             = didWin
+        self.didWin              = didWin
+        self.opponentName        = opponentName
+        self.matchStartDate      = matchStartDate
+        self.firstPointOffset    = firstPointOffset
+        self.pointOffsets        = pointOffsets
+        self.gameOffsets         = gameOffsets
+        self.setOffsets          = setOffsets
     }
 }
 
@@ -77,7 +94,12 @@ extension MatchViewModel {
             currentGamesBottom:  state.gamesWon[.bottom]!,
             currentPointsTop:    state.points[.top]!,
             currentPointsBottom: state.points[.bottom]!,
-            didWin:              state.setsWon[.bottom]! >= state.setsToWin
+            didWin:              state.setsWon[.bottom]! >= state.setsToWin,
+            matchStartDate:      matchStartDate,
+            firstPointOffset:    firstPointOffset,
+            pointOffsets:        pointOffsets,
+            gameOffsets:         gameOffsets,
+            setOffsets:          setOffsets
         )
     }
 }

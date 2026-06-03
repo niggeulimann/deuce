@@ -14,6 +14,6 @@ struct deuce_Watch_AppApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: MatchRecord.self)
+        .modelContainer(for: [MatchRecord.self, KnownOpponent.self])
     }
 }

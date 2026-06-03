@@ -24,34 +24,30 @@ struct HealthView: View {
 
             Divider().padding(.vertical, 6)
 
-            // 2×2 metrics grid
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-                metricCell(
-                    icon: "timer",
-                    value: manager.elapsedFormatted,
-                    label: String(localized: "Duration"),
-                    color: .white
-                )
-                metricCell(
-                    icon: "heart.fill",
-                    value: manager.heartRate > 0 ? "\(Int(manager.heartRate))" : "--",
-                    label: "bpm",
-                    color: .red
-                )
-                metricCell(
-                    icon: "figure.run",
-                    value: manager.distanceFormatted,
-                    label: String(localized: "Distance"),
-                    color: .green
-                )
-                metricCell(
-                    icon: "flame.fill",
-                    value: manager.activeCalories > 0 ? "\(Int(manager.activeCalories))" : "--",
-                    label: "kcal",
-                    color: .orange
-                )
+            // 2×3 metrics grid
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
+                metricCell(icon: "timer",
+                           value: manager.elapsedFormatted,
+                           label: String(localized: "Duration"),
+                           color: .white)
+                metricCell(icon: "heart.fill",
+                           value: manager.heartRate > 0 ? "\(Int(manager.heartRate))" : "--",
+                           label: "bpm",
+                           color: .red)
+                metricCell(icon: "shoeprints.fill",
+                           value: manager.steps > 0 ? "\(Int(manager.steps))" : "--",
+                           label: String(localized: "Steps"),
+                           color: .cyan)
+                metricCell(icon: "figure.run",
+                           value: manager.distanceFormatted,
+                           label: String(localized: "Distance"),
+                           color: .green)
+                metricCell(icon: "flame.fill",
+                           value: manager.activeCalories > 0 ? "\(Int(manager.activeCalories))" : "--",
+                           label: "kcal",
+                           color: .orange)
             }
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 8)
 
             Spacer()
         }
