@@ -4,7 +4,7 @@
 
 - SwiftUI, watchOS 10+, reine watchOS-App (kein iPhone-Companion im MVP)
 - Architektur: MVVM, Scoring-Logik strikt von der UI getrennt
-- Persistenz: SwiftData ab Phase 3 (Match-History)
+- Persistenz: SwiftData mit `VersionedSchema` und `SchemaMigrationPlan`
 - Tests: ScoringEngine als pure State Machine (Swift Testing), unabhängig von SwiftUI
 - Sprache: Diskussion Deutsch, Code/Identifier/Kommentare Englisch
 
@@ -22,7 +22,7 @@
 - Aufschlag-Auswahl (Du / Gegner) auf Startscreen
 - Aufschlagwechsel nach jedem Game (automatisch)
 - Aufschlagseite (links/rechts) wechselt nach jedem Punkt
-- Satzlogik: 6 Games (konfigurierbar auf 4), 2-Spiele-Vorsprung, Tiebreak bei 6:6 → 7:6
+- Satzlogik: 6 Games (konfigurierbar auf 4), 2-Spiele-Vorsprung, Tiebreak bei 6:6 bzw. 4:4 bis 7 Punkte mit 2-Punkte-Vorsprung
 - Best of 1 / 3 / 5 konfigurierbar
 - Seitenwechsel-Overlay nach jedem Satz
 - Match-Over-Overlay mit Ergebnis (Gewonnen/Verloren)
@@ -39,73 +39,54 @@
 
 ---
 
-## Phase 3 – Match-History (SwiftData) 🔜
+### ✅ Phase 3 – Match-History (SwiftData)
 
-### Ziel
-Abgeschlossene Matches mit Datum speichern, damit der Spieler
-vergangene Ergebnisse einsehen kann.
+- Abgeschlossene und abgebrochene Matches werden als `MatchRecord` gespeichert
+- History-Sheet mit kompakter Liste, Löschfunktion und Detailansicht
+- Satz-für-Satz Tabelle inkl. aktuellem Satz bei abgebrochenen Matches
+- Gegnername nachträglich editierbar, bekannte Gegner werden als `KnownOpponent` gespeichert
+- Timing-Daten pro Match: Matchstart, erster Punkt/Warmup, Punkt-, Game- und Satz-Offsets
+- Detailansicht zeigt Warmup, Punktzahl, durchschnittlichen und längsten Ballwechsel
+- SwiftData-Container enthält `MatchRecord` und `KnownOpponent`
 
-### Domänenmodell (SwiftData)
+### Aktuelles Domänenmodell (SwiftData)
+
+App-Store-Version 1.0 basiert auf Commit `4af667fc2b48cdf2ea35b9275acf020945079e9a`
+und ist als `DeuceSchemaV1` abgebildet. Das aktuelle Modell ist `DeuceSchemaV2`;
+die Migration von V1 nach V2 ist als Lightweight-Migration hinterlegt.
 
 ```swift
 @Model
 class MatchRecord {
-    var date: Date
+    var date: Date               // save date
     var surface: String          // CourtSurface.rawValue
     var noAd: Bool
     var gamesPerSet: Int
     var setsToWin: Int
-    // Ergebnis
-    var setsTop: Int             // Gegner
-    var setsBottom: Int          // Du
-    // Satz-für-Satz Aufschlüsselung  [(topGames, bottomGames), …]
+    var isComplete: Bool
+    var setsTop: Int
+    var setsBottom: Int
     var setScoresTop: [Int]
     var setScoresBottom: [Int]
-    var didWin: Bool             // Du hast gewonnen?
+    var currentGamesTop: Int
+    var currentGamesBottom: Int
+    var currentPointsTop: Int
+    var currentPointsBottom: Int
+    var didWin: Bool
+    var opponentName: String
+    var matchStartDate: Date
+    var firstPointOffset: Double
+    var pointOffsets: [Double]
+    var gameOffsets: [Double]
+    var setOffsets: [Double]
+}
+
+@Model
+class KnownOpponent {
+    var name: String
+    var lastPlayed: Date
 }
 ```
-
-### Was sich ändert
-
-| Datei | Änderung |
-|---|---|
-| `deuceApp.swift` | `.modelContainer(for: MatchRecord.self)` hinzufügen |
-| `MatchViewModel` | `func saveRecord(context: ModelContext)` – schreibt Record beim Match-Ende |
-| `MatchView` | `@Environment(\.modelContext)` – ruft `saveRecord` beim Tap auf „Fertig" |
-| `StartView` | Tab-View oder NavigationStack mit History-Button |
-| `HistoryView` (neu) | Liste vergangener Matches, sortiert nach Datum |
-| `MatchDetailView` (neu) | Satz-Tabelle + Datum + Oberfläche für ein einzelnes Match |
-
-### UI-Konzept History
-
-**Startscreen** – kleiner History-Button (z. B. Uhr-Icon) oben rechts  
-→ öffnet `HistoryView` als Sheet oder eigene Navigation-Seite
-
-**HistoryView** – kompakte Liste:
-```
-● 31. Mai   6:3 6:2   Asche   ✓
-○ 29. Mai   4:6 3:6   Rasen   ✗
-```
-Grüner Punkt = gewonnen, grauer = verloren
-
-**MatchDetailView** – Satztabelle:
-```
-        S1   S2   S3
-Gegner   3    4    –
-Du       6    6    –
-```
-+ Datum, Belag, No-Ad, Best-of
-
-### Persistenz-Entscheidungen
-
-- SwiftData direkt im Watch Target (kein CloudKit im MVP, kein iPhone-Sync)
-- Kein automatisches Löschen alter Records – User kann manuell aus History löschen (Swipe-to-delete)
-- Max. ~100 Records realistisch → kein Paging nötig
-
-### Offene Fragen vor Umsetzung
-
-1. **Speichern nur bei vollständig beendetem Match** (Match-Over-Overlay) oder auch bei „Beenden" mittendrin?
-2. **Abgebrochene Matches** anzeigen (mit Zwischenstand) oder verwerfen?
 
 ---
 
@@ -113,6 +94,6 @@ Du       6    6    –
 
 - Digital Crown / Komplikation
 - iPhone-Sync (CloudKit oder Watch Connectivity)
-- Tiebreak als eigener Spielmodus (7 Punkte, kein Vorteil)
-- Statistiken (Gewinnquote, Durchschnittsdauer)
+- Statistiken (Gewinnquote, Durchschnittsdauer, Gegnerbilanz)
+- Gegnerauswahl vor Matchstart
 - App-Icon (eigenes Design)

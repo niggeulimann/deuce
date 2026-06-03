@@ -9,7 +9,12 @@ private func applyPoint(_ side: Side, _ state: GameState) -> GameState {
 
 private func winGame(for side: Side, state: GameState) -> GameState {
     var s = state
-    for _ in 0..<4 { s = applyPoint(side, s) }
+    var won = false
+    while !won {
+        let result = ScoringEngine.applyPoint(to: side, state: s)
+        s = result.newState
+        won = result.gameWon
+    }
     return s
 }
 
@@ -157,9 +162,43 @@ private func winSet(for side: Side, state: GameState) -> GameState {
     s = winGame(for: .bottom, state: s)
     #expect(s.setsWon[.top] == 0)
     #expect(s.setsWon[.bottom] == 0)
-    // top wins → 7-6, set won
+    // top wins the tiebreak → 7-6, set won
     s = winGame(for: .top, state: s)
     #expect(s.setsWon[.top] == 1)
+}
+
+@Test func tiebreakUsesSevenPointScoring() {
+    var s = GameState(gamesPerSet: 6)
+    s.gamesWon = [.top: 6, .bottom: 6]
+
+    for _ in 0..<6 { s = applyPoint(.top, s) }
+    for _ in 0..<6 { s = applyPoint(.bottom, s) }
+    #expect(ScoringEngine.scoreLabel(for: .top, in: s) == "6")
+    #expect(ScoringEngine.scoreLabel(for: .bottom, in: s) == "6")
+    #expect(s.setsWon[.top] == 0)
+
+    s = applyPoint(.top, s)
+    #expect(ScoringEngine.scoreLabel(for: .top, in: s) == "7")
+    #expect(ScoringEngine.scoreLabel(for: .bottom, in: s) == "6")
+    #expect(s.setsWon[.top] == 0)
+
+    let final = ScoringEngine.applyPoint(to: .top, state: s)
+    #expect(final.setWon)
+    #expect(final.newState.setHistory[0].top == 7)
+    #expect(final.newState.setHistory[0].bottom == 6)
+}
+
+@Test func tiebreakServerChangesAfterFirstPointThenEveryTwo() {
+    var s = GameState(server: .bottom, gamesPerSet: 6)
+    s.gamesWon = [.top: 6, .bottom: 6]
+
+    #expect(ScoringEngine.displayServer(in: s) == .bottom)
+    s = applyPoint(.top, s)
+    #expect(ScoringEngine.displayServer(in: s) == .top)
+    s = applyPoint(.top, s)
+    #expect(ScoringEngine.displayServer(in: s) == .top)
+    s = applyPoint(.top, s)
+    #expect(ScoringEngine.displayServer(in: s) == .bottom)
 }
 
 @Test func multipleSetHistory() {

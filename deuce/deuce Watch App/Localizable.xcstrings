@@ -55,12 +55,6 @@
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Add opponent" } }
       }
     },
-    "Opponent" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gegner" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Opponent" } }
-      }
-    },
     "New opponent" : {
       "localizations" : {
         "de" : { "stringUnit" : { "state" : "translated", "value" : "Neuer Gegner" } },
@@ -77,6 +71,12 @@
       "localizations" : {
         "de" : { "stringUnit" : { "state" : "translated", "value" : "Einspielen" } },
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Warmup" } }
+      }
+    },
+    "Average rally" : {
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Ø Ballwechsel" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Average rally" } }
       }
     },
     "Longest rally" : {
@@ -327,7 +327,20 @@
       }
     },
     "Health Access" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Health-Zugriff"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Health Access"
+          }
+        }
+      }
     },
     "health.access.hint" : {
       "localizations" : {
@@ -557,8 +570,37 @@
         }
       }
     },
+    "Points" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punkte"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Points"
+          }
+        }
+      }
+    },
     "Reset Match" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match zurücksetzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Match"
+          }
+        }
+      }
     },
     "Serve" : {
       "localizations" : {
@@ -609,7 +651,20 @@
       }
     },
     "Settings" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
     },
     "Steps" : {
       "localizations" : {

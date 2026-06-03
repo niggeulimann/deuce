@@ -40,7 +40,23 @@ struct GameState: Equatable {
 
 struct ScoringEngine {
 
+    static func isTiebreak(_ state: GameState) -> Bool {
+        let target = state.gamesPerSet
+        return state.gamesWon[.top] == target && state.gamesWon[.bottom] == target
+    }
+
+    static func displayServer(in state: GameState) -> Side {
+        guard isTiebreak(state) else { return state.server }
+        let pointsPlayed = state.points[.top]! + state.points[.bottom]!
+        guard pointsPlayed > 0 else { return state.server }
+        return ((pointsPlayed + 1) / 2) % 2 == 0 ? state.server : state.server.opposite
+    }
+
     static func scoreLabel(for side: Side, in state: GameState) -> String {
+        if isTiebreak(state) {
+            return "\(state.points[side]!)"
+        }
+
         let mine   = state.points[side]!
         let theirs = state.points[side.opposite]!
         let deuce  = mine >= 3 && theirs >= 3
@@ -58,7 +74,7 @@ struct ScoringEngine {
 
     static func serveBox(in state: GameState) -> ServeBox {
         let total = state.points[.top]! + state.points[.bottom]!
-        switch state.server {
+        switch displayServer(in: state) {
         case .bottom: return total % 2 == 0 ? .right : .left
         case .top:    return total % 2 == 0 ? .left  : .right
         }
@@ -67,6 +83,7 @@ struct ScoringEngine {
     static func isGameWon(by side: Side, in state: GameState) -> Bool {
         let mine   = state.points[side]!
         let theirs = state.points[side.opposite]!
+        if isTiebreak(state) { return mine >= 7 && (mine - theirs) >= 2 }
         if state.noAd { return mine >= 4 && mine > theirs }
         return mine >= 4 && (mine - theirs) >= 2
     }

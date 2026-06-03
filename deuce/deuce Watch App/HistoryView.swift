@@ -46,8 +46,11 @@ private struct MatchRowView: View {
                 .frame(width: 8, height: 8)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(record.date, style: .date)
+                Text(title)
                     .font(.system(size: 12, weight: .semibold))
+                Text(record.date, style: .date)
+                    .font(.system(size: 10))
+                    .foregroundStyle(.secondary)
                 Text(setsLabel)
                     .font(.system(size: 11))
                     .foregroundStyle(.secondary)
@@ -59,6 +62,10 @@ private struct MatchRowView: View {
                 .font(.system(size: 13))
         }
         .padding(.vertical, 2)
+    }
+
+    private var title: String {
+        record.opponentName.isEmpty ? String(localized: "Match") : record.opponentName
     }
 
     private var indicatorColor: Color {
@@ -149,8 +156,15 @@ struct MatchDetailView: View {
                         infoRow(label: String(localized: "Warmup"),
                                 value: formatDuration(record.firstPointOffset))
                     }
+                    if !record.pointOffsets.isEmpty {
+                        infoRow(label: String(localized: "Points"),
+                                value: "\(record.pointOffsets.count)")
+                    }
                     if record.pointOffsets.count > 1 {
                         let gaps = zip(record.pointOffsets, record.pointOffsets.dropFirst()).map { $1 - $0 }
+                        let average = gaps.reduce(0, +) / Double(gaps.count)
+                        infoRow(label: String(localized: "Average rally"),
+                                value: formatDuration(average))
                         if let longest = gaps.max() {
                             infoRow(label: String(localized: "Longest rally"),
                                     value: formatDuration(longest))

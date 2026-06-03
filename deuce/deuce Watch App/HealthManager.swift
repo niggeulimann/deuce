@@ -22,6 +22,7 @@ final class HealthManager: NSObject {
     private var builder: HKLiveWorkoutBuilder?
     private var timer: Timer?
     private var sessionStart: Date?
+    private var isStarting = false
 
     private let typesToShare: Set<HKSampleType> = [
         HKObjectType.workoutType()
@@ -35,14 +36,18 @@ final class HealthManager: NSObject {
 
     // MARK: - Auth
 
-    func requestAuthorization() async {
-        guard HKHealthStore.isHealthDataAvailable() else { return }
+    @discardableResult
+    func requestAuthorization() async -> Bool {
+        guard HKHealthStore.isHealthDataAvailable() else { return false }
         do {
             try await store.requestAuthorization(toShare: typesToShare, read: typesToRead)
             let status = store.authorizationStatus(for: HKObjectType.workoutType())
-            await MainActor.run { isAuthorized = (status == .sharingAuthorized) }
+            let authorized = status == .sharingAuthorized
+            await MainActor.run { isAuthorized = authorized }
+            return authorized
         } catch {
             print("HealthKit auth error: \(error)")
+            return false
         }
     }
 
@@ -57,12 +62,17 @@ final class HealthManager: NSObject {
 
     func startWorkout() {
         guard HKHealthStore.isHealthDataAvailable() else { return }
+        guard isAuthorized else { return }
+        guard session == nil, !isStarting else { return }
+        isStarting = true
         Task { await _startWorkout() }
     }
 
     func stopWorkout() {
+        guard session != nil || builder != nil || isRunning || isStarting else { return }
         session?.end()
         stopTimer()
+        isStarting = false
         isRunning = false
     }
 
@@ -86,11 +96,18 @@ final class HealthManager: NSObject {
             newSession.startActivity(with: start)
             try? await newBuilder.beginCollection(at: start)
             await MainActor.run {
+                isStarting = false
                 isRunning = true
                 startTimer()
             }
         } catch {
             print("Workout start error: \(error)")
+            await MainActor.run {
+                isStarting = false
+                session = nil
+                builder = nil
+                sessionStart = nil
+            }
         }
     }
 
@@ -138,7 +155,14 @@ extension HealthManager: HKWorkoutSessionDelegate {
         }
         if toState == .ended {
             builder?.endCollection(withEnd: date) { [weak self] _, _ in
-                self?.builder?.finishWorkout { _, _ in }
+                self?.builder?.finishWorkout { [weak self] _, _ in
+                    DispatchQueue.main.async {
+                        self?.builder = nil
+                        self?.session = nil
+                        self?.sessionStart = nil
+                        self?.isStarting = false
+                    }
+                }
             }
         }
     }

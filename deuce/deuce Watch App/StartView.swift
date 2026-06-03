@@ -9,6 +9,7 @@ struct StartView: View {
     @State private var surface: CourtSurface = .clay
     @State private var gamesPerSet = 6
     @State private var setsToWin   = 2
+    @State private var activeMatchViewModel: MatchViewModel?
 
     @AppStorage("healthOptIn")   private var healthOptIn  = false
     @AppStorage("accentThemeKey") private var accentKey   = AccentTheme.green.rawValue
@@ -17,18 +18,17 @@ struct StartView: View {
     private var accent: Color { AccentTheme(rawValue: accentKey)?.color ?? .green }
 
     var body: some View {
-        if matchActive {
+        if matchActive, let matchViewModel = activeMatchViewModel {
             MatchView(
                 isActive: $matchActive,
-                vm: MatchViewModel(
-                    server: firstServer, noAd: noAd,
-                    gamesPerSet: gamesPerSet, setsToWin: setsToWin,
-                    surface: surface
-                ),
+                vm: matchViewModel,
                 healthManager: healthManager,
                 healthOptIn: healthOptIn,
                 accent: accent
             )
+            .onDisappear {
+                if !matchActive { activeMatchViewModel = nil }
+            }
         } else {
             startScreen
                 .onAppear { healthManager.checkAuthorization() }
@@ -41,7 +41,7 @@ struct StartView: View {
             VStack(spacing: 12) {
 
                 // Play button
-                Button { matchActive = true } label: {
+                Button { startMatch() } label: {
                     HStack(spacing: 8) {
                         Image(systemName: "tennisball.fill").font(.system(size: 18))
                         Text("Play").font(.system(size: 17, weight: .bold, design: .rounded))
@@ -101,7 +101,10 @@ struct StartView: View {
                         .font(.footnote)
                         .onChange(of: healthOptIn) { _, newValue in
                             if newValue {
-                                Task { await healthManager.requestAuthorization() }
+                                Task {
+                                    let authorized = await healthManager.requestAuthorization()
+                                    if !authorized { healthOptIn = false }
+                                }
                             }
                         }
                 }
@@ -139,6 +142,15 @@ struct StartView: View {
             }
             .padding(.horizontal, 10)
         }
+    }
+
+    private func startMatch() {
+        activeMatchViewModel = MatchViewModel(
+            server: firstServer, noAd: noAd,
+            gamesPerSet: gamesPerSet, setsToWin: setsToWin,
+            surface: surface
+        )
+        matchActive = true
     }
 
     private func sectionHeader(icon: String, label: String) -> some View {

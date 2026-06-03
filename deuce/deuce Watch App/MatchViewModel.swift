@@ -39,7 +39,7 @@ final class MatchViewModel {
     var topSets: Int        { state.setsWon[.top]! }
     var bottomSets: Int     { state.setsWon[.bottom]! }
     var setHistory: [(top: Int, bottom: Int)] { state.setHistory }
-    var server: Side        { state.server }
+    var server: Side        { ScoringEngine.displayServer(in: state) }
     var serveBox: ServeBox  { ScoringEngine.serveBox(in: state) }
     var canUndo: Bool       { !history.isEmpty }
 
