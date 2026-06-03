@@ -208,20 +208,19 @@ private struct CourtPageView: View {
         }
     }
 
-    // Small player label at the outer edge of each half
+    // Player label – vertically centred, left edge (serve dot sits in corners)
     private func playerLabel(side: Side) -> some View {
         let label = side == .top ? String(localized: "Opponent") : String(localized: "You")
         return VStack {
-            if side == .bottom { Spacer() }
+            Spacer()
             HStack {
-                Spacer()
                 Text(label)
                     .font(.system(size: 9, weight: .medium))
                     .foregroundStyle(.white.opacity(0.45))
-                    .padding(.trailing, 6)
-                    .padding(side == .top ? .top : .bottom, 4)
+                    .padding(.leading, 6)
+                Spacer()
             }
-            if side == .top { Spacer() }
+            Spacer()
         }
     }
 
