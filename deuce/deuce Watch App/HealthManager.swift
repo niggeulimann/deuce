@@ -154,13 +154,16 @@ extension HealthManager: HKWorkoutSessionDelegate {
             self.isRunning = (toState == .running)
         }
         if toState == .ended {
-            builder?.endCollection(withEnd: date) { [weak self] _, _ in
-                self?.builder?.finishWorkout { [weak self] _, _ in
+            builder?.endCollection(withEnd: date) { [weak self] success, error in
+                if let error { print("endCollection error: \(error)") }
+                guard success else { return }
+                self?.builder?.finishWorkout { [weak self] workout, error in
+                    if let error { print("finishWorkout error: \(error)") }
+                    if workout == nil { print("⚠️ finishWorkout returned nil – workout not saved to Health") }
                     DispatchQueue.main.async {
-                        self?.builder = nil
-                        self?.session = nil
+                        self?.builder     = nil
+                        self?.session     = nil
                         self?.sessionStart = nil
-                        self?.isStarting = false
                     }
                 }
             }
