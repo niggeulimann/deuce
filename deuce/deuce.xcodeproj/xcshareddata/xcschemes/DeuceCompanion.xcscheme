@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43CA23BB2FCC38D300DBE776"
-               BuildableName = "deuce.app"
-               BlueprintName = "deuce"
+               BlueprintIdentifier = "434039422FD2EEF9004DE28E"
+               BuildableName = "DeuceCompanion.app"
+               BlueprintName = "DeuceCompanion"
                ReferencedContainer = "container:deuce.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,6 +29,30 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4340394E2FD2EEFA004DE28E"
+               BuildableName = "DeuceTests.xctest"
+               BlueprintName = "DeuceTests"
+               ReferencedContainer = "container:deuce.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "434039582FD2EEFA004DE28E"
+               BuildableName = "DeuceUITests.xctest"
+               BlueprintName = "DeuceUITests"
+               ReferencedContainer = "container:deuce.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -45,9 +69,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43CA23BB2FCC38D300DBE776"
-            BuildableName = "deuce.app"
-            BlueprintName = "deuce"
+            BlueprintIdentifier = "434039422FD2EEF9004DE28E"
+            BuildableName = "DeuceCompanion.app"
+            BlueprintName = "DeuceCompanion"
             ReferencedContainer = "container:deuce.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,9 +86,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43CA23BB2FCC38D300DBE776"
-            BuildableName = "deuce.app"
-            BlueprintName = "deuce"
+            BlueprintIdentifier = "434039422FD2EEF9004DE28E"
+            BuildableName = "DeuceCompanion.app"
+            BlueprintName = "DeuceCompanion"
             ReferencedContainer = "container:deuce.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

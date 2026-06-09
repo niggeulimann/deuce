@@ -43,48 +43,6 @@
         }
       }
     },
-    "Accent" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Farbe" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Accent" } }
-      }
-    },
-    "Add opponent" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gegner hinzufügen" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add opponent" } }
-      }
-    },
-    "New opponent" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Neuer Gegner" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New opponent" } }
-      }
-    },
-    "Remove opponent" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gegner entfernen" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove opponent" } }
-      }
-    },
-    "Warmup" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Einspielen" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Warmup" } }
-      }
-    },
-    "Average rally" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Ø Ballwechsel" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Average rally" } }
-      }
-    },
-    "Longest rally" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Längster Ballwechsel" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Longest rally" } }
-      }
-    },
     "Abandoned" : {
       "localizations" : {
         "de" : {
@@ -97,6 +55,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abandoned"
+          }
+        }
+      }
+    },
+    "Accent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farbe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accent"
+          }
+        }
+      }
+    },
+    "Add opponent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gegner hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add opponent"
+          }
+        }
+      }
+    },
+    "Average rally" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ø Ballwechsel"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average rally"
           }
         }
       }
@@ -390,6 +396,22 @@
         }
       }
     },
+    "Longest rally" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Längster Ballwechsel"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longest rally"
+          }
+        }
+      }
+    },
     "Match" : {
       "localizations" : {
         "de" : {
@@ -418,6 +440,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mode"
+          }
+        }
+      }
+    },
+    "New opponent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuer Gegner"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New opponent"
           }
         }
       }
@@ -586,7 +624,24 @@
         }
       }
     },
+    "Remove opponent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gegner entfernen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove opponent"
+          }
+        }
+      }
+    },
     "Reset Match" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -651,6 +706,7 @@
       }
     },
     "Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -668,8 +724,18 @@
     },
     "Steps" : {
       "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Schritte" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Steps" } }
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schritte"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steps"
+          }
+        }
       }
     },
     "Surface" : {
@@ -688,6 +754,9 @@
         }
       }
     },
+    "Sync iPhone" : {
+
+    },
     "Track Workout" : {
       "localizations" : {
         "de" : {
@@ -700,6 +769,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Track Workout"
+          }
+        }
+      }
+    },
+    "Warmup" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einspielen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warmup"
           }
         }
       }

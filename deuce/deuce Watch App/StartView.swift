@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 import HealthKit
 
 struct StartView: View {
@@ -13,6 +14,7 @@ struct StartView: View {
 
     @AppStorage("healthOptIn")   private var healthOptIn  = false
     @AppStorage("accentThemeKey") private var accentKey   = AccentTheme.green.rawValue
+    @Query private var matches: [MatchRecord]
     @State private var healthManager = HealthManager()
 
     private var accent: Color { AccentTheme(rawValue: accentKey)?.color ?? .green }
@@ -138,6 +140,17 @@ struct StartView: View {
                 }
                 .buttonStyle(.bordered)
                 .tint(.secondary)
+
+                Button { syncMatchesToPhone() } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "arrow.triangle.2.circlepath").font(.system(size: 13))
+                        Text("Sync iPhone").font(.system(size: 13))
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .tint(accent)
+                .disabled(matches.isEmpty)
                 .padding(.bottom, 8)
             }
             .padding(.horizontal, 10)
@@ -151,6 +164,10 @@ struct StartView: View {
             surface: surface
         )
         matchActive = true
+    }
+
+    private func syncMatchesToPhone() {
+        WatchSyncManager.shared.sync(matches.map(MatchRecordDTO.init))
     }
 
     private func sectionHeader(icon: String, label: String) -> some View {

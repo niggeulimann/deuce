@@ -2,7 +2,11 @@ import SwiftUI
 import SwiftData
 
 struct HistoryView: View {
-    @Query(sort: \MatchRecord.date, order: .reverse) private var records: [MatchRecord]
+    @Query(
+        filter: #Predicate<MatchRecord> { $0.isDeleted == false },
+        sort: \MatchRecord.date,
+        order: .reverse
+    ) private var records: [MatchRecord]
     @Environment(\.modelContext) private var modelContext
 
     var body: some View {
@@ -22,7 +26,11 @@ struct HistoryView: View {
                             }
                         }
                         .onDelete { offsets in
-                            for i in offsets { modelContext.delete(records[i]) }
+                            for i in offsets {
+                                let record = records[i]
+                                record.markDeleted()
+                                sync(record)
+                            }
                         }
                     }
                     .listStyle(.plain)
@@ -30,6 +38,11 @@ struct HistoryView: View {
             }
             .navigationTitle(String(localized: "History"))
         }
+    }
+
+    private func sync(_ record: MatchRecord) {
+        try? modelContext.save()
+        WatchSyncManager.shared.send(MatchRecordDTO(record))
     }
 }
 
@@ -223,6 +236,7 @@ struct MatchDetailView: View {
                 if !record.opponentName.isEmpty {
                     Button(role: .destructive) {
                         record.opponentName = ""
+                        sync(record)
                         showOpponentPicker = false
                     } label: {
                         Text(String(localized: "Remove opponent"))
@@ -246,7 +260,14 @@ struct MatchDetailView: View {
             modelContext.insert(KnownOpponent(name: name))
         }
         newOpponentName = ""
+        sync(record)
         showOpponentPicker = false
+    }
+
+    private func sync(_ record: MatchRecord) {
+        record.markModified()
+        try? modelContext.save()
+        WatchSyncManager.shared.send(MatchRecordDTO(record))
     }
 
     private func formatDuration(_ seconds: Double) -> String {

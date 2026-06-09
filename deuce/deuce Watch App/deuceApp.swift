@@ -15,12 +15,13 @@ struct deuce_Watch_AppApp: App {
     init() {
         do {
             modelContainer = try ModelContainer(
-                for: Schema(versionedSchema: DeuceSchemaV2.self),
+                for: Schema(versionedSchema: DeuceSchemaV4.self),
                 migrationPlan: DeuceMigrationPlan.self
             )
         } catch {
             fatalError("Failed to create SwiftData container: \(error)")
         }
+        WatchSyncManager.shared.configure(container: modelContainer)
     }
 
     var body: some Scene {

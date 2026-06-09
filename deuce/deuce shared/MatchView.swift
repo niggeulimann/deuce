@@ -61,9 +61,13 @@ struct MatchView: View {
 
     func saveAndExit(isComplete: Bool) {
         healthManager.stopWorkout()
+#if os(watchOS)
         let record = vm.makeRecord(isComplete: isComplete)
         modelContext.insert(record)
+        // Push the finished match to the iPhone companion (queued, guaranteed).
+        WatchSyncManager.shared.send(MatchRecordDTO(record))
         isActive = false
+#endif
     }
 }
 

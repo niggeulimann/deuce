@@ -7,11 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43CA23C32FCC38D300DBE776 /* deuce Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43CA23C22FCC38D300DBE776 /* deuce Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4340396B2FD2EF38004DE28E /* deuce Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43CA23C22FCC38D300DBE776 /* deuce Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		43CA23C42FCC38D300DBE776 /* PBXContainerItemProxy */ = {
+		434039502FD2EEFA004DE28E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CA23B62FCC38D300DBE776 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 434039422FD2EEF9004DE28E;
+			remoteInfo = Deuce;
+		};
+		4340395A2FD2EEFA004DE28E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CA23B62FCC38D300DBE776 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 434039422FD2EEF9004DE28E;
+			remoteInfo = Deuce;
+		};
+		4340396F2FD2EF38004DE28E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 43CA23B62FCC38D300DBE776 /* Project object */;
 			proxyType = 1;
@@ -35,13 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		43CA23E82FCC38D400DBE776 /* Embed Watch Content */ = {
+		4340396E2FD2EF38004DE28E /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				43CA23C32FCC38D300DBE776 /* deuce Watch App.app in Embed Watch Content */,
+				4340396B2FD2EF38004DE28E /* deuce Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,13 +63,60 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		43CA23BC2FCC38D300DBE776 /* deuce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = deuce.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		434039432FD2EEF9004DE28E /* DeuceCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeuceCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4340394F2FD2EEFA004DE28E /* DeuceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeuceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		434039592FD2EEFA004DE28E /* DeuceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeuceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CA23C22FCC38D300DBE776 /* deuce Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "deuce Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CA23D12FCC38D400DBE776 /* deuce Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "deuce Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CA23DB2FCC38D400DBE776 /* deuce Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "deuce Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		43ABC4012FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanion" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				HealthManager.swift,
+				HealthView.swift,
+				MatchView.swift,
+				MatchViewModel.swift,
+				ScoringEngine.swift,
+			);
+			target = 434039422FD2EEF9004DE28E /* DeuceCompanion */;
+		};
+		43ABC4022FD2F595002908DE /* Exceptions for "deuce shared" folder in "deuce Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				PhoneSyncManager.swift,
+			);
+			target = 43CA23C12FCC38D300DBE776 /* deuce Watch App */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		434039442FD2EEF9004DE28E /* deuce companion */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "deuce companion";
+			sourceTree = "<group>";
+		};
+		434039522FD2EEFA004DE28E /* DeuceTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DeuceTests;
+			sourceTree = "<group>";
+		};
+		4340395C2FD2EEFA004DE28E /* DeuceUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DeuceUITests;
+			sourceTree = "<group>";
+		};
+		43ABC38E2FD2F495002908DE /* deuce shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				43ABC4022FD2F595002908DE /* Exceptions for "deuce shared" folder in "deuce Watch App" target */,
+				43ABC4012FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanion" target */,
+			);
+			path = "deuce shared";
+			sourceTree = "<group>";
+		};
 		43CA23C62FCC38D300DBE776 /* deuce Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "deuce Watch App";
@@ -74,6 +135,27 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		434039402FD2EEF9004DE28E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4340394C2FD2EEFA004DE28E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		434039562FD2EEFA004DE28E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43CA23BF2FCC38D300DBE776 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -98,12 +180,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4340396A2FD2EF38004DE28E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		43CA23B52FCC38D300DBE776 = {
 			isa = PBXGroup;
 			children = (
+				43ABC38E2FD2F495002908DE /* deuce shared */,
+				434039442FD2EEF9004DE28E /* deuce companion */,
 				43CA23C62FCC38D300DBE776 /* deuce Watch App */,
 				43CA23D42FCC38D400DBE776 /* deuce Watch AppTests */,
 				43CA23DE2FCC38D400DBE776 /* deuce Watch AppUITests */,
+				434039522FD2EEFA004DE28E /* DeuceTests */,
+				4340395C2FD2EEFA004DE28E /* DeuceUITests */,
+				4340396A2FD2EF38004DE28E /* Frameworks */,
 				43CA23BD2FCC38D300DBE776 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,10 +205,12 @@
 		43CA23BD2FCC38D300DBE776 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43CA23BC2FCC38D300DBE776 /* deuce.app */,
 				43CA23C22FCC38D300DBE776 /* deuce Watch App.app */,
 				43CA23D12FCC38D400DBE776 /* deuce Watch AppTests.xctest */,
 				43CA23DB2FCC38D400DBE776 /* deuce Watch AppUITests.xctest */,
+				434039432FD2EEF9004DE28E /* DeuceCompanion.app */,
+				4340394F2FD2EEFA004DE28E /* DeuceTests.xctest */,
+				434039592FD2EEFA004DE28E /* DeuceUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,24 +218,76 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		43CA23BB2FCC38D300DBE776 /* deuce */ = {
+		434039422FD2EEF9004DE28E /* DeuceCompanion */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43CA23E92FCC38D400DBE776 /* Build configuration list for PBXNativeTarget "deuce" */;
+			buildConfigurationList = 434039672FD2EEFA004DE28E /* Build configuration list for PBXNativeTarget "DeuceCompanion" */;
 			buildPhases = (
-				43CA23BA2FCC38D300DBE776 /* Resources */,
-				43CA23E82FCC38D400DBE776 /* Embed Watch Content */,
+				4340393F2FD2EEF9004DE28E /* Sources */,
+				434039402FD2EEF9004DE28E /* Frameworks */,
+				434039412FD2EEF9004DE28E /* Resources */,
+				4340396E2FD2EF38004DE28E /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				43CA23C52FCC38D300DBE776 /* PBXTargetDependency */,
+				434039702FD2EF38004DE28E /* PBXTargetDependency */,
 			);
-			name = deuce;
+			fileSystemSynchronizedGroups = (
+				434039442FD2EEF9004DE28E /* deuce companion */,
+				43ABC38E2FD2F495002908DE /* deuce shared */,
+			);
+			name = DeuceCompanion;
 			packageProductDependencies = (
 			);
-			productName = deuce;
-			productReference = 43CA23BC2FCC38D300DBE776 /* deuce.app */;
-			productType = "com.apple.product-type.application.watchapp2-container";
+			productName = Deuce;
+			productReference = 434039432FD2EEF9004DE28E /* DeuceCompanion.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4340394E2FD2EEFA004DE28E /* DeuceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 434039682FD2EEFA004DE28E /* Build configuration list for PBXNativeTarget "DeuceTests" */;
+			buildPhases = (
+				4340394B2FD2EEFA004DE28E /* Sources */,
+				4340394C2FD2EEFA004DE28E /* Frameworks */,
+				4340394D2FD2EEFA004DE28E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				434039512FD2EEFA004DE28E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				434039522FD2EEFA004DE28E /* DeuceTests */,
+			);
+			name = DeuceTests;
+			packageProductDependencies = (
+			);
+			productName = DeuceTests;
+			productReference = 4340394F2FD2EEFA004DE28E /* DeuceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		434039582FD2EEFA004DE28E /* DeuceUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 434039692FD2EEFA004DE28E /* Build configuration list for PBXNativeTarget "DeuceUITests" */;
+			buildPhases = (
+				434039552FD2EEFA004DE28E /* Sources */,
+				434039562FD2EEFA004DE28E /* Frameworks */,
+				434039572FD2EEFA004DE28E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4340395B2FD2EEFA004DE28E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				4340395C2FD2EEFA004DE28E /* DeuceUITests */,
+			);
+			name = DeuceUITests;
+			packageProductDependencies = (
+			);
+			productName = DeuceUITests;
+			productReference = 434039592FD2EEFA004DE28E /* DeuceUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		43CA23C12FCC38D300DBE776 /* deuce Watch App */ = {
 			isa = PBXNativeTarget;
@@ -154,6 +302,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				43ABC38E2FD2F495002908DE /* deuce shared */,
 				43CA23C62FCC38D300DBE776 /* deuce Watch App */,
 			);
 			name = "deuce Watch App";
@@ -219,8 +368,16 @@
 				LastSwiftUpdateCheck = 2650;
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
-					43CA23BB2FCC38D300DBE776 = {
+					434039422FD2EEF9004DE28E = {
 						CreatedOnToolsVersion = 26.5;
+					};
+					4340394E2FD2EEFA004DE28E = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 434039422FD2EEF9004DE28E;
+					};
+					434039582FD2EEFA004DE28E = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 434039422FD2EEF9004DE28E;
 					};
 					43CA23C12FCC38D300DBE776 = {
 						CreatedOnToolsVersion = 26.5;
@@ -250,16 +407,32 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				43CA23BB2FCC38D300DBE776 /* deuce */,
 				43CA23C12FCC38D300DBE776 /* deuce Watch App */,
+				434039422FD2EEF9004DE28E /* DeuceCompanion */,
 				43CA23D02FCC38D400DBE776 /* deuce Watch AppTests */,
 				43CA23DA2FCC38D400DBE776 /* deuce Watch AppUITests */,
+				4340394E2FD2EEFA004DE28E /* DeuceTests */,
+				434039582FD2EEFA004DE28E /* DeuceUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		43CA23BA2FCC38D300DBE776 /* Resources */ = {
+		434039412FD2EEF9004DE28E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4340394D2FD2EEFA004DE28E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		434039572FD2EEFA004DE28E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -290,6 +463,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4340393F2FD2EEF9004DE28E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4340394B2FD2EEFA004DE28E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		434039552FD2EEFA004DE28E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43CA23BE2FCC38D300DBE776 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -314,10 +508,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		43CA23C52FCC38D300DBE776 /* PBXTargetDependency */ = {
+		434039702FD2EF38004DE28E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 43CA23C12FCC38D300DBE776 /* deuce Watch App */;
-			targetProxy = 43CA23C42FCC38D300DBE776 /* PBXContainerItemProxy */;
+			targetProxy = 4340396F2FD2EF38004DE28E /* PBXContainerItemProxy */;
+		};
+		434039512FD2EEFA004DE28E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 434039422FD2EEF9004DE28E /* DeuceCompanion */;
+			targetProxy = 434039502FD2EEFA004DE28E /* PBXContainerItemProxy */;
+		};
+		4340395B2FD2EEFA004DE28E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 434039422FD2EEF9004DE28E /* DeuceCompanion */;
+			targetProxy = 4340395A2FD2EEFA004DE28E /* PBXContainerItemProxy */;
 		};
 		43CA23D32FCC38D400DBE776 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -332,6 +536,167 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		434039612FD2EEFA004DE28E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDeuce;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W5XAZYC285;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		434039622FD2EEFA004DE28E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDeuce;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W5XAZYC285;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		434039632FD2EEFA004DE28E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W5XAZYC285;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce.companion.DeuceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeuceCompanion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeuceCompanion";
+			};
+			name = Debug;
+		};
+		434039642FD2EEFA004DE28E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W5XAZYC285;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce.companion.DeuceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeuceCompanion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeuceCompanion";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		434039652FD2EEFA004DE28E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W5XAZYC285;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce.companion.DeuceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DeuceCompanion;
+			};
+			name = Debug;
+		};
+		434039662FD2EEFA004DE28E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W5XAZYC285;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce.companion.DeuceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DeuceCompanion;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		43CA23E32FCC38D400DBE776 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -465,7 +830,8 @@
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Deuce reads your heart rate and activity to track your tennis workout.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Deuce saves your tennis workout to Health.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKWatchOnly = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = de.mokkavadder.app.deuce;
+				INFOPLIST_KEY_WKWatchOnly = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -504,7 +870,8 @@
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Deuce reads your heart rate and activity to track your tennis workout.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Deuce saves your tennis workout to Health.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKWatchOnly = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = de.mokkavadder.app.deuce;
+				INFOPLIST_KEY_WKWatchOnly = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -524,49 +891,6 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 11.6;
-			};
-			name = Release;
-		};
-		43CA23EA2FCC38D400DBE776 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W5XAZYC285;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = deuce;
-				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = iphoneos;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		43CA23EB2FCC38D400DBE776 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W5XAZYC285;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = deuce;
-				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = de.mokkavadder.app.deuce;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = iphoneos;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -665,6 +989,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		434039672FD2EEFA004DE28E /* Build configuration list for PBXNativeTarget "DeuceCompanion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				434039612FD2EEFA004DE28E /* Debug */,
+				434039622FD2EEFA004DE28E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		434039682FD2EEFA004DE28E /* Build configuration list for PBXNativeTarget "DeuceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				434039632FD2EEFA004DE28E /* Debug */,
+				434039642FD2EEFA004DE28E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		434039692FD2EEFA004DE28E /* Build configuration list for PBXNativeTarget "DeuceUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				434039652FD2EEFA004DE28E /* Debug */,
+				434039662FD2EEFA004DE28E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		43CA23B92FCC38D300DBE776 /* Build configuration list for PBXProject "deuce" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -679,15 +1030,6 @@
 			buildConfigurations = (
 				43CA23E62FCC38D400DBE776 /* Debug */,
 				43CA23E72FCC38D400DBE776 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		43CA23E92FCC38D400DBE776 /* Build configuration list for PBXNativeTarget "deuce" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				43CA23EA2FCC38D400DBE776 /* Debug */,
-				43CA23EB2FCC38D400DBE776 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
