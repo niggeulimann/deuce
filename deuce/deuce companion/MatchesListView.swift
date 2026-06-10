@@ -12,20 +12,20 @@ struct MatchesListView: View {
     var body: some View {
         NavigationStack {
             List {
-                HeroHeader(
-                    title: "Matches",
-                    imageNames: ["start", "start2"],
-                    motif: "tennisball.fill",
-                    tint: .green
-                )
-                    .heroListRow()
-
                 if matches.isEmpty {
                     EmptyStateView(
                         imageName: "empty_matches",
                         message: "Matches played on your watch appear here."
                     )
                 } else {
+                    HeroHeader(
+                        title: "Matches",
+                        imageNames: ["start", "start2"],
+                        motif: "tennisball.fill",
+                        tint: .green
+                    )
+                        .heroListRow()
+
                     ForEach(matches) { match in
                         NavigationLink {
                             MatchDetailView(record: match)

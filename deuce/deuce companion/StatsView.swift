@@ -11,20 +11,20 @@ struct StatsView: View {
     var body: some View {
         NavigationStack {
             List {
-                HeroHeader(
-                    title: "Stats",
-                    imageNames: ["analyse_1", "analyse_2"],
-                    motif: "chart.bar.fill",
-                    tint: .orange
-                )
-                    .heroListRow()
-
                 if record.total == 0 {
                     EmptyStateView(
                         imageName: "empty_stats",
                         message: "Play some matches to see your statistics."
                     )
                 } else {
+                    HeroHeader(
+                        title: "Stats",
+                        imageNames: ["analyse_1", "analyse_2"],
+                        motif: "chart.bar.fill",
+                        tint: .orange
+                    )
+                        .heroListRow()
+
                     summarySection
                     trendSection
                     surfaceSection

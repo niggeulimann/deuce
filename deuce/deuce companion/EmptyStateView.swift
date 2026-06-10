@@ -9,11 +9,11 @@ struct EmptyStateView: View {
             Image(imageName)
                 .resizable()
                 .scaledToFill()
-                .frame(maxWidth: 260)
+                .frame(maxWidth: 330)
                 .aspectRatio(4 / 3, contentMode: .fit)
-                .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                 .overlay {
-                    RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
                         .stroke(.white.opacity(0.08), lineWidth: 1)
                 }
                 .shadow(color: .black.opacity(0.18), radius: 12, y: 6)
@@ -25,8 +25,8 @@ struct EmptyStateView: View {
                 .frame(maxWidth: 300)
         }
         .frame(maxWidth: .infinity)
-        .padding(.horizontal, 20)
-        .padding(.top, 22)
+        .padding(.horizontal, 12)
+        .padding(.top, 44)
         .padding(.bottom, 12)
         .listRowSeparator(.hidden)
         .listRowBackground(Color.clear)
