@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "43CA23C12FCC38D300DBE776"
-               BuildableName = "DeuceCompanion Watch App.app"
-               BlueprintName = "DeuceCompanion Watch App"
+               BuildableName = "DeuceCompanionWatchApp.app"
+               BlueprintName = "DeuceCompanionWatchApp"
                ReferencedContainer = "container:deuce.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -84,8 +84,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43CA23C12FCC38D300DBE776"
-            BuildableName = "DeuceCompanion Watch App.app"
-            BlueprintName = "DeuceCompanion Watch App"
+            BuildableName = "DeuceCompanionWatchApp.app"
+            BlueprintName = "DeuceCompanionWatchApp"
             ReferencedContainer = "container:deuce.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -101,8 +101,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43CA23C12FCC38D300DBE776"
-            BuildableName = "DeuceCompanion Watch App.app"
-            BlueprintName = "DeuceCompanion Watch App"
+            BuildableName = "DeuceCompanionWatchApp.app"
+            BlueprintName = "DeuceCompanionWatchApp"
             ReferencedContainer = "container:deuce.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -21,6 +21,20 @@
                ReferencedContainer = "container:deuce.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "43CA23C12FCC38D300DBE776"
+               BuildableName = "DeuceCompanionWatchApp.app"
+               BlueprintName = "DeuceCompanionWatchApp"
+               ReferencedContainer = "container:deuce.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

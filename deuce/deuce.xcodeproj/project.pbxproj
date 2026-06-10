@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4340396B2FD2EF38004DE28E /* DeuceCompanion Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43CA23C22FCC38D300DBE776 /* DeuceCompanion Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		435C3DF52FD94B7400B11E51 /* DeuceCompanion Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43CA23C22FCC38D300DBE776 /* DeuceCompanion Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		43557B9D2FD97B8500E654AF /* DeuceCompanionWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 43CA23C22FCC38D300DBE776 /* DeuceCompanionWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		435C3E062FD94BD700B11E51 /* DeuceContainer WatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 435C3E032FD94B9F00B11E51 /* DeuceContainer WatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -57,7 +56,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				4340396B2FD2EF38004DE28E /* DeuceCompanion Watch App.app in Embed Watch Content */,
+				43557B9D2FD97B8500E654AF /* DeuceCompanionWatchApp.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,12 +80,19 @@
 		434039592FD2EEFA004DE28E /* DeuceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeuceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		435C3DF92FD94B7400B11E51 /* DeuceContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeuceContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		435C3E032FD94B9F00B11E51 /* DeuceContainer WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DeuceContainer WatchApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43CA23C22FCC38D300DBE776 /* DeuceCompanion Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DeuceCompanion Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43CA23C22FCC38D300DBE776 /* DeuceCompanionWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeuceCompanionWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CA23D12FCC38D400DBE776 /* deuce Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "deuce Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CA23DB2FCC38D400DBE776 /* deuce Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "deuce Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		435C3E092FD94BD700B11E51 /* Exceptions for "deuce shared" folder in "DeuceContainer WatchApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				PhoneSyncManager.swift,
+			);
+			target = 435C3DFC2FD94B9F00B11E51 /* DeuceContainer WatchApp */;
+		};
 		43ABC4012FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanion" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -98,19 +104,12 @@
 			);
 			target = 434039422FD2EEF9004DE28E /* DeuceCompanion */;
 		};
-		43ABC4022FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanion Watch App" target */ = {
+		43ABC4022FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanionWatchApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				PhoneSyncManager.swift,
 			);
-			target = 43CA23C12FCC38D300DBE776 /* DeuceCompanion Watch App */;
-		};
-		435C3E092FD94BD700B11E51 /* Exceptions for "deuce shared" folder in "DeuceContainer WatchApp" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				PhoneSyncManager.swift,
-			);
-			target = 435C3DFC2FD94B9F00B11E51 /* DeuceContainer WatchApp */;
+			target = 43CA23C12FCC38D300DBE776 /* DeuceCompanionWatchApp */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -133,7 +132,7 @@
 		43ABC38E2FD2F495002908DE /* deuce shared */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				43ABC4022FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanion Watch App" target */,
+				43ABC4022FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanionWatchApp" target */,
 				43ABC4012FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanion" target */,
 				435C3E092FD94BD700B11E51 /* Exceptions for "deuce shared" folder in "DeuceContainer WatchApp" target */,
 			);
@@ -173,13 +172,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		434039562FD2EEFA004DE28E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		435C3DF22FD94B7400B11E51 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -242,7 +234,7 @@
 		43CA23BD2FCC38D300DBE776 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43CA23C22FCC38D300DBE776 /* DeuceCompanion Watch App.app */,
+				43CA23C22FCC38D300DBE776 /* DeuceCompanionWatchApp.app */,
 				43CA23D12FCC38D400DBE776 /* deuce Watch AppTests.xctest */,
 				43CA23DB2FCC38D400DBE776 /* deuce Watch AppUITests.xctest */,
 				434039432FD2EEF9004DE28E /* DeuceCompanion.app */,
@@ -369,9 +361,9 @@
 			productReference = 435C3E032FD94B9F00B11E51 /* DeuceContainer WatchApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		43CA23C12FCC38D300DBE776 /* DeuceCompanion Watch App */ = {
+		43CA23C12FCC38D300DBE776 /* DeuceCompanionWatchApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43CA23E52FCC38D400DBE776 /* Build configuration list for PBXNativeTarget "DeuceCompanion Watch App" */;
+			buildConfigurationList = 43CA23E52FCC38D400DBE776 /* Build configuration list for PBXNativeTarget "DeuceCompanionWatchApp" */;
 			buildPhases = (
 				43CA23BE2FCC38D300DBE776 /* Sources */,
 				43CA23BF2FCC38D300DBE776 /* Frameworks */,
@@ -385,11 +377,11 @@
 				43ABC38E2FD2F495002908DE /* deuce shared */,
 				43CA23C62FCC38D300DBE776 /* deuce Watch App */,
 			);
-			name = "DeuceCompanion Watch App";
+			name = DeuceCompanionWatchApp;
 			packageProductDependencies = (
 			);
 			productName = "deuce Watch App";
-			productReference = 43CA23C22FCC38D300DBE776 /* DeuceCompanion Watch App.app */;
+			productReference = 43CA23C22FCC38D300DBE776 /* DeuceCompanionWatchApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		43CA23D02FCC38D400DBE776 /* deuce Watch AppTests */ = {
@@ -487,7 +479,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				43CA23C12FCC38D300DBE776 /* DeuceCompanion Watch App */,
+				43CA23C12FCC38D300DBE776 /* DeuceCompanionWatchApp */,
 				434039422FD2EEF9004DE28E /* DeuceCompanion */,
 				43CA23D02FCC38D400DBE776 /* deuce Watch AppTests */,
 				43CA23DA2FCC38D400DBE776 /* deuce Watch AppUITests */,
@@ -580,13 +572,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		435C3DF12FD94B7400B11E51 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		435C3DFD2FD94B9F00B11E51 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -635,12 +620,12 @@
 		};
 		43CA23D32FCC38D400DBE776 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 43CA23C12FCC38D300DBE776 /* DeuceCompanion Watch App */;
+			target = 43CA23C12FCC38D300DBE776 /* DeuceCompanionWatchApp */;
 			targetProxy = 43CA23D22FCC38D400DBE776 /* PBXContainerItemProxy */;
 		};
 		43CA23DD2FCC38D400DBE776 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 43CA23C12FCC38D300DBE776 /* DeuceCompanion Watch App */;
+			target = 43CA23C12FCC38D300DBE776 /* DeuceCompanionWatchApp */;
 			targetProxy = 43CA23DC2FCC38D400DBE776 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1275,7 +1260,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43CA23E52FCC38D400DBE776 /* Build configuration list for PBXNativeTarget "DeuceCompanion Watch App" */ = {
+		43CA23E52FCC38D400DBE776 /* Build configuration list for PBXNativeTarget "DeuceCompanionWatchApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43CA23E62FCC38D400DBE776 /* Debug */,
