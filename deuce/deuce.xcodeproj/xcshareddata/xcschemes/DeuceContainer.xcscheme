@@ -15,23 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43CA23C12FCC38D300DBE776"
-               BuildableName = "deuce Watch App.app"
-               BlueprintName = "deuce Watch App"
-               ReferencedContainer = "container:deuce.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43CA23BB2FCC38D300DBE776"
-               BuildableName = "deuce.app"
-               BlueprintName = "deuce"
+               BlueprintIdentifier = "435C3DEE2FD94B7400B11E51"
+               BuildableName = "DeuceContainer.app"
+               BlueprintName = "DeuceContainer"
                ReferencedContainer = "container:deuce.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,30 +29,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43CA23D02FCC38D400DBE776"
-               BuildableName = "deuce Watch AppTests.xctest"
-               BlueprintName = "deuce Watch AppTests"
-               ReferencedContainer = "container:deuce.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43CA23DA2FCC38D400DBE776"
-               BuildableName = "deuce Watch AppUITests.xctest"
-               BlueprintName = "deuce Watch AppUITests"
-               ReferencedContainer = "container:deuce.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -83,9 +45,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43CA23C12FCC38D300DBE776"
-            BuildableName = "deuce Watch App.app"
-            BlueprintName = "deuce Watch App"
+            BlueprintIdentifier = "435C3DEE2FD94B7400B11E51"
+            BuildableName = "DeuceContainer.app"
+            BlueprintName = "DeuceContainer"
             ReferencedContainer = "container:deuce.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -100,9 +62,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43CA23C12FCC38D300DBE776"
-            BuildableName = "deuce Watch App.app"
-            BlueprintName = "deuce Watch App"
+            BlueprintIdentifier = "435C3DEE2FD94B7400B11E51"
+            BuildableName = "DeuceContainer.app"
+            BlueprintName = "DeuceContainer"
             ReferencedContainer = "container:deuce.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
