@@ -9,20 +9,20 @@ struct OpponentsListView: View {
     var body: some View {
         NavigationStack {
             List {
+                HeroHeader(
+                    title: "Opponents",
+                    imageNames: ["opponent", "opponent2"],
+                    motif: "person.2.fill",
+                    tint: .blue
+                )
+                    .heroListRow()
+
                 if opponents.isEmpty {
                     EmptyStateView(
                         imageName: "empty_opponents",
                         message: "Assign opponents to your matches to build head-to-head records."
                     )
                 } else {
-                    HeroHeader(
-                        title: "Opponents",
-                        imageNames: ["opponent", "opponent2"],
-                        motif: "person.2.fill",
-                        tint: .blue
-                    )
-                        .heroListRow()
-
                     ForEach(opponents, id: \.self) { name in
                         NavigationLink {
                             OpponentDetailView(opponentName: name)
