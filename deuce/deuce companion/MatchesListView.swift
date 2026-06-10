@@ -21,12 +21,10 @@ struct MatchesListView: View {
                     .heroListRow()
 
                 if matches.isEmpty {
-                    Text(String(localized: "Matches played on your watch appear here."))
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.top, 24)
-                        .listRowSeparator(.hidden)
+                    EmptyStateView(
+                        imageName: "empty_matches",
+                        message: "Matches played on your watch appear here."
+                    )
                 } else {
                     ForEach(matches) { match in
                         NavigationLink {

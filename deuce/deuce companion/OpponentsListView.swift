@@ -18,12 +18,10 @@ struct OpponentsListView: View {
                     .heroListRow()
 
                 if opponents.isEmpty {
-                    Text(String(localized: "Assign opponents to your matches to build head-to-head records."))
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.top, 24)
-                        .listRowSeparator(.hidden)
+                    EmptyStateView(
+                        imageName: "empty_opponents",
+                        message: "Assign opponents to your matches to build head-to-head records."
+                    )
                 } else {
                     ForEach(opponents, id: \.self) { name in
                         NavigationLink {
