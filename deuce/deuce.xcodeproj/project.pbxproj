@@ -26,6 +26,13 @@
 			remoteGlobalIDString = 434039422FD2EEF9004DE28E;
 			remoteInfo = Deuce;
 		};
+		43557B9E2FD97B8500E654AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CA23B62FCC38D300DBE776 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43CA23C12FCC38D300DBE776;
+			remoteInfo = DeuceCompanionWatchApp;
+		};
 		435C3E072FD94BD700B11E51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 43CA23B62FCC38D300DBE776 /* Project object */;
@@ -78,6 +85,7 @@
 		434039432FD2EEF9004DE28E /* DeuceCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeuceCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4340394F2FD2EEFA004DE28E /* DeuceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeuceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		434039592FD2EEFA004DE28E /* DeuceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeuceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		43557B9E2FD97D6A00E654AF /* DeuceCompanion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeuceCompanion.entitlements; sourceTree = "<group>"; };
 		435C3DF92FD94B7400B11E51 /* DeuceContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeuceContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		435C3E032FD94B9F00B11E51 /* DeuceContainer WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DeuceContainer WatchApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CA23C22FCC38D300DBE776 /* DeuceCompanionWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeuceCompanionWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +227,7 @@
 		43CA23B52FCC38D300DBE776 = {
 			isa = PBXGroup;
 			children = (
+				43557B9E2FD97D6A00E654AF /* DeuceCompanion.entitlements */,
 				43ABC38E2FD2F495002908DE /* deuce shared */,
 				434039442FD2EEF9004DE28E /* deuce companion */,
 				43CA23C62FCC38D300DBE776 /* deuce Watch App */,
@@ -261,6 +270,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				43557B9F2FD97B8500E654AF /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				434039442FD2EEF9004DE28E /* deuce companion */,
@@ -613,6 +623,11 @@
 			target = 434039422FD2EEF9004DE28E /* DeuceCompanion */;
 			targetProxy = 4340395A2FD2EEFA004DE28E /* PBXContainerItemProxy */;
 		};
+		43557B9F2FD97B8500E654AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43CA23C12FCC38D300DBE776 /* DeuceCompanionWatchApp */;
+			targetProxy = 43557B9E2FD97B8500E654AF /* PBXContainerItemProxy */;
+		};
 		435C3E082FD94BD700B11E51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 435C3DFC2FD94B9F00B11E51 /* DeuceContainer WatchApp */;
@@ -636,11 +651,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDeuce;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DeuceCompanion.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W5XAZYC285;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Deuce saves your tennis workout to Health.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -670,11 +687,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDeuce;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DeuceCompanion.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W5XAZYC285;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Deuce saves your tennis workout to Health.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
