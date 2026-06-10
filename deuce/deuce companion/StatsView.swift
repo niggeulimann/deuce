@@ -20,10 +20,12 @@ struct StatsView: View {
                     .heroListRow()
 
                 if record.total == 0 {
-                    EmptyStateView(
-                        imageName: "empty_stats",
-                        message: "Play some matches to see your statistics."
-                    )
+                    Text(String(localized: "Play some matches to see your statistics."))
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.top, 24)
+                        .listRowSeparator(.hidden)
                 } else {
                     summarySection
                     trendSection
