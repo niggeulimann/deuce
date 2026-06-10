@@ -27,19 +27,25 @@ struct DeuceApp: App {
 
 struct RootTabView: View {
     @AppStorage("appTheme") private var themeRaw = AppTheme.dark.rawValue
+    @AppStorage(AppLanguage.storageKey) private var languageRaw = AppLanguage.systemDefault.rawValue
+
     private var theme: AppTheme { AppTheme(rawValue: themeRaw) ?? .dark }
+    private var language: AppLanguage {
+        AppLanguage(rawValue: languageRaw) ?? .systemDefault
+    }
 
     var body: some View {
         TabView {
             MatchesListView()
                 .tabItem { Label("Matches", systemImage: "list.bullet") }
             OpponentsListView()
-                .tabItem { Label(String(localized: "Opponents"), systemImage: "person.2") }
+                .tabItem { Label("Opponents", systemImage: "person.2") }
             StatsView()
-                .tabItem { Label(String(localized: "Stats"), systemImage: "chart.bar") }
+                .tabItem { Label("Stats", systemImage: "chart.bar") }
             SettingsView()
-                .tabItem { Label(String(localized: "Settings"), systemImage: "gearshape") }
+                .tabItem { Label("Settings", systemImage: "gearshape") }
         }
+        .environment(\.locale, language.locale)
         .tint(.green)
         .preferredColorScheme(theme.colorScheme)
     }

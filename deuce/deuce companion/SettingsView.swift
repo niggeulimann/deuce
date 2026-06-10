@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @AppStorage("appTheme") private var themeRaw = AppTheme.dark.rawValue
+    @AppStorage(AppLanguage.storageKey) private var languageRaw = AppLanguage.systemDefault.rawValue
 
     var body: some View {
         NavigationStack {
@@ -14,14 +15,26 @@ struct SettingsView: View {
                 )
                     .heroListRow()
 
-                Section(String(localized: "Appearance")) {
-                    Picker(String(localized: "Theme"), selection: $themeRaw) {
+                Section(L10n.string("Appearance")) {
+                    Picker(L10n.string("Theme"), selection: $themeRaw) {
                         ForEach(AppTheme.allCases) { theme in
                             Text(theme.label).tag(theme.rawValue)
                         }
                     }
                     .pickerStyle(.segmented)
                     .listRowSeparator(.hidden)
+                }
+
+                Section {
+                    Picker("Language", selection: $languageRaw) {
+                        ForEach(AppLanguage.allCases) { language in
+                            Text(language.label).tag(language.rawValue)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .listRowSeparator(.hidden)
+                } header: {
+                    Text("Language")
                 }
             }
             .listStyle(.plain)

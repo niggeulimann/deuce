@@ -66,7 +66,7 @@ private struct MatchRow: View {
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(record.opponentName.isEmpty
-                     ? String(localized: "Unknown opponent")
+                     ? L10n.string("Unknown opponent")
                      : record.opponentName)
                     .font(.headline)
                 Text(record.date, format: .dateTime.day().month().year())

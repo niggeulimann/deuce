@@ -18,64 +18,64 @@ struct MatchDetailView: View {
                     Text("\(record.setsBottom):\(record.setsTop)")
                         .font(.largeTitle.weight(.bold).monospacedDigit())
                 }
-                LabeledContent(String(localized: "Date")) {
+                LabeledContent(L10n.string("Date")) {
                     Text(record.date, format: .dateTime.day().month().year().hour().minute())
                 }
                 if let surface = CourtSurface(rawValue: record.surface) {
-                    LabeledContent(String(localized: "Surface"), value: surface.label)
+                    LabeledContent(L10n.string("Surface"), value: surface.label)
                 }
-                LabeledContent(String(localized: "Mode"), value: modeLabel)
+                LabeledContent(L10n.string("Mode"), value: modeLabel)
             }
 
             // Set table
-            Section(String(localized: "Sets")) {
+            Section(L10n.string("Sets")) {
                 setTable
             }
 
             // Opponent
-            Section(String(localized: "Opponent")) {
+            Section(L10n.string("Opponent")) {
                 if !knownOpponents.isEmpty {
-                    Picker(String(localized: "Opponent"), selection: opponentBinding) {
-                        Text(String(localized: "Unknown opponent")).tag("")
+                    Picker(L10n.string("Opponent"), selection: opponentBinding) {
+                        Text(L10n.string("Unknown opponent")).tag("")
                         ForEach(knownOpponents) { o in
                             Text(o.name).tag(o.name)
                         }
                     }
                 }
                 HStack {
-                    TextField(String(localized: "New opponent"), text: $newOpponent)
-                    Button(String(localized: "Add")) { addOpponent() }
+                    TextField(L10n.string("New opponent"), text: $newOpponent)
+                    Button(L10n.string("Add")) { addOpponent() }
                         .disabled(newOpponent.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
             }
 
             // Notes
-            Section(String(localized: "Notes")) {
-                TextField(String(localized: "Notes"), text: $record.notes, axis: .vertical)
+            Section(L10n.string("Notes")) {
+                TextField(L10n.string("Notes"), text: $record.notes, axis: .vertical)
                     .lineLimit(3...6)
             }
 
             // Dynamics
             if hasDynamics {
-                Section(String(localized: "Match Dynamics")) {
+                Section(L10n.string("Match Dynamics")) {
                     if let w = Analytics.warmup(record) {
-                        LabeledContent(String(localized: "Warmup"), value: Format.duration(w))
+                        LabeledContent(L10n.string("Warmup"), value: Format.duration(w))
                     }
                     if let d = Analytics.duration(record) {
-                        LabeledContent(String(localized: "Duration"), value: Format.duration(d))
+                        LabeledContent(L10n.string("Duration"), value: Format.duration(d))
                     }
                     if let lr = Analytics.longestRally(record) {
-                        LabeledContent(String(localized: "Longest rally"), value: Format.duration(lr))
+                        LabeledContent(L10n.string("Longest rally"), value: Format.duration(lr))
                     }
                     if let ar = Analytics.averageRally(record) {
-                        LabeledContent(String(localized: "Avg. rally"), value: Format.duration(ar))
+                        LabeledContent(L10n.string("Avg. rally"), value: Format.duration(ar))
                     }
-                    LabeledContent(String(localized: "Points"), value: "\(record.pointOffsets.count)")
+                    LabeledContent(L10n.string("Points"), value: "\(record.pointOffsets.count)")
                 }
             }
         }
         .navigationTitle(record.opponentName.isEmpty
-                         ? String(localized: "Match")
+                         ? L10n.string("Match")
                          : record.opponentName)
         .navigationBarTitleDisplayMode(.inline)
         .onDisappear {
@@ -91,18 +91,18 @@ struct MatchDetailView: View {
             GridRow {
                 Text("").gridColumnAlignment(.leading)
                 ForEach(0..<sets.count, id: \.self) { i in
-                    Text(String(localized: "Set \(i + 1)"))
+                    Text(L10n.string("Set \(i + 1)"))
                         .font(.caption).foregroundStyle(.secondary)
                 }
             }
             GridRow {
-                Text(String(localized: "You")).font(.subheadline.weight(.medium))
+                Text(L10n.string("You")).font(.subheadline.weight(.medium))
                 ForEach(0..<sets.count, id: \.self) { i in
                     Text("\(sets[i].bottom)").font(.body.monospacedDigit().weight(.semibold))
                 }
             }
             GridRow {
-                Text(String(localized: "Opponent")).font(.subheadline.weight(.medium))
+                Text(L10n.string("Opponent")).font(.subheadline.weight(.medium))
                 ForEach(0..<sets.count, id: \.self) { i in
                     Text("\(sets[i].top)").font(.body.monospacedDigit())
                 }
@@ -159,8 +159,8 @@ struct MatchDetailView: View {
 
     private var resultBadge: some View {
         Label(
-            record.isComplete ? (record.didWin ? String(localized: "Won") : String(localized: "Lost"))
-                              : String(localized: "Abandoned"),
+            record.isComplete ? (record.didWin ? L10n.string("Won") : L10n.string("Lost"))
+                              : L10n.string("Abandoned"),
             systemImage: record.isComplete ? (record.didWin ? "trophy.fill" : "xmark") : "pause.circle"
         )
         .font(.subheadline.weight(.semibold))
@@ -168,7 +168,7 @@ struct MatchDetailView: View {
     }
 
     private var modeLabel: String {
-        record.setsToWin == 1 ? String(localized: "1 Set")
-            : String(localized: "Best of \(record.setsToWin * 2 - 1)")
+        record.setsToWin == 1 ? L10n.string("1 Set")
+            : L10n.string("Best of \(record.setsToWin * 2 - 1)")
     }
 }

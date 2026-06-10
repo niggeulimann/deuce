@@ -7,10 +7,10 @@ enum CourtSurface: String, CaseIterable, Identifiable {
 
     var label: String {
         switch self {
-        case .clay:   return String(localized: "Clay")
-        case .grass:  return String(localized: "Grass")
-        case .hard:   return String(localized: "Hard")
-        case .carpet: return String(localized: "Indoor")
+        case .clay:   return L10n.string("Clay")
+        case .grass:  return L10n.string("Grass")
+        case .hard:   return L10n.string("Hard")
+        case .carpet: return L10n.string("Indoor")
         }
     }
 

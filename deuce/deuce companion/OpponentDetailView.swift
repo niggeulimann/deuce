@@ -18,18 +18,18 @@ struct OpponentDetailView: View {
             // H2H summary
             Section {
                 HStack {
-                    stat(title: String(localized: "Wins"),   value: "\(record.wins)",   color: .green)
+                    stat(title: L10n.string("Wins"),   value: "\(record.wins)",   color: .green)
                     Divider()
-                    stat(title: String(localized: "Losses"), value: "\(record.losses)", color: .red)
+                    stat(title: L10n.string("Losses"), value: "\(record.losses)", color: .red)
                     Divider()
-                    stat(title: String(localized: "Win rate"), value: Format.percent(record.winRate), color: .blue)
+                    stat(title: L10n.string("Win rate"), value: Format.percent(record.winRate), color: .blue)
                 }
                 .frame(maxWidth: .infinity)
             }
 
             // Win-rate trend
             if record.total >= 2 {
-                Section(String(localized: "Win rate trend")) {
+                Section(L10n.string("Win rate trend")) {
                     Chart(Analytics.winRateTrend(matches), id: \.date) { point in
                         LineMark(
                             x: .value("Date", point.date),
@@ -43,7 +43,7 @@ struct OpponentDetailView: View {
             }
 
             // Match list
-            Section(String(localized: "Matches")) {
+            Section(L10n.string("Matches")) {
                 ForEach(matches) { match in
                     NavigationLink {
                         MatchDetailView(record: match)

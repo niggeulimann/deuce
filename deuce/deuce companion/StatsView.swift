@@ -47,16 +47,16 @@ struct StatsView: View {
     private var summarySection: some View {
         Section {
             HStack {
-                stat(String(localized: "Played"), "\(record.total)", .primary)
+                stat(L10n.string("Played"), "\(record.total)", .primary)
                 Divider()
-                stat(String(localized: "Win rate"), Format.percent(record.winRate), .blue)
+                stat(L10n.string("Win rate"), Format.percent(record.winRate), .blue)
                 Divider()
-                stat(String(localized: "Streak"), streakLabel, streak >= 0 ? .green : .red)
+                stat(L10n.string("Streak"), streakLabel, streak >= 0 ? .green : .red)
             }
             HStack {
-                stat(String(localized: "Wins"),   "\(record.wins)",   .green)
+                stat(L10n.string("Wins"),   "\(record.wins)",   .green)
                 Divider()
-                stat(String(localized: "Losses"), "\(record.losses)", .red)
+                stat(L10n.string("Losses"), "\(record.losses)", .red)
             }
         }
     }
@@ -71,7 +71,7 @@ struct StatsView: View {
     @ViewBuilder private var trendSection: some View {
         let trend = Analytics.winRateTrend(matches)
         if trend.count >= 2 {
-            Section(String(localized: "Win rate over time")) {
+            Section(L10n.string("Win rate over time")) {
                 Chart(trend, id: \.date) { p in
                     LineMark(x: .value("Date", p.date),
                              y: .value("Win rate", p.winRate))
@@ -91,7 +91,7 @@ struct StatsView: View {
     @ViewBuilder private var surfaceSection: some View {
         let breakdown = Analytics.surfaceBreakdown(matches)
         if !breakdown.isEmpty {
-            Section(String(localized: "Surfaces")) {
+            Section(L10n.string("Surfaces")) {
                 Chart(breakdown, id: \.surface) { item in
                     BarMark(
                         x: .value("Count", item.count),
@@ -110,12 +110,12 @@ struct StatsView: View {
         let avgDuration = Analytics.averageDuration(matches)
         let longest = Analytics.longestRallyEver(matches)
         if avgDuration != nil || longest != nil {
-            Section(String(localized: "Match Dynamics")) {
+            Section(L10n.string("Match Dynamics")) {
                 if let avgDuration {
-                    LabeledContent(String(localized: "Avg. duration"), value: Format.duration(avgDuration))
+                    LabeledContent(L10n.string("Avg. duration"), value: Format.duration(avgDuration))
                 }
                 if let longest {
-                    LabeledContent(String(localized: "Longest rally"), value: Format.duration(longest))
+                    LabeledContent(L10n.string("Longest rally"), value: Format.duration(longest))
                 }
             }
         }
