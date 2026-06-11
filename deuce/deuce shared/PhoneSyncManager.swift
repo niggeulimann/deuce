@@ -16,6 +16,7 @@ final class PhoneSyncManager: NSObject, WCSessionDelegate {
 
     func configure(container: ModelContainer) {
         self.container = container
+        refreshSnapshot()
         guard WCSession.isSupported() else { return }
         WCSession.default.delegate = self
         WCSession.default.activate()
@@ -29,8 +30,7 @@ final class PhoneSyncManager: NSObject, WCSessionDelegate {
     func send(_ dto: MatchRecordDTO) {
         guard WCSession.isSupported() else { return }
         pending.append(dto)
-        latestUpdates.removeAll { $0.id == dto.id }
-        latestUpdates.append(dto)
+        refreshSnapshot()
         flushPending()
     }
 
@@ -53,6 +53,14 @@ final class PhoneSyncManager: NSObject, WCSessionDelegate {
         } catch {
             print("WCSession (phone) failed to update match updates: \(error)")
         }
+    }
+
+    @MainActor
+    private func refreshSnapshot() {
+        guard let container else { return }
+        let descriptor = FetchDescriptor<MatchRecord>()
+        latestUpdates = (try? container.mainContext.fetch(descriptor))?
+            .map(MatchRecordDTO.init) ?? []
     }
 
     // MARK: - Receiving
@@ -106,6 +114,7 @@ final class PhoneSyncManager: NSObject, WCSessionDelegate {
 
         do {
             try context.save()
+            refreshSnapshot()
             print("WCSession (phone) saved match \(id)")
         } catch {
             print("WCSession (phone) failed to save match \(id): \(error)")

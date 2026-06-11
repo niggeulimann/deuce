@@ -91,7 +91,7 @@ LOCALIZED_SPECS = {
 }
 
 SCREEN_DIR = ROOT / "screens"
-PHONE_SCREENSHOT = SCREEN_DIR / "iphone-companion.jpg"
+PHONE_SCREENSHOT = SCREEN_DIR / "iphone-companion.png"
 WATCH_SCREENSHOT = SCREEN_DIR / "watch.jpg"
 
 

@@ -1,8 +1,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.locale) private var locale
     @AppStorage("appTheme") private var themeRaw = AppTheme.dark.rawValue
-    @AppStorage(AppLanguage.storageKey) private var languageRaw = AppLanguage.systemDefault.rawValue
+    @AppStorage("accentThemeKey") private var accentKey = AccentTheme.green.rawValue
 
     var body: some View {
         NavigationStack {
@@ -15,8 +16,8 @@ struct SettingsView: View {
                 )
                     .heroListRow()
 
-                Section(L10n.string("Appearance")) {
-                    Picker(L10n.string("Theme"), selection: $themeRaw) {
+                Section(L10n.string("Appearance", locale: locale)) {
+                    Picker(L10n.string("Theme", locale: locale), selection: $themeRaw) {
                         ForEach(AppTheme.allCases) { theme in
                             Text(theme.label).tag(theme.rawValue)
                         }
@@ -25,16 +26,36 @@ struct SettingsView: View {
                     .listRowSeparator(.hidden)
                 }
 
-                Section {
-                    Picker("Language", selection: $languageRaw) {
-                        ForEach(AppLanguage.allCases) { language in
-                            Text(language.label).tag(language.rawValue)
+                Section(L10n.string("Accent", locale: locale)) {
+                    HStack(spacing: 18) {
+                        ForEach(AccentTheme.allCases) { theme in
+                            Button {
+                                accentKey = theme.rawValue
+                            } label: {
+                                Circle()
+                                    .fill(theme.color)
+                                    .frame(width: 30, height: 30)
+                                    .overlay {
+                                        Circle()
+                                            .stroke(
+                                                accentKey == theme.rawValue
+                                                    ? Color.primary
+                                                    : Color.clear,
+                                                lineWidth: 2
+                                            )
+                                            .padding(-4)
+                                    }
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel(theme.label(locale: locale))
+                            .accessibilityAddTraits(
+                                accentKey == theme.rawValue ? .isSelected : []
+                            )
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 4)
                     .listRowSeparator(.hidden)
-                } header: {
-                    Text("Language")
                 }
             }
             .listStyle(.plain)

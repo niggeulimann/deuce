@@ -1,251 +1,1500 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "1 Set" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "1 Satz" } }
+  "sourceLanguage": "en",
+  "strings": {
+    "4": {},
+    "6": {},
+    "": {},
+    "–": {},
+    "%lld": {},
+    "%lld set": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 Satz"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 set"
+          }
+        }
       }
     },
-    "Abandoned" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Abgebrochen" } }
+    "%lld–%lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld–%2$lld"
+          }
+        }
       }
     },
-    "Add" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Hinzufügen" } }
+    "%lld:%lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld:%2$lld"
+          }
+        }
       }
     },
-    "Appearance" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Darstellung" } }
+    "1 Set": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 Satz"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 Set"
+          }
+        }
       }
     },
-    "Assign opponents to your matches to build head-to-head records." : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Ordne deinen Matches Gegner zu, um Direktvergleiche zu erstellen." } }
+    "Abandoned": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abgebrochen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abandoned"
+          }
+        }
       }
     },
-    "Avg. duration" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Ø Dauer" } }
+    "Accent": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Farbe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accent"
+          }
+        }
       }
     },
-    "Avg. rally" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Ø Ballwechsel" } }
+    "Add": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzufügen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        }
       }
     },
-    "Best of %lld" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Best of %lld" } }
+    "Add opponent": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gegner hinzufügen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add opponent"
+          }
+        }
       }
     },
-    "Clay" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Asche" } }
+    "Appearance": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Darstellung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appearance"
+          }
+        }
       }
     },
-    "Dark" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Dunkel" } }
+    "Assign opponents to your matches to build head-to-head records.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordne deinen Matches Gegner zu, um persönliche Bilanzen aufzubauen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assign opponents to your matches to build head-to-head records."
+          }
+        }
       }
     },
-    "Date" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Datum" } }
+    "Average rally": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø Ballwechsel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average rally"
+          }
+        }
       }
     },
-    "Duration" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Dauer" } }
+    "Avg. duration": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø Dauer"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avg. duration"
+          }
+        }
       }
     },
-    "Grass" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Rasen" } }
+    "Avg. rally": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø Ballwechsel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avg. rally"
+          }
+        }
       }
     },
-    "Hard" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Hartplatz" } }
+    "Back": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zurück"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        }
       }
     },
-    "Indoor" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Halle" } }
+    "Best of %lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best of %lld"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best of %lld"
+          }
+        }
       }
     },
-    "Language" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Sprache" } }
+    "Best of 3": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best of 3"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best of 3"
+          }
+        }
       }
     },
-    "Light" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Hell" } }
+    "Best of 5": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best of 5"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best of 5"
+          }
+        }
       }
     },
-    "Longest rally" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Längster Ballwechsel" } }
+    "Blue": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blau"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blue"
+          }
+        }
       }
     },
-    "Losses" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Niederlagen" } }
+    "Cancel Session": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einheit abbrechen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel Session"
+          }
+        }
       }
     },
-    "Lost" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Verloren" } }
+    "Change Ends": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seitenwechsel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change Ends"
+          }
+        }
       }
     },
-    "Match" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Match" } }
+    "Clay": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asche"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clay"
+          }
+        }
       }
     },
-    "Match Dynamics" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Matchdynamik" } }
+    "Count": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anzahl"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Count"
+          }
+        }
       }
     },
-    "Matches" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Matches" } }
+    "Dark": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dunkel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark"
+          }
+        }
       }
     },
-    "Matches played on your watch appear here." : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Auf deiner Watch gespielte Matches erscheinen hier." } }
+    "Date": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datum"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
+          }
+        }
       }
     },
-    "Mode" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Modus" } }
+    "Defeat": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verloren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Defeat"
+          }
+        }
       }
     },
-    "New opponent" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Neuer Gegner" } }
+    "Distance": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strecke"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distance"
+          }
+        }
       }
     },
-    "Notes" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Notizen" } }
+    "Done": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fertig"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
       }
     },
-    "Opponent" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gegner" } }
+    "Duration": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dauer"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duration"
+          }
+        }
       }
     },
-    "Opponents" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gegner" } }
+    "End Match": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beenden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End Match"
+          }
+        }
       }
     },
-    "Play some matches to see your statistics." : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Spiele einige Matches, um deine Statistiken zu sehen." } }
+    "First server": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erster Aufschläger"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First server"
+          }
+        }
       }
     },
-    "Played" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gespielt" } }
+    "Games/Set": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Games/Satz"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Games/Set"
+          }
+        }
       }
     },
-    "Points" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Punkte" } }
+    "Grass": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rasen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grass"
+          }
+        }
       }
     },
-    "Set %lld" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Satz %lld" } }
+    "Green": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grün"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Green"
+          }
+        }
       }
     },
-    "Sets" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Sätze" } }
+    "Hard": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hard"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hard"
+          }
+        }
       }
     },
-    "Settings" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Einstellungen" } }
+    "Hello, world!": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hallo Welt!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hello, world!"
+          }
+        }
       }
     },
-    "Stats" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Statistik" } }
+    "History": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verlauf"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History"
+          }
+        }
       }
     },
-    "Streak" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Serie" } }
+    "Indoor": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Halle"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indoor"
+          }
+        }
       }
     },
-    "Surface" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Belag" } }
+    "Language": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprache"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        }
       }
     },
-    "Surfaces" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Beläge" } }
+    "Light": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hell"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light"
+          }
+        }
       }
     },
-    "System" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "System" } }
+    "Longest rally": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längster Ballwechsel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longest rally"
+          }
+        }
       }
     },
-    "Theme" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Design" } }
+    "Losses": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niederlagen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Losses"
+          }
+        }
       }
     },
-    "Unknown opponent" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Unbekannter Gegner" } }
+    "Lost": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verloren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lost"
+          }
+        }
       }
     },
-    "Warmup" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Einspielen" } }
+    "Match": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match"
+          }
+        }
       }
     },
-    "Win rate" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Siegquote" } }
+    "Match Dynamics": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match-Dynamik"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match Dynamics"
+          }
+        }
       }
     },
-    "Win rate over time" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Siegquote im Verlauf" } }
+    "Match Format": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matchformat"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match Format"
+          }
+        }
       }
     },
-    "Win rate trend" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Trend der Siegquote" } }
+    "Match length": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matchlänge"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match length"
+          }
+        }
       }
     },
-    "Wins" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Siege" } }
+    "Match Setup": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match vorbereiten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match Setup"
+          }
+        }
       }
     },
-    "Won" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gewonnen" } }
+    "Matches": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matches"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matches"
+          }
+        }
       }
     },
-    "You" : {
-      "localizations" : {
-        "de" : { "stringUnit" : { "state" : "translated", "value" : "Du" } }
+    "Matches played on your watch appear here.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf iPhone oder Watch gespielte Matches erscheinen hier."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matches played on iPhone or Apple Watch appear here."
+          }
+        }
+      }
+    },
+    "Mode": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modus"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode"
+          }
+        }
+      }
+    },
+    "New opponent": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neuer Gegner"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New opponent"
+          }
+        }
+      }
+    },
+    "No matches yet": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch keine Matches"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No matches yet"
+          }
+        }
+      }
+    },
+    "No-Ad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No-Ad"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No-Ad"
+          }
+        }
+      }
+    },
+    "Notes": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notizen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notes"
+          }
+        }
+      }
+    },
+    "onboarding.health.allow": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlauben"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow"
+          }
+        }
+      }
+    },
+    "Opponent": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gegner"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opponent"
+          }
+        }
+      }
+    },
+    "Opponent name (optional)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gegnername (optional)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opponent name (optional)"
+          }
+        }
+      }
+    },
+    "Opponents": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gegner"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opponents"
+          }
+        }
+      }
+    },
+    "Orange": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orange"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orange"
+          }
+        }
+      }
+    },
+    "Play": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spielen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play"
+          }
+        }
+      }
+    },
+    "Play some matches to see your statistics.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spiele ein paar Matches, um deine Statistiken zu sehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play some matches to see your statistics."
+          }
+        }
+      }
+    },
+    "Played": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gespielt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Played"
+          }
+        }
+      }
+    },
+    "Played matches appear here.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gespielte Matches erscheinen hier."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Played matches appear here."
+          }
+        }
+      }
+    },
+    "Points": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Punkte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Points"
+          }
+        }
+      }
+    },
+    "Purple": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Violett"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purple"
+          }
+        }
+      }
+    },
+    "Remove opponent": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gegner entfernen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove opponent"
+          }
+        }
+      }
+    },
+    "Reset Match": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match zurücksetzen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset Match"
+          }
+        }
+      }
+    },
+    "Serve": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufschlag"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve"
+          }
+        }
+      }
+    },
+    "Set %lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Satz %lld"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set %lld"
+          }
+        }
+      }
+    },
+    "Sets": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sätze"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sets"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "Start Match": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match starten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Match"
+          }
+        }
+      }
+    },
+    "Start tracking before the first point. Your warmup counts too.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starte das Tracking schon vor dem ersten Punkt. Das Einspielen zählt mit."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start tracking before the first point. Your warmup counts too."
+          }
+        }
+      }
+    },
+    "Start Warmup": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einspielen starten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Warmup"
+          }
+        }
+      }
+    },
+    "Stats": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistik"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stats"
+          }
+        }
+      }
+    },
+    "Steps": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schritte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steps"
+          }
+        }
+      }
+    },
+    "Streak": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serie"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Streak"
+          }
+        }
+      }
+    },
+    "Surface": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belag"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Surface"
+          }
+        }
+      }
+    },
+    "Surfaces": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beläge"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Surfaces"
+          }
+        }
+      }
+    },
+    "System": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System"
+          }
+        }
+      }
+    },
+    "Theme": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Design"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Theme"
+          }
+        }
+      }
+    },
+    "Tracking is running": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tracking läuft"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tracking is running"
+          }
+        }
+      }
+    },
+    "Unknown opponent": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unbekannter Gegner"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown opponent"
+          }
+        }
+      }
+    },
+    "Warmup": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einspielen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warmup"
+          }
+        }
+      }
+    },
+    "White": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weiß"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "White"
+          }
+        }
+      }
+    },
+    "Win rate": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siegquote"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Win rate"
+          }
+        }
+      }
+    },
+    "Win rate over time": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siegquote im Verlauf"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Win rate over time"
+          }
+        }
+      }
+    },
+    "Win rate trend": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siegquoten-Trend"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Win rate trend"
+          }
+        }
+      }
+    },
+    "Wins": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siege"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wins"
+          }
+        }
+      }
+    },
+    "Won": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewonnen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Won"
+          }
+        }
+      }
+    },
+    "Won 🏆": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewonnen 🏆"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Won 🏆"
+          }
+        }
+      }
+    },
+    "You": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You"
+          }
+        }
+      }
+    },
+    "You Won!": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewonnen!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You Won!"
+          }
+        }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

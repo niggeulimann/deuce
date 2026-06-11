@@ -5,6 +5,20 @@ enum AccentTheme: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
+    var label: String {
+        label(locale: AppLanguage.preferredLocale())
+    }
+
+    func label(locale: Locale) -> String {
+        switch self {
+        case .green:  return L10n.string("Green", locale: locale)
+        case .blue:   return L10n.string("Blue", locale: locale)
+        case .orange: return L10n.string("Orange", locale: locale)
+        case .purple: return L10n.string("Purple", locale: locale)
+        case .white:  return L10n.string("White", locale: locale)
+        }
+    }
+
     var color: Color {
         switch self {
         case .green:  return Color(red: 0.20, green: 0.78, blue: 0.35)

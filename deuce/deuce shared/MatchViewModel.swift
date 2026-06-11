@@ -2,7 +2,8 @@ import Foundation
 import Observation
 
 @Observable
-final class MatchViewModel {
+final class MatchViewModel: Identifiable {
+    let id = UUID()
 
     private(set) var state: GameState
     private var history: [GameState] = []
@@ -11,8 +12,9 @@ final class MatchViewModel {
     var surface: CourtSurface = .clay
 
     // MARK: - Timestamp tracking
-    let matchStartDate = Date()
-    private(set) var firstPointOffset: Double = -1   // seconds since matchStartDate; -1 = not yet
+    let matchStartDate: Date
+    // End of warmup in seconds since matchStartDate; legacy matches may set it on first point.
+    private(set) var firstPointOffset: Double = -1
     private(set) var pointOffsets: [Double] = []
     private(set) var gameOffsets:  [Double] = []
     private(set) var setOffsets:   [Double] = []
@@ -24,10 +26,12 @@ final class MatchViewModel {
 
     init(server: Side = .bottom, noAd: Bool = false,
          gamesPerSet: Int = 6, setsToWin: Int = 2,
-         surface: CourtSurface = .clay) {
+         surface: CourtSurface = .clay,
+         matchStartDate: Date = Date()) {
         state = GameState(server: server, noAd: noAd,
                          gamesPerSet: gamesPerSet, setsToWin: setsToWin)
         self.surface = surface
+        self.matchStartDate = matchStartDate
     }
 
     // MARK: - Derived display
@@ -79,6 +83,26 @@ final class MatchViewModel {
     }
 
     func dismissSideSwitch() { sideSwitch = false }
+
+    func startMatch(
+        server: Side,
+        noAd: Bool,
+        gamesPerSet: Int,
+        setsToWin: Int,
+        surface: CourtSurface,
+        at date: Date = Date()
+    ) {
+        guard history.isEmpty, pointOffsets.isEmpty else { return }
+
+        state = GameState(
+            server: server,
+            noAd: noAd,
+            gamesPerSet: gamesPerSet,
+            setsToWin: setsToWin
+        )
+        self.surface = surface
+        firstPointOffset = max(0, date.timeIntervalSince(matchStartDate))
+    }
 
     func undo() {
         guard let previous = history.popLast() else { return }

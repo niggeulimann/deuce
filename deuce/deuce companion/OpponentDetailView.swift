@@ -4,6 +4,7 @@ import Charts
 
 struct OpponentDetailView: View {
     let opponentName: String
+    @Environment(\.locale) private var locale
     @Query private var allMatches: [MatchRecord]
 
     private var matches: [MatchRecord] {
@@ -18,18 +19,18 @@ struct OpponentDetailView: View {
             // H2H summary
             Section {
                 HStack {
-                    stat(title: L10n.string("Wins"),   value: "\(record.wins)",   color: .green)
+                    stat(title: L10n.string("Wins", locale: locale),   value: "\(record.wins)",   color: .green)
                     Divider()
-                    stat(title: L10n.string("Losses"), value: "\(record.losses)", color: .red)
+                    stat(title: L10n.string("Losses", locale: locale), value: "\(record.losses)", color: .red)
                     Divider()
-                    stat(title: L10n.string("Win rate"), value: Format.percent(record.winRate), color: .blue)
+                    stat(title: L10n.string("Win rate", locale: locale), value: Format.percent(record.winRate), color: .blue)
                 }
                 .frame(maxWidth: .infinity)
             }
 
             // Win-rate trend
             if record.total >= 2 {
-                Section(L10n.string("Win rate trend")) {
+                Section(L10n.string("Win rate trend", locale: locale)) {
                     Chart(Analytics.winRateTrend(matches), id: \.date) { point in
                         LineMark(
                             x: .value("Date", point.date),
@@ -43,7 +44,7 @@ struct OpponentDetailView: View {
             }
 
             // Match list
-            Section(L10n.string("Matches")) {
+            Section(L10n.string("Matches", locale: locale)) {
                 ForEach(matches) { match in
                     NavigationLink {
                         MatchDetailView(record: match)

@@ -24,40 +24,6 @@
           }
         }
       }
-    },
-    "NSHealthShareUsageDescription" : {
-      "comment" : "Privacy - Health Share Usage Description",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deuce liest deine Herzfrequenz und Aktivität, um dein Tennis-Workout zu verfolgen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deuce reads your heart rate and activity to track your tennis workout."
-          }
-        }
-      }
-    },
-    "NSHealthUpdateUsageDescription" : {
-      "comment" : "Privacy - Health Update Usage Description",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deuce speichert dein Tennis-Workout in der Gesundheit-App."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deuce saves your tennis workout to Health."
-          }
-        }
-      }
     }
   },
   "version" : "1.0"

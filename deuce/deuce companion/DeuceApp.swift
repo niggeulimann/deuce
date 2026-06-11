@@ -4,6 +4,7 @@ import SwiftData
 @main
 struct DeuceApp: App {
     private let modelContainer: ModelContainer
+    @State private var showsSplash = true
 
     init() {
         do {
@@ -19,7 +20,22 @@ struct DeuceApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootTabView()
+            ZStack {
+                RootTabView()
+
+                if showsSplash {
+                    LaunchSplashView()
+                        .transition(.opacity)
+                        .zIndex(1)
+                }
+            }
+            .task {
+                guard showsSplash else { return }
+                try? await Task.sleep(for: .milliseconds(900))
+                withAnimation(.easeOut(duration: 0.25)) {
+                    showsSplash = false
+                }
+            }
         }
         .modelContainer(modelContainer)
     }
@@ -27,16 +43,19 @@ struct DeuceApp: App {
 
 struct RootTabView: View {
     @AppStorage("appTheme") private var themeRaw = AppTheme.dark.rawValue
-    @AppStorage(AppLanguage.storageKey) private var languageRaw = AppLanguage.systemDefault.rawValue
-    @State private var selectedTab = AppTab.matches
+    @AppStorage("accentThemeKey") private var accentKey = AccentTheme.green.rawValue
+    @State private var selectedTab = AppTab.play
 
     private var theme: AppTheme { AppTheme(rawValue: themeRaw) ?? .dark }
-    private var language: AppLanguage {
-        AppLanguage(rawValue: languageRaw) ?? .systemDefault
+    private var accent: Color {
+        AccentTheme(rawValue: accentKey)?.color ?? .green
     }
 
     var body: some View {
         TabView(selection: $selectedTab) {
+            PhonePlayView()
+                .tabItem { Label("Play", systemImage: "tennisball.fill") }
+                .tag(AppTab.play)
             MatchesListView()
                 .tabItem { Label("Matches", systemImage: "list.bullet") }
                 .tag(AppTab.matches)
@@ -50,9 +69,8 @@ struct RootTabView: View {
                 .tabItem { Label("Settings", systemImage: "gearshape") }
                 .tag(AppTab.settings)
         }
-        .simultaneousGesture(tabSwipeGesture)
-        .environment(\.locale, language.locale)
-        .tint(.green)
+        .gesture(tabSwipeGesture, including: .gesture)
+        .tint(accent)
         .preferredColorScheme(theme.colorScheme)
     }
 
@@ -81,6 +99,7 @@ struct RootTabView: View {
 }
 
 private enum AppTab: Int, CaseIterable {
+    case play
     case matches
     case opponents
     case stats
@@ -92,5 +111,16 @@ private enum AppTab: Int, CaseIterable {
 
     var next: AppTab {
         AppTab(rawValue: rawValue + 1) ?? self
+    }
+}
+
+private struct LaunchSplashView: View {
+    var body: some View {
+        Image("LaunchHero")
+            .resizable()
+            .scaledToFill()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea()
+            .background(Color.black)
     }
 }

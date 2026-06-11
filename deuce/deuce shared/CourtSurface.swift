@@ -6,11 +6,15 @@ enum CourtSurface: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 
     var label: String {
+        label(locale: AppLanguage.preferredLocale())
+    }
+
+    func label(locale: Locale) -> String {
         switch self {
-        case .clay:   return L10n.string("Clay")
-        case .grass:  return L10n.string("Grass")
-        case .hard:   return L10n.string("Hard")
-        case .carpet: return L10n.string("Indoor")
+        case .clay:   return L10n.string("Clay", locale: locale)
+        case .grass:  return L10n.string("Grass", locale: locale)
+        case .hard:   return L10n.string("Hard", locale: locale)
+        case .carpet: return L10n.string("Indoor", locale: locale)
         }
     }
 

@@ -5,7 +5,8 @@ import SwiftUI
 /// Pass one or more 4:3 asset names in `imageNames`; one is picked when the view
 /// first appears. With an empty array a themed placeholder is drawn.
 struct HeroHeader: View {
-    let title: LocalizedStringKey
+    @Environment(\.locale) private var locale
+    let title: String.LocalizationValue
     var subtitle: String? = nil
     /// Asset catalog image names to choose from when the view first appears.
     var imageNames: [String] = []
@@ -79,7 +80,7 @@ struct HeroHeader: View {
                         .font(.subheadline)
                         .foregroundStyle(.white.opacity(0.7))
                 }
-                Text(title)
+                Text(L10n.string(title, locale: locale))
                     .font(.largeTitle.weight(.bold))
                     .foregroundStyle(.white)
                     .lineLimit(1)

@@ -85,7 +85,6 @@
 		434039432FD2EEF9004DE28E /* DeuceCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeuceCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4340394F2FD2EEFA004DE28E /* DeuceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeuceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		434039592FD2EEFA004DE28E /* DeuceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeuceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		43557B9E2FD97D6A00E654AF /* DeuceCompanion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeuceCompanion.entitlements; sourceTree = "<group>"; };
 		435C3DF92FD94B7400B11E51 /* DeuceContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeuceContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		435C3E032FD94B9F00B11E51 /* DeuceContainer WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DeuceContainer WatchApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CA23C22FCC38D300DBE776 /* DeuceCompanionWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeuceCompanionWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,17 +99,6 @@
 				PhoneSyncManager.swift,
 			);
 			target = 435C3DFC2FD94B9F00B11E51 /* DeuceContainer WatchApp */;
-		};
-		43ABC4012FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanion" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				HealthManager.swift,
-				HealthView.swift,
-				MatchView.swift,
-				MatchViewModel.swift,
-				ScoringEngine.swift,
-			);
-			target = 434039422FD2EEF9004DE28E /* DeuceCompanion */;
 		};
 		43ABC4022FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanionWatchApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -141,7 +129,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				43ABC4022FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanionWatchApp" target */,
-				43ABC4012FD2F595002908DE /* Exceptions for "deuce shared" folder in "DeuceCompanion" target */,
 				435C3E092FD94BD700B11E51 /* Exceptions for "deuce shared" folder in "DeuceContainer WatchApp" target */,
 			);
 			path = "deuce shared";
@@ -227,7 +214,6 @@
 		43CA23B52FCC38D300DBE776 = {
 			isa = PBXGroup;
 			children = (
-				43557B9E2FD97D6A00E654AF /* DeuceCompanion.entitlements */,
 				43ABC38E2FD2F495002908DE /* deuce shared */,
 				434039442FD2EEF9004DE28E /* deuce companion */,
 				43CA23C62FCC38D300DBE776 /* deuce Watch App */,
@@ -651,16 +637,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDeuce;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = DeuceCompanion.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W5XAZYC285;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = deuce;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Deuce reads your heart rate and activity to track your tennis workout.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Deuce saves your tennis workout to Health.";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -695,16 +680,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDeuce;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = DeuceCompanion.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W5XAZYC285;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = deuce;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Deuce reads your heart rate and activity to track your tennis workout.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Deuce saves your tennis workout to Health.";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -875,7 +859,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "deuce Watch App/deuce Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -884,8 +867,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = deuce;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Deuce reads your heart rate and activity to track your tennis workout.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Deuce saves your tennis workout to Health.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -914,7 +895,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "deuce Watch App/deuce Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -923,8 +903,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = deuce;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Deuce reads your heart rate and activity to track your tennis workout.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Deuce saves your tennis workout to Health.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1070,7 +1048,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "deuce Watch App/deuce Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1079,8 +1056,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = deuce;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Deuce reads your heart rate and activity to track your tennis workout.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Deuce saves your tennis workout to Health.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = de.mokkavadder.app.deuce.companion;
 				INFOPLIST_KEY_WKWatchOnly = NO;
@@ -1110,7 +1085,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "deuce Watch App/deuce Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1119,8 +1093,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = deuce;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Deuce reads your heart rate and activity to track your tennis workout.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Deuce saves your tennis workout to Health.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = de.mokkavadder.app.deuce.companion;
 				INFOPLIST_KEY_WKWatchOnly = NO;

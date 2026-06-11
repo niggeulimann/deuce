@@ -440,9 +440,11 @@ extension MatchRecord {
     }
 }
 
-#if os(watchOS)
 extension MatchViewModel {
-    func makeRecord(isComplete: Bool) -> MatchRecord {
+    func makeRecord(
+        isComplete: Bool,
+        opponentName: String = ""
+    ) -> MatchRecord {
         MatchRecord(
             surface:             surface.rawValue,
             noAd:                state.noAd,
@@ -458,6 +460,7 @@ extension MatchViewModel {
             currentPointsTop:    state.points[.top]!,
             currentPointsBottom: state.points[.bottom]!,
             didWin:              state.setsWon[.bottom]! >= state.setsToWin,
+            opponentName:        opponentName,
             matchStartDate:      matchStartDate,
             firstPointOffset:    firstPointOffset,
             pointOffsets:        pointOffsets,
@@ -466,4 +469,3 @@ extension MatchViewModel {
         )
     }
 }
-#endif

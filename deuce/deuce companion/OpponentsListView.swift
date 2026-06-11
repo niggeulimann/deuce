@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct OpponentsListView: View {
+    @Environment(\.locale) private var locale
     @Query private var matches: [MatchRecord]
 
     private var opponents: [String] { Analytics.opponents(matches) }
@@ -18,7 +19,7 @@ struct OpponentsListView: View {
                     .heroListRow()
 
                 if opponents.isEmpty {
-                    Text(String(localized: "Assign opponents to your matches to build head-to-head records."))
+                    Text(L10n.string("Assign opponents to your matches to build head-to-head records.", locale: locale))
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity, alignment: .center)

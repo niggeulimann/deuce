@@ -7,46 +7,37 @@ import WatchKit
 struct MatchView: View {
     @Binding var isActive: Bool
     var vm: MatchViewModel
-    var healthManager: HealthManager
-    var healthOptIn: Bool
+    var opponentName: String = ""
     var accent: Color = .green
     @Environment(\.modelContext) private var modelContext
 
-    // Page order: Score (left) · Court (main) · Health (right)
+    // Page order: Score (left) · Court (main)
     @State private var selectedPage = Page.court
 
     private enum Page: Hashable {
-        case score, court, health
+        case score, court
     }
 
     var body: some View {
         pageView
-            .onAppear {
-                // Refresh auth state first – covers the case where permission
-                // was just granted before this match started.
-                healthManager.checkAuthorization()
-                if healthOptIn { healthManager.startWorkout() }
-            }
-            .onDisappear { healthManager.stopWorkout() }
     }
 
     @ViewBuilder private var pageView: some View {
         let court  = CourtPageView(vm: vm, accent: accent, onExit: saveAndExit, onPoint: handlePoint)
         let score  = ScorePageView(vm: vm, onExit: saveAndExit)
-        let health = HealthView(manager: healthManager)
 #if os(watchOS)
         TabView(selection: $selectedPage) {
             score .tag(Page.score)
             court .tag(Page.court)
-            health.tag(Page.health)
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
 #else
         TabView(selection: $selectedPage) {
             score .tag(Page.score)
             court .tag(Page.court)
-            health.tag(Page.health)
         }
+        .tabViewStyle(.page(indexDisplayMode: .always))
+        .ignoresSafeArea()
 #endif
     }
 
@@ -60,14 +51,18 @@ struct MatchView: View {
     }
 
     func saveAndExit(isComplete: Bool) {
-        healthManager.stopWorkout()
-#if os(watchOS)
-        let record = vm.makeRecord(isComplete: isComplete)
+        let record = vm.makeRecord(
+            isComplete: isComplete,
+            opponentName: opponentName
+        )
         modelContext.insert(record)
-        // Push the finished match to the iPhone companion (queued, guaranteed).
+        try? modelContext.save()
+#if os(watchOS)
         WatchSyncManager.shared.send(MatchRecordDTO(record))
-        isActive = false
+#else
+        PhoneSyncManager.shared.send(record)
 #endif
+        isActive = false
     }
 }
 
@@ -82,6 +77,38 @@ private struct CourtPageView: View {
     private let lineColor    = Color(white: 0.92).opacity(0.65)
     private let courtPadH: CGFloat  = 8
     private let courtPadTop: CGFloat = 4
+
+    private var pointFontSize: CGFloat {
+#if os(watchOS)
+        32
+#else
+        58
+#endif
+    }
+
+    private var gameFontSize: CGFloat {
+#if os(watchOS)
+        11
+#else
+        18
+#endif
+    }
+
+    private var markerSize: CGFloat {
+#if os(watchOS)
+        14
+#else
+        24
+#endif
+    }
+
+    private var playerFontSize: CGFloat {
+#if os(watchOS)
+        9
+#else
+        15
+#endif
+    }
 
     var body: some View {
         NavigationStack {
@@ -152,26 +179,21 @@ private struct CourtPageView: View {
     }
 
     private func scoreBadge(score: String, games: Int, side: Side) -> some View {
-        VStack(spacing: 0) {
-            if side == .top  { Spacer() }
-            HStack(spacing: 5) {
-                Text("\(games)")
-                    .font(.system(size: 11, weight: .semibold, design: .rounded))
-                    .foregroundStyle(vm.surface.accentColor.opacity(0.65))
-                Text(score)
-                    .font(.system(size: 32, weight: .black, design: .rounded))
-                    .foregroundStyle(vm.surface.accentColor)
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(1)
-            }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 4)
-            .background(.white)
-            .clipShape(Capsule())
-            .shadow(color: .black.opacity(0.25), radius: 3, y: 1)
-            if side == .bottom { Spacer() }
+        HStack(spacing: 5) {
+            Text("\(games)")
+                .font(.system(size: gameFontSize, weight: .semibold, design: .rounded))
+                .foregroundStyle(vm.surface.accentColor.opacity(0.65))
+            Text(score)
+                .font(.system(size: pointFontSize, weight: .black, design: .rounded))
+                .foregroundStyle(vm.surface.accentColor)
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
         }
-        .padding(.vertical, 5)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 4)
+        .background(.white)
+        .clipShape(Capsule())
+        .shadow(color: .black.opacity(0.25), radius: 3, y: 1)
     }
 
     @ViewBuilder
@@ -195,14 +217,17 @@ private struct CourtPageView: View {
                 Group {
                     if isServer {
                         Image(systemName: "tennisball.fill")
-                            .font(.system(size: 14))
+                            .font(.system(size: markerSize))
                             .foregroundStyle(Color(red: 0.86, green: 0.82, blue: 0.12))
                             .shadow(color: .black.opacity(0.4), radius: 2)
                     } else {
                         // Receiver marker: small dot
                         Circle()
                             .fill(Color.white.opacity(0.6))
-                            .frame(width: 7, height: 7)
+                            .frame(
+                                width: markerSize / 2,
+                                height: markerSize / 2
+                            )
                             .shadow(color: .black.opacity(0.4), radius: 2)
                     }
                 }
@@ -219,7 +244,7 @@ private struct CourtPageView: View {
             Spacer()
             HStack {
                 Text(label)
-                    .font(.system(size: 9, weight: .medium))
+                    .font(.system(size: playerFontSize, weight: .medium))
                     .foregroundStyle(.white.opacity(0.45))
                     .padding(.leading, 6)
                 Spacer()
@@ -291,7 +316,15 @@ private struct CourtPageView: View {
 #if os(watchOS)
         ToolbarItem(placement: .topBarLeading) { undoButton }
 #else
-        ToolbarItem(placement: .automatic)    { undoButton }
+        ToolbarItem(placement: .topBarLeading) { undoButton }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(role: .destructive) {
+                onExit(false)
+            } label: {
+                Text("End Match")
+                    .font(.subheadline.weight(.semibold))
+            }
+        }
 #endif
     }
 

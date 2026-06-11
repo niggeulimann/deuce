@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - Domain Types
 
-enum Side: CaseIterable {
+enum Side: CaseIterable, Hashable {
     case top, bottom
     var opposite: Side { self == .top ? .bottom : .top }
 }

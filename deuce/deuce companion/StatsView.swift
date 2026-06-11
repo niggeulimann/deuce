@@ -3,6 +3,7 @@ import SwiftData
 import Charts
 
 struct StatsView: View {
+    @Environment(\.locale) private var locale
     @Query private var matches: [MatchRecord]
 
     private var record: Analytics.WinLoss { Analytics.record(matches) }
@@ -20,7 +21,7 @@ struct StatsView: View {
                     .heroListRow()
 
                 if record.total == 0 {
-                    Text(String(localized: "Play some matches to see your statistics."))
+                    Text(L10n.string("Play some matches to see your statistics.", locale: locale))
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -46,18 +47,38 @@ struct StatsView: View {
 
     private var summarySection: some View {
         Section {
-            HStack {
-                stat(L10n.string("Played"), "\(record.total)", .primary)
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    stat(L10n.string("Played", locale: locale), "\(record.total)", .primary)
+                    stat(L10n.string("Win rate", locale: locale), Format.percent(record.winRate), .blue)
+                    stat(L10n.string("Streak", locale: locale), streakLabel, streak >= 0 ? .green : .red)
+                }
+                .frame(minHeight: 72)
+                .overlay {
+                    GeometryReader { proxy in
+                        verticalRule
+                            .position(x: proxy.size.width / 3, y: proxy.size.height / 2)
+                        verticalRule
+                            .position(x: proxy.size.width * 2 / 3, y: proxy.size.height / 2)
+                    }
+                }
+
                 Divider()
-                stat(L10n.string("Win rate"), Format.percent(record.winRate), .blue)
-                Divider()
-                stat(L10n.string("Streak"), streakLabel, streak >= 0 ? .green : .red)
+
+                HStack(spacing: 0) {
+                    stat(L10n.string("Wins", locale: locale), "\(record.wins)", .green)
+                    stat(L10n.string("Losses", locale: locale), "\(record.losses)", .red)
+                }
+                .frame(minHeight: 72)
+                .overlay {
+                    GeometryReader { proxy in
+                        verticalRule
+                            .position(x: proxy.size.width / 2, y: proxy.size.height / 2)
+                    }
+                }
             }
-            HStack {
-                stat(L10n.string("Wins"),   "\(record.wins)",   .green)
-                Divider()
-                stat(L10n.string("Losses"), "\(record.losses)", .red)
-            }
+            .frame(maxWidth: .infinity)
+            .listRowSeparator(.hidden)
         }
     }
 
@@ -71,7 +92,7 @@ struct StatsView: View {
     @ViewBuilder private var trendSection: some View {
         let trend = Analytics.winRateTrend(matches)
         if trend.count >= 2 {
-            Section(L10n.string("Win rate over time")) {
+            Section(L10n.string("Win rate over time", locale: locale)) {
                 Chart(trend, id: \.date) { p in
                     LineMark(x: .value("Date", p.date),
                              y: .value("Win rate", p.winRate))
@@ -91,7 +112,7 @@ struct StatsView: View {
     @ViewBuilder private var surfaceSection: some View {
         let breakdown = Analytics.surfaceBreakdown(matches)
         if !breakdown.isEmpty {
-            Section(L10n.string("Surfaces")) {
+            Section(L10n.string("Surfaces", locale: locale)) {
                 Chart(breakdown, id: \.surface) { item in
                     BarMark(
                         x: .value("Count", item.count),
@@ -110,12 +131,12 @@ struct StatsView: View {
         let avgDuration = Analytics.averageDuration(matches)
         let longest = Analytics.longestRallyEver(matches)
         if avgDuration != nil || longest != nil {
-            Section(L10n.string("Match Dynamics")) {
+            Section(L10n.string("Match Dynamics", locale: locale)) {
                 if let avgDuration {
-                    LabeledContent(L10n.string("Avg. duration"), value: Format.duration(avgDuration))
+                    LabeledContent(L10n.string("Avg. duration", locale: locale), value: Format.duration(avgDuration))
                 }
                 if let longest {
-                    LabeledContent(L10n.string("Longest rally"), value: Format.duration(longest))
+                    LabeledContent(L10n.string("Longest rally", locale: locale), value: Format.duration(longest))
                 }
             }
         }
@@ -131,8 +152,15 @@ struct StatsView: View {
         .frame(maxWidth: .infinity)
     }
 
+    private var verticalRule: some View {
+        Rectangle()
+            .fill(Color.secondary.opacity(0.22))
+            .frame(width: 1)
+            .padding(.vertical, 8)
+    }
+
     private func surfaceLabel(_ raw: String) -> String {
-        CourtSurface(rawValue: raw)?.label ?? raw
+        CourtSurface(rawValue: raw)?.label(locale: locale) ?? raw
     }
 
     private func surfaceColor(_ raw: String) -> Color {

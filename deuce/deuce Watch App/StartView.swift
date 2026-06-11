@@ -1,10 +1,12 @@
 import SwiftUI
 import SwiftData
-import HealthKit
 
 struct StartView: View {
     @State private var matchActive   = false
+    @State private var warmupActive  = false
+    @State private var showMatchSetup = false
     @State private var showHistory   = false
+    @State private var showOpponents = false
     @State private var firstServer: Side = .bottom
     @State private var noAd        = false
     @State private var surface: CourtSurface = .clay
@@ -12,10 +14,8 @@ struct StartView: View {
     @State private var setsToWin   = 2
     @State private var activeMatchViewModel: MatchViewModel?
 
-    @AppStorage("healthOptIn")   private var healthOptIn  = false
     @AppStorage("accentThemeKey") private var accentKey   = AccentTheme.green.rawValue
     @Query private var matches: [MatchRecord]
-    @State private var healthManager = HealthManager()
 
     private var accent: Color { AccentTheme(rawValue: accentKey)?.color ?? .green }
 
@@ -24,17 +24,24 @@ struct StartView: View {
             MatchView(
                 isActive: $matchActive,
                 vm: matchViewModel,
-                healthManager: healthManager,
-                healthOptIn: healthOptIn,
                 accent: accent
             )
             .onDisappear {
                 if !matchActive { activeMatchViewModel = nil }
             }
+        } else if warmupActive, let matchViewModel = activeMatchViewModel {
+            warmupScreen(viewModel: matchViewModel)
+                .sheet(isPresented: $showMatchSetup) {
+                    matchSetupScreen
+                }
         } else {
             startScreen
-                .onAppear { healthManager.checkAuthorization() }
                 .sheet(isPresented: $showHistory) { HistoryView() }
+                .sheet(isPresented: $showOpponents) {
+                    NavigationStack {
+                        OpponentsView()
+                    }
+                }
         }
     }
 
@@ -43,73 +50,16 @@ struct StartView: View {
             VStack(spacing: 12) {
 
                 // Play button
-                Button { startMatch() } label: {
+                Button { startWarmup() } label: {
                     HStack(spacing: 8) {
                         Image(systemName: "tennisball.fill").font(.system(size: 18))
-                        Text("Play").font(.system(size: 17, weight: .bold, design: .rounded))
+                        Text("Start Warmup").font(.system(size: 16, weight: .bold, design: .rounded))
                     }
                     .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.bordered)
                 .tint(accent)
                 .padding(.top, 6)
-
-                // Serve
-                VStack(spacing: 6) {
-                    sectionHeader(icon: "tennis.racket", label: String(localized: "Serve"))
-                    HStack(spacing: 8) {
-                        outlineButton(label: String(localized: "You"),       selected: firstServer == .bottom) { firstServer = .bottom }
-                        outlineButton(label: String(localized: "Opponent"),  selected: firstServer == .top)    { firstServer = .top }
-                    }
-                }
-
-                // Sets
-                VStack(spacing: 6) {
-                    sectionHeader(icon: "trophy", label: String(localized: "Sets"))
-                    HStack(spacing: 8) {
-                        outlineButton(label: String(localized: "1 Set"),     selected: setsToWin == 1) { setsToWin = 1 }
-                        outlineButton(label: String(localized: "Best of 3"), selected: setsToWin == 2) { setsToWin = 2 }
-                        outlineButton(label: String(localized: "Best of 5"), selected: setsToWin == 3) { setsToWin = 3 }
-                    }
-                }
-
-                // Games per set
-                VStack(spacing: 6) {
-                    sectionHeader(icon: "number", label: String(localized: "Games/Set"))
-                    HStack(spacing: 8) {
-                        outlineButton(label: "4", selected: gamesPerSet == 4) { gamesPerSet = 4 }
-                        outlineButton(label: "6", selected: gamesPerSet == 6) { gamesPerSet = 6 }
-                    }
-                }
-
-                // Surface
-                VStack(spacing: 6) {
-                    sectionHeader(icon: "sportscourt", label: String(localized: "Surface"))
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 6) {
-                        ForEach(CourtSurface.allCases) { s in
-                            choiceButton(label: s.label, selected: surface == s, color: s.colorTop) {
-                                surface = s
-                            }
-                        }
-                    }
-                }
-
-                Toggle(String(localized: "No-Ad"), isOn: $noAd)
-                    .font(.footnote)
-
-                // Health toggle
-                if HKHealthStore.isHealthDataAvailable() {
-                    Toggle(String(localized: "Track Workout"), isOn: $healthOptIn)
-                        .font(.footnote)
-                        .onChange(of: healthOptIn) { _, newValue in
-                            if newValue {
-                                Task {
-                                    let authorized = await healthManager.requestAuthorization()
-                                    if !authorized { healthOptIn = false }
-                                }
-                            }
-                        }
-                }
 
                 // Accent colour picker
                 VStack(spacing: 6) {
@@ -127,16 +77,34 @@ struct StartView: View {
                                     )
                             }
                             .buttonStyle(.plain)
+                            .accessibilityLabel(theme.label)
+                            .accessibilityAddTraits(
+                                accentKey == theme.rawValue ? .isSelected : []
+                            )
                         }
                     }
                 }
 
-                Button { showHistory = true } label: {
-                    HStack(spacing: 6) {
-                        Image(systemName: "clock.arrow.circlepath").font(.system(size: 13))
-                        Text("History").font(.system(size: 13))
+                HStack(spacing: 6) {
+                    Button { showHistory = true } label: {
+                        VStack(spacing: 3) {
+                            Image(systemName: "clock.arrow.circlepath")
+                            Text("History")
+                                .font(.system(size: 10))
+                                .lineLimit(1)
+                        }
+                        .frame(maxWidth: .infinity)
                     }
-                    .frame(maxWidth: .infinity)
+
+                    Button { showOpponents = true } label: {
+                        VStack(spacing: 3) {
+                            Image(systemName: "person.2")
+                            Text("Opponents")
+                                .font(.system(size: 10))
+                                .lineLimit(1)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
                 }
                 .buttonStyle(.bordered)
                 .tint(.secondary)
@@ -157,13 +125,107 @@ struct StartView: View {
         }
     }
 
+    private func warmupScreen(viewModel: MatchViewModel) -> some View {
+        VStack(spacing: 10) {
+            Image(systemName: "figure.tennis")
+                .font(.system(size: 32))
+                .foregroundStyle(accent)
+
+            Text("Warmup")
+                .font(.headline)
+
+            TimelineView(.periodic(from: .now, by: 1)) { context in
+                Text(Format.duration(context.date.timeIntervalSince(viewModel.matchStartDate)))
+                    .font(.system(size: 28, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+            }
+
+            Button("Start Match") {
+                showMatchSetup = true
+            }
+            .buttonStyle(.bordered)
+            .tint(accent)
+
+            Button("Cancel", role: .destructive) {
+                cancelWarmup()
+            }
+            .font(.footnote)
+        }
+    }
+
+    private var matchSetupScreen: some View {
+        ScrollView {
+            VStack(spacing: 10) {
+                Button("Start Match") {
+                    startMatch()
+                }
+                .buttonStyle(.bordered)
+                .tint(accent)
+
+                VStack(spacing: 6) {
+                    sectionHeader(icon: "tennis.racket", label: String(localized: "Serve"))
+                    HStack(spacing: 8) {
+                        outlineButton(label: String(localized: "You"), selected: firstServer == .bottom) { firstServer = .bottom }
+                        outlineButton(label: String(localized: "Opponent"), selected: firstServer == .top) { firstServer = .top }
+                    }
+                }
+
+                VStack(spacing: 6) {
+                    sectionHeader(icon: "trophy", label: String(localized: "Sets"))
+                    HStack(spacing: 6) {
+                        outlineButton(label: String(localized: "1 Set"), selected: setsToWin == 1) { setsToWin = 1 }
+                        outlineButton(label: String(localized: "Best of 3"), selected: setsToWin == 2) { setsToWin = 2 }
+                        outlineButton(label: String(localized: "Best of 5"), selected: setsToWin == 3) { setsToWin = 3 }
+                    }
+                }
+
+                VStack(spacing: 6) {
+                    sectionHeader(icon: "number", label: String(localized: "Games/Set"))
+                    HStack(spacing: 8) {
+                        outlineButton(label: "4", selected: gamesPerSet == 4) { gamesPerSet = 4 }
+                        outlineButton(label: "6", selected: gamesPerSet == 6) { gamesPerSet = 6 }
+                    }
+                    Toggle(String(localized: "No-Ad"), isOn: $noAd)
+                        .font(.footnote)
+                }
+
+                VStack(spacing: 6) {
+                    sectionHeader(icon: "sportscourt", label: String(localized: "Surface"))
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 6) {
+                        ForEach(CourtSurface.allCases) { s in
+                            choiceButton(label: s.label, selected: surface == s, color: s.colorTop) {
+                                surface = s
+                            }
+                        }
+                    }
+                }
+
+            }
+            .padding(.horizontal, 8)
+        }
+    }
+
+    private func startWarmup() {
+        activeMatchViewModel = MatchViewModel()
+        warmupActive = true
+    }
+
     private func startMatch() {
-        activeMatchViewModel = MatchViewModel(
+        guard let viewModel = activeMatchViewModel else { return }
+        viewModel.startMatch(
             server: firstServer, noAd: noAd,
             gamesPerSet: gamesPerSet, setsToWin: setsToWin,
             surface: surface
         )
+        showMatchSetup = false
+        warmupActive = false
         matchActive = true
+    }
+
+    private func cancelWarmup() {
+        showMatchSetup = false
+        warmupActive = false
+        activeMatchViewModel = nil
     }
 
     private func syncMatchesToPhone() {
