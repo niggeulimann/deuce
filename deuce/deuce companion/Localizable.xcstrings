@@ -1,1500 +1,1510 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "4": {},
-    "6": {},
-    "": {},
-    "–": {},
-    "%lld": {},
-    "%lld set": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1 Satz"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "–" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld set" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 Satz"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1 set"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 set"
           }
         }
       }
     },
-    "%lld–%lld": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$lld–%2$lld"
+    "%lld–%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld–%2$lld"
           }
         }
       }
     },
-    "%lld:%lld": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$lld:%2$lld"
+    "%lld:%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld:%2$lld"
           }
         }
       }
     },
-    "1 Set": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1 Satz"
+    "1 Set" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 Satz"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1 Set"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 Set"
           }
         }
       }
+    },
+    "4" : {
+
+    },
+    "6" : {
+
     },
-    "Abandoned": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abgebrochen"
+    "Abandoned" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abgebrochen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abandoned"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abandoned"
           }
         }
       }
     },
-    "Accent": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Farbe"
+    "Accent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farbe"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Accent"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accent"
           }
         }
       }
     },
-    "Add": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hinzufügen"
+    "Add" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
           }
         }
       }
     },
-    "Add opponent": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gegner hinzufügen"
+    "Add opponent" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gegner hinzufügen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add opponent"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add opponent"
           }
         }
       }
     },
-    "Appearance": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Darstellung"
+    "Appearance" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darstellung"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Appearance"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance"
           }
         }
       }
     },
-    "Assign opponents to your matches to build head-to-head records.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ordne deinen Matches Gegner zu, um persönliche Bilanzen aufzubauen."
+    "Assign opponents to your matches to build head-to-head records." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordne deinen Matches Gegner zu, um persönliche Bilanzen aufzubauen."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Assign opponents to your matches to build head-to-head records."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assign opponents to your matches to build head-to-head records."
           }
         }
       }
     },
-    "Average rally": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ø Ballwechsel"
+    "Average rally" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ø Ballwechsel"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Average rally"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average rally"
           }
         }
       }
     },
-    "Avg. duration": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ø Dauer"
+    "Avg. duration" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ø Dauer"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Avg. duration"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avg. duration"
           }
         }
       }
     },
-    "Avg. rally": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ø Ballwechsel"
+    "Avg. rally" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ø Ballwechsel"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Avg. rally"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avg. rally"
           }
         }
       }
     },
-    "Back": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zurück"
+    "Back" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Back"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
           }
         }
       }
     },
-    "Best of %lld": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Best of %lld"
+    "Best of %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best of %lld"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Best of %lld"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best of %lld"
           }
         }
       }
     },
-    "Best of 3": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Best of 3"
+    "Best of 3" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best of 3"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Best of 3"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best of 3"
           }
         }
       }
     },
-    "Best of 5": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Best of 5"
+    "Best of 5" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best of 5"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Best of 5"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best of 5"
           }
         }
       }
     },
-    "Blue": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blau"
+    "Blue" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blau"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blue"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blue"
           }
         }
       }
     },
-    "Cancel Session": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einheit abbrechen"
+    "Cancel Session" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einheit abbrechen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cancel Session"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel Session"
           }
         }
       }
     },
-    "Change Ends": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seitenwechsel"
+    "Change Ends" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seitenwechsel"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Change Ends"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Ends"
           }
         }
       }
     },
-    "Clay": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Asche"
+    "Clay" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asche"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clay"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clay"
           }
         }
       }
     },
-    "Count": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Anzahl"
+    "Count" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anzahl"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Count"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count"
           }
         }
       }
     },
-    "Dark": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dunkel"
+    "Dark" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dunkel"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dark"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
           }
         }
       }
     },
-    "Date": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Datum"
+    "Date" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Date"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
           }
         }
       }
     },
-    "Defeat": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verloren"
+    "Defeat" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verloren"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Defeat"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Defeat"
           }
         }
       }
     },
-    "Distance": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strecke"
+    "Distance" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strecke"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Distance"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance"
           }
         }
       }
     },
-    "Done": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fertig"
+    "Done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fertig"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Done"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
           }
         }
       }
     },
-    "Duration": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dauer"
+    "Duration" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dauer"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Duration"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duration"
           }
         }
       }
     },
-    "End Match": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beenden"
+    "End Match" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beenden"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "End Match"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "End Match"
           }
         }
       }
     },
-    "First server": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erster Aufschläger"
+    "First server" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erster Aufschläger"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "First server"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First server"
           }
         }
       }
     },
-    "Games/Set": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Games/Satz"
+    "Games/Set" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Games/Satz"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Games/Set"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Games/Set"
           }
         }
       }
     },
-    "Grass": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rasen"
+    "Grass" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rasen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Grass"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grass"
           }
         }
       }
     },
-    "Green": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Grün"
+    "Green" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grün"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Green"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Green"
           }
         }
       }
     },
-    "Hard": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hard"
+    "Hard" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hard"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hard"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hard"
           }
         }
       }
     },
-    "Hello, world!": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hallo Welt!"
+    "Hello, world!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hallo Welt!"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hello, world!"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hello, world!"
           }
         }
       }
     },
-    "History": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verlauf"
+    "History" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verlauf"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "History"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History"
           }
         }
       }
     },
-    "Indoor": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Halle"
+    "Indoor" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halle"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Indoor"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indoor"
           }
         }
       }
     },
-    "Language": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sprache"
+    "Language" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprache"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Language"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language"
           }
         }
       }
     },
-    "Light": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hell"
+    "Light" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hell"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Light"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
           }
         }
       }
     },
-    "Longest rally": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Längster Ballwechsel"
+    "Longest rally" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Längster Ballwechsel"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Longest rally"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longest rally"
           }
         }
       }
     },
-    "Losses": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niederlagen"
+    "Losses" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niederlagen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Losses"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Losses"
           }
         }
       }
     },
-    "Lost": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verloren"
+    "Lost" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verloren"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lost"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lost"
           }
         }
       }
     },
-    "Match": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match"
+    "Match" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match"
           }
         }
       }
     },
-    "Match Dynamics": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match-Dynamik"
+    "Match Dynamics" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match-Dynamik"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match Dynamics"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match Dynamics"
           }
         }
       }
     },
-    "Match Format": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Matchformat"
+    "Match Format" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matchformat"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match Format"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match Format"
           }
         }
       }
     },
-    "Match length": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Matchlänge"
+    "Match length" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matchlänge"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match length"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match length"
           }
         }
       }
     },
-    "Match Setup": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match vorbereiten"
+    "Match Setup" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match vorbereiten"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match Setup"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match Setup"
           }
         }
       }
     },
-    "Matches": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Matches"
+    "Matches" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matches"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Matches"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matches"
           }
         }
       }
     },
-    "Matches played on your watch appear here.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Auf iPhone oder Watch gespielte Matches erscheinen hier."
+    "Matches played on your watch appear here." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf iPhone oder Watch gespielte Matches erscheinen hier."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Matches played on iPhone or Apple Watch appear here."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matches played on iPhone or Apple Watch appear here."
           }
         }
       }
     },
-    "Mode": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Modus"
+    "Mode" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modus"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mode"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode"
           }
         }
       }
     },
-    "New opponent": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neuer Gegner"
+    "New opponent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuer Gegner"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "New opponent"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New opponent"
           }
         }
       }
     },
-    "No matches yet": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Noch keine Matches"
+    "No matches yet" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine Matches"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No matches yet"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No matches yet"
           }
         }
       }
     },
-    "No-Ad": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No-Ad"
+    "No-Ad" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No-Ad"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No-Ad"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No-Ad"
           }
         }
       }
     },
-    "Notes": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Notizen"
+    "Notes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notizen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Notes"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
           }
         }
       }
     },
-    "onboarding.health.allow": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
+    "onboarding.health.allow" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erlauben"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Allow"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow"
           }
         }
       }
     },
-    "Opponent": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gegner"
+    "Opponent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gegner"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opponent"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opponent"
           }
         }
       }
     },
-    "Opponent name (optional)": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gegnername (optional)"
+    "Opponent name (optional)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gegnername (optional)"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opponent name (optional)"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opponent name (optional)"
           }
         }
       }
     },
-    "Opponents": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gegner"
+    "Opponents" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gegner"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opponents"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opponents"
           }
         }
       }
     },
-    "Orange": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Orange"
+    "Orange" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orange"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Orange"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orange"
           }
         }
       }
     },
-    "Play": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Spielen"
+    "Play" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spielen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Play"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play"
           }
         }
       }
     },
-    "Play some matches to see your statistics.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Spiele ein paar Matches, um deine Statistiken zu sehen."
+    "Play some matches to see your statistics." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spiele ein paar Matches, um deine Statistiken zu sehen."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Play some matches to see your statistics."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play some matches to see your statistics."
           }
         }
       }
     },
-    "Played": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gespielt"
+    "Played" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gespielt"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Played"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Played"
           }
         }
       }
     },
-    "Played matches appear here.": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gespielte Matches erscheinen hier."
+    "Played matches appear here." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gespielte Matches erscheinen hier."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Played matches appear here."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Played matches appear here."
           }
         }
       }
     },
-    "Points": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Punkte"
+    "Points" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punkte"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Points"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Points"
           }
         }
       }
     },
-    "Purple": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Violett"
+    "Purple" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Violett"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Purple"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purple"
           }
         }
       }
     },
-    "Remove opponent": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gegner entfernen"
+    "Remove opponent" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gegner entfernen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Remove opponent"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove opponent"
           }
         }
       }
     },
-    "Reset Match": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match zurücksetzen"
+    "Reset Match" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match zurücksetzen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reset Match"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Match"
           }
         }
       }
     },
-    "Serve": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aufschlag"
+    "Serve" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufschlag"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Serve"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serve"
           }
         }
       }
     },
-    "Set %lld": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Satz %lld"
+    "Set %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satz %lld"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set %lld"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set %lld"
           }
         }
       }
     },
-    "Sets": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sätze"
+    "Sets" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sätze"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sets"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sets"
           }
         }
       }
     },
-    "Settings": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einstellungen"
+    "Settings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Settings"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
           }
         }
       }
     },
-    "Start Match": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match starten"
+    "Start Match" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match starten"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start Match"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Match"
           }
         }
       }
     },
-    "Start tracking before the first point. Your warmup counts too.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Starte das Tracking schon vor dem ersten Punkt. Das Einspielen zählt mit."
+    "Start tracking before the first point. Your warmup counts too." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starte das Tracking schon vor dem ersten Punkt. Das Einspielen zählt mit."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start tracking before the first point. Your warmup counts too."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start tracking before the first point. Your warmup counts too."
           }
         }
       }
     },
-    "Start Warmup": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einspielen starten"
+    "Start Warmup" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einspielen starten"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start Warmup"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Warmup"
           }
         }
       }
     },
-    "Stats": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Statistik"
+    "Stats" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistik"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stats"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stats"
           }
         }
       }
     },
-    "Steps": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schritte"
+    "Steps" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schritte"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Steps"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steps"
           }
         }
       }
     },
-    "Streak": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Serie"
+    "Streak" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serie"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Streak"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Streak"
           }
         }
       }
     },
-    "Surface": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Belag"
+    "Surface" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belag"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Surface"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surface"
           }
         }
       }
     },
-    "Surfaces": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beläge"
+    "Surfaces" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beläge"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Surfaces"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surfaces"
           }
         }
       }
     },
-    "System": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "System"
+    "System" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "System"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
           }
         }
       }
     },
-    "Theme": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Design"
+    "Theme" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Design"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Theme"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theme"
           }
         }
       }
     },
-    "Tracking is running": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tracking läuft"
+    "Tracking is running" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracking läuft"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tracking is running"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracking is running"
           }
         }
       }
     },
-    "Unknown opponent": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unbekannter Gegner"
+    "Unknown opponent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannter Gegner"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unknown opponent"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown opponent"
           }
         }
       }
     },
-    "Warmup": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einspielen"
+    "Warmup" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einspielen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Warmup"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warmup"
           }
         }
       }
     },
-    "White": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiß"
+    "White" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiß"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "White"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "White"
           }
         }
       }
     },
-    "Win rate": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Siegquote"
+    "Win rate" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siegquote"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Win rate"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Win rate"
           }
         }
       }
     },
-    "Win rate over time": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Siegquote im Verlauf"
+    "Win rate over time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siegquote im Verlauf"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Win rate over time"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Win rate over time"
           }
         }
       }
     },
-    "Win rate trend": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Siegquoten-Trend"
+    "Win rate trend" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siegquoten-Trend"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Win rate trend"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Win rate trend"
           }
         }
       }
     },
-    "Wins": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Siege"
+    "Wins" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siege"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wins"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wins"
           }
         }
       }
     },
-    "Won": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewonnen"
+    "Won" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewonnen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Won"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Won"
           }
         }
       }
     },
-    "Won 🏆": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewonnen 🏆"
+    "Won 🏆" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewonnen 🏆"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Won 🏆"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Won 🏆"
           }
         }
       }
     },
-    "You": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du"
+    "You" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You"
           }
         }
       }
     },
-    "You Won!": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewonnen!"
+    "You Won!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewonnen!"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You Won!"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You Won!"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }
