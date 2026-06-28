@@ -459,7 +459,9 @@ extension MatchViewModel {
             currentGamesBottom:  state.gamesWon[.bottom]!,
             currentPointsTop:    state.points[.top]!,
             currentPointsBottom: state.points[.bottom]!,
-            didWin:              state.setsWon[.bottom]! >= state.setsToWin,
+            didWin:              isOpenEnded
+                                    ? (currentLeader == .bottom)
+                                    : (state.setsWon[.bottom]! >= state.setsToWin),
             opponentName:        opponentName,
             matchStartDate:      matchStartDate,
             firstPointOffset:    firstPointOffset,

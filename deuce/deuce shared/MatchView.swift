@@ -51,13 +51,16 @@ struct MatchView: View {
     }
 
     func saveAndExit(isComplete: Bool) {
+        // An open match has no target to reach, so ending it manually still counts
+        // as finished ("beendet"), never as abandoned.
         let record = vm.makeRecord(
-            isComplete: isComplete,
+            isComplete: isComplete || vm.isOpenEnded,
             opponentName: opponentName
         )
         modelContext.insert(record)
         try? modelContext.save()
 #if os(watchOS)
+        HealthManager.shared.stopWorkout()
         WatchSyncManager.shared.send(MatchRecordDTO(record))
 #else
         PhoneSyncManager.shared.send(record)

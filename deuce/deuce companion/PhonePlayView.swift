@@ -166,6 +166,7 @@ struct PhonePlayView: View {
                         Text(L10n.string("1 Set", locale: locale)).tag(1)
                         Text(L10n.string("Best of 3", locale: locale)).tag(2)
                         Text(L10n.string("Best of 5", locale: locale)).tag(3)
+                        Text(L10n.string("Open", locale: locale)).tag(0)
                     }
                     .pickerStyle(.segmented)
 

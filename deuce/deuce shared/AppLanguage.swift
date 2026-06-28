@@ -41,6 +41,7 @@ enum L10n {
         "Match Setup": "Match vorbereiten",
         "Match Dynamics": "Match-Dynamik",
         "Notes": "Notizen",
+        "Open": "Offen",
         "Played": "Gespielt",
         "Settings": "Einstellungen",
         "Stats": "Statistik",

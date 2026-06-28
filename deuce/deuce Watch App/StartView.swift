@@ -172,10 +172,11 @@ struct StartView: View {
 
                 VStack(spacing: 6) {
                     sectionHeader(icon: "trophy", label: String(localized: "Sets"))
-                    HStack(spacing: 6) {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 6) {
                         outlineButton(label: String(localized: "1 Set"), selected: setsToWin == 1) { setsToWin = 1 }
                         outlineButton(label: String(localized: "Best of 3"), selected: setsToWin == 2) { setsToWin = 2 }
                         outlineButton(label: String(localized: "Best of 5"), selected: setsToWin == 3) { setsToWin = 3 }
+                        outlineButton(label: String(localized: "Open"), selected: setsToWin == 0) { setsToWin = 0 }
                     }
                 }
 
@@ -208,6 +209,9 @@ struct StartView: View {
     private func startWarmup() {
         activeMatchViewModel = MatchViewModel()
         warmupActive = true
+        // Keep the app frontmost (Always-On + wrist-raise) for the whole session,
+        // starting already during warmup, and record a Tennis workout to Health.
+        HealthManager.shared.startWorkout()
     }
 
     private func startMatch() {
@@ -226,6 +230,7 @@ struct StartView: View {
         showMatchSetup = false
         warmupActive = false
         activeMatchViewModel = nil
+        HealthManager.shared.stopWorkout()
     }
 
     private func syncMatchesToPhone() {

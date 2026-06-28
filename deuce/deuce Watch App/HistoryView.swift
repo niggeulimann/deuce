@@ -355,7 +355,8 @@ struct MatchDetailView: View {
     }
 
     private var modeLabel: String {
-        record.setsToWin == 1 ? String(localized: "1 Set")
+        if record.setsToWin == 0 { return String(localized: "Open") }
+        return record.setsToWin == 1 ? String(localized: "1 Set")
             : String(localized: "Best of \(record.setsToWin * 2 - 1)")
     }
 }

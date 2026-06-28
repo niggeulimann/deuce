@@ -172,7 +172,8 @@ struct MatchDetailView: View {
     }
 
     private var modeLabel: String {
-        record.setsToWin == 1 ? L10n.string("1 Set", locale: locale)
+        if record.setsToWin == 0 { return L10n.string("Open", locale: locale) }
+        return record.setsToWin == 1 ? L10n.string("1 Set", locale: locale)
             : L10n.string("Best of \(record.setsToWin * 2 - 1)", locale: locale)
     }
 }
